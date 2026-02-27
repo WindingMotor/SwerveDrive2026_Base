@@ -78,11 +78,11 @@ public class SUB_Superstructure extends SubsystemBase {
 	private Boolean homed = false;
 
 	// test values
-	private Rotation2d center = new Rotation2d(0.0);
-	private Rotation2d left = new Rotation2d(-Math.PI);
+	// private Rotation2d center = new Rotation2d(0.0);
+	// private Rotation2d left = new Rotation2d(-Math.PI);
 
 	// Robot Constants
-	private final double INTAKE_MAX_EXTENSION_METERS = 11.3;
+	private final double INTAKE_MAX_EXTENSION_METERS = 11.5;
 
 	// Lookup tables for shooting while moving
 	private final InterpolatingDoubleTreeMap shooterRPMTable;
@@ -132,12 +132,12 @@ public class SUB_Superstructure extends SubsystemBase {
 				indexerRef.setSpinnerVoltage(0.0);
 				indexerRef.setKickerVoltage(0.0);
 				intakeRef.setIntakeVoltage(0.0);
-				intakeRef.setSliderPosition(0.0);
+				// intakeRef.setSliderPosition(0.0);
 				shooterRef.setShooterVelocities(0.0);
 
 				break;
 
-			//Shooting
+				// Shooting
 			case SHOOTING:
 				indexerRef.setSpinnerVoltage(12.0);
 				indexerRef.setKickerVoltage(10.0);
@@ -154,22 +154,24 @@ public class SUB_Superstructure extends SubsystemBase {
 			case READY:
 				indexerRef.setSpinnerVoltage(0.0);
 				indexerRef.setKickerVoltage(0.0);
+				break;
 
 			case UNJAM:
 				indexerRef.setSpinnerVoltage(-4.0);
+				break;
 
-			//Intake
+				// Intake
 			case INTAKE:
-				intakeRef.setIntakeVoltage(10.0);
-				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				intakeRef.setIntakeVoltage(8.0);
+				// intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
 			case INTAKE_IN:
-				intakeRef.setSliderPosition(0.0);
-				intakeRef.setIntakeVoltage(2.0);
+				// intakeRef.setSliderPosition(0.0);
+				intakeRef.setIntakeVoltage(0.0);
 				break;
 
-			//Climb
+				// Climb
 			case CLIMB_DOWN:
 				indexerRef.setClimbVoltage(-3.0);
 				break;
@@ -181,7 +183,6 @@ public class SUB_Superstructure extends SubsystemBase {
 			case CLIMB_UP:
 				indexerRef.setClimbVoltage(3.0);
 				break;
-
 		}
 
 		updateTurretAngle();

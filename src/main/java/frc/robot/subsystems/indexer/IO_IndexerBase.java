@@ -36,9 +36,5 @@ public interface IO_IndexerBase {
 
 	public StatusCode setKickerVoltage(double voltage);
 
-	public StatusCode setSpinnerVelocity(double Velocity);
-
-	public StatusCode setKickerVelocity(double Velocity);
-
 	public StatusCode setClimbVoltage(double voltage);
 }

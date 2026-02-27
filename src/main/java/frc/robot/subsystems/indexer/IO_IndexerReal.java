@@ -81,18 +81,6 @@ public class IO_IndexerReal implements IO_IndexerBase {
 	}
 
 	@Override
-	public StatusCode setSpinnerVelocity(double Velocity) {
-		spinnerMotorRequest.withOutput(Velocity);
-		return spinnerMotor.setControl(spinnerMotorRequest);
-	}
-
-	@Override
-	public StatusCode setKickerVelocity(double Velocity) {
-		kickerVoltageRequest.withOutput(Velocity);
-		return kickerMotor.setControl(kickerVoltageRequest);
-	}
-
-	@Override
 	public StatusCode setClimbVoltage(double voltage) {
 		climbVoltageRequest.withOutput(voltage);
 		return climbMotor.setControl(climbVoltageRequest);

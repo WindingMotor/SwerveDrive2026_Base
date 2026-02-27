@@ -186,7 +186,7 @@ public final class RobotConstants {
 		public static final double SHOOTER_WHEEL_DIAMETER_METERS =
 				0.0762; // 3 inches between 4in and 2in
 		public static final double SHOOTER_EFFICIENCY_FACTOR =
-				0.35; // CHARACTERIZE THIS (0.4-0.6 typical)
+				0.34; // CHARACTERIZE THIS (0.4-0.6 typical)
 	}
 
 	// Indexer----------------------------------------------------------------------------------------------------
@@ -198,7 +198,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SPINNER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SPINNER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 60; // Amps
+			SPINNER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 80; // Amps
 			SPINNER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
 					1.0; // Rotations to Whatever (gear ratio)
 			SPINNER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake; // Break or Coast

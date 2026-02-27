@@ -42,7 +42,7 @@ import frc.robot.subsystems.superstructure.SUB_Superstructure.RobotState;
 public class RobotContainer {
 
 	// The auto to run
-	public static final String AUTO_NAME = "RIGHT_HP";
+	public static final String AUTO_NAME = "RIGHT_T2_HP";
 	public static Command AUTO_COMMAND;
 
 	// Controllers
@@ -138,10 +138,6 @@ public class RobotContainer {
 		operatorController
 				.b()
 				.onTrue(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.IDLE));
-
-		operatorController
-				.leftBumper()
-				.onTrue(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.UNJAM));
 
 		// Climb
 		operatorController
