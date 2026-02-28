@@ -83,32 +83,34 @@ public class RobotContainer {
 		// Create and cache the PathPlanner auto command
 		AUTO_COMMAND = AutoBuilder.buildAuto(AUTO_NAME);
 
-		drive.setDefaultCommand(
-				DriveCommands.driveNormalExpo(
-						drive,
-						() -> driverController.getRawAxis(1),
-						() -> driverController.getRawAxis(0),
-						() -> -driverController.getRawAxis(4),
-						1.0, // A VALUE OF 1.0 is FULL ROBOT SPEED
-						0.8, // keep rotation conservative
-						0.1, // movement expo
-						0.2)); // rotation expo
-
 		/*drive.setDefaultCommand(
-		DriveCommands.driveNormal(
+		DriveCommands.driveNormalExpo(
 				drive,
 				() -> driverController.getRawAxis(1),
-				() -> -driverController.getRawAxis(0),
-				() -> -driverController.getRawAxis(3))); */
+				() -> driverController.getRawAxis(0),
+				() -> -driverController.getRawAxis(4),
+				1.0, // A VALUE OF 1.0 is FULL ROBOT SPEED
+				0.8, // keep rotation conservative
+				0.1, // movement expo
+				0.2)); // rotation expo */
+
+		drive.setDefaultCommand(
+				DriveCommands.driveNormal(
+						drive,
+						() -> -driverController.getRawAxis(1),
+						() -> driverController.getRawAxis(0),
+						() -> -driverController.getRawAxis(3),
+						1.5,
+						1.5));
 
 		// Intake
-		driverController
+		/*driverController
 				.leftTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.INTAKE_IN));
 
 		driverController
 				.leftTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.INTAKE));
+				.onFalse(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.INTAKE)); */
 
 		operatorController
 				.leftTrigger()
@@ -119,13 +121,13 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.INTAKE));
 
 		// Shoot
-		driverController
+		/*driverController
 				.rightTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.SHOOTING));
 
 		driverController
 				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.READY));
+				.onFalse(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.READY)); */
 
 		operatorController
 				.x()
@@ -157,13 +159,21 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.CLIMB_STOP));
 
 		// Test
-		/* turretTestcontroller
-				.y()
+		/* driverController
+				.x()
 				.onTrue(
-						new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.TURRET_CENTER));
-		turretTestcontroller
+						new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.TEST_ONE));
+		driverController
+				.y()
+				.onTrue(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.TEST_TWO));
+
+		driverController
 				.a()
-				.onTrue(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.TURRET_LEFT)); */
+				.onTrue(
+						new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.TEST_THREE));
+		driverController
+				.b()
+				.onTrue(new CMD_Superstructure(superstructure, SUB_Superstructure.RobotState.TEST_FOUR)); */
 
 		// drive.setDefaultCommand(DriveCommands.driveTest(drive));
 
@@ -300,6 +310,9 @@ public class RobotContainer {
 
 		NamedCommands.registerCommand(
 				"INTAKE_IN", new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+
+		NamedCommands.registerCommand(
+				"READY", new CMD_Superstructure(superstructure, RobotState.READY));
 	}
 
 	/*

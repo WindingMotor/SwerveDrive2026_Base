@@ -114,12 +114,12 @@ public final class RobotConstants {
 			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.Inverted =
 					InvertedValue.Clockwise_Positive; // Which way is positive?
 
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.2; // Slot 0 P value
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.2; // Slot 0 P value 0.2
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kI = 0.0; // Slot 0 I value
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kD = 0.0; // Slot 0 D value
 
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.232;
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.119;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.232; // 0.232
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.119; // 0.119
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kA = 0.0;
 		}
 

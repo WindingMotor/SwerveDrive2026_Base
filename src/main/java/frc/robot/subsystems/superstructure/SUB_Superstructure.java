@@ -31,10 +31,10 @@ public class SUB_Superstructure extends SubsystemBase {
 	public enum TurretTarget {
 		BLUE_HUB(new Translation2d(4.62, 4.03)),
 		RED_HUB(new Translation2d(11.91, 4.03)),
-		BLUE_AIMING_TOP_CORNER(new Translation2d(3.5, 6.5)),
-		RED_AIMING_TOP_CORNER(new Translation2d(13.0, 6.5)),
-		BLUE_AIMING_BOTTOM_CORNER(new Translation2d(3.5, 1.5)),
-		RED_AIMING_BOTTOM_CORNER(new Translation2d(13.0, 1.5));
+		BLUE_AIMING_TOP_CORNER(new Translation2d(4.0, 6.5)),
+		RED_AIMING_TOP_CORNER(new Translation2d(12.5, 6.5)),
+		BLUE_AIMING_BOTTOM_CORNER(new Translation2d(4.0, 1.5)),
+		RED_AIMING_BOTTOM_CORNER(new Translation2d(12.5, 1.5));
 
 		private final Translation2d position;
 
@@ -49,14 +49,18 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	public enum RobotState {
 		IDLE,
-		SHOOTING,
-		INTAKE,
-		INTAKE_IN,
+		SHOOTING, // shooting
 		READY,
 		UNJAM,
-		CLIMB_UP,
+		INTAKE, // Intake
+		INTAKE_IN,
+		CLIMB_UP, // Climb
 		CLIMB_DOWN,
-		CLIMB_STOP
+		CLIMB_STOP,
+		TEST_ONE,
+		TEST_TWO,
+		TEST_THREE,
+		TEST_FOUR
 	}
 
 	private SUB_Indexer indexerRef;
@@ -132,7 +136,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				indexerRef.setSpinnerVoltage(0.0);
 				indexerRef.setKickerVoltage(0.0);
 				intakeRef.setIntakeVoltage(0.0);
-				// intakeRef.setSliderPosition(0.0);
+				intakeRef.setSliderPosition(0.0);
 				shooterRef.setShooterVelocities(0.0);
 
 				break;
@@ -162,12 +166,12 @@ public class SUB_Superstructure extends SubsystemBase {
 
 				// Intake
 			case INTAKE:
-				intakeRef.setIntakeVoltage(8.0);
-				// intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				intakeRef.setIntakeVoltage(10.0);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
 			case INTAKE_IN:
-				// intakeRef.setSliderPosition(0.0);
+				intakeRef.setSliderPosition(0.0);
 				intakeRef.setIntakeVoltage(0.0);
 				break;
 
@@ -182,6 +186,22 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case CLIMB_UP:
 				indexerRef.setClimbVoltage(3.0);
+				break;
+
+			case TEST_ONE:
+				shooterRef.setShooterVelocities(2000.0);
+				break;
+
+			case TEST_TWO:
+				shooterRef.setShooterVelocities(2500.0);
+				break;
+
+			case TEST_THREE:
+				shooterRef.setShooterVelocities(3000.0);
+				break;
+
+			case TEST_FOUR:
+				shooterRef.setShooterVelocities(3500.0);
 				break;
 		}
 
