@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.2055329949238587,
-        "y": 0.6325989847715741
+        "x": 2.5508053577554355,
+        "y": 0.6057403493073192
       },
       "isLocked": false,
       "linkedName": "Right_Trench"
@@ -20,35 +20,16 @@
         "y": 0.6418071065989852
       },
       "prevControl": {
-        "x": 1.6677766497461932,
-        "y": 1.1758781725888332
+        "x": 1.6791245158063317,
+        "y": 0.6632603459925357
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "Right_HP"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.3082478145191985,
-      "rotationDegrees": 0.33663407889524866
-    }
-  ],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.12271414821944335,
-      "maxWaypointRelativePos": 0.9985563041386025,
-      "constraints": {
-        "maxVelocity": 1.5,
-        "maxAcceleration": 5.6,
-        "maxAngularVelocity": 1000.0,
-        "maxAngularAcceleration": 1500.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "rotationTargets": [],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
@@ -84,8 +65,8 @@
   "reversed": false,
   "folder": "RightSide_Comp",
   "idealStartingState": {
-    "velocity": 1.0,
-    "rotation": -0.9022211615301331
+    "velocity": 3.5,
+    "rotation": -178.9488192504563
   },
   "useDefaultConstraints": true
 }

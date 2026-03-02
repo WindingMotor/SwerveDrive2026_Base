@@ -7,13 +7,31 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Left_T_C1"
+            "pathName": "Right_Pass_Comp"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Left_C1_TS"
+            "pathName": "Right_C2_T_Comp"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_T_HP"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_HP_S"
           }
         },
         {
@@ -23,19 +41,25 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.1
+                  "waitTime": 1.0
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "SHOOT"
+                  "name": "INTAKE"
                 }
               },
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 2.0
+                  "waitTime": 1.0
+                }
+              },
+              {
+                "type": "named",
+                "data": {
+                  "name": "INTAKE_IN"
                 }
               }
             ]
@@ -45,6 +69,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Left_Side",
+  "folder": "Right_Side",
   "choreoAuto": false
 }

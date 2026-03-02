@@ -12,7 +12,7 @@
         "y": 0.6602233502538071
       },
       "isLocked": false,
-      "linkedName": "Right_Trench"
+      "linkedName": "Right_Trench_Shoot"
     },
     {
       "anchor": {
@@ -40,7 +40,7 @@
       "minWaypointRelativePos": 0.8214629451395655,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 1.5,
         "maxAcceleration": 5.6,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
@@ -79,7 +79,7 @@
   "folder": "RightSide",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -0.9022211615301331
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

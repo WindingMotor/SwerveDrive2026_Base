@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.809593908629443,
-        "y": 2.2900609137055845
+        "x": 7.828010152284264,
+        "y": 1.9309441624365489
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.708304568527919,
-        "y": 0.48526903553299694
+        "x": 7.72672081218274,
+        "y": 0.1261522842639613
       },
       "isLocked": false,
       "linkedName": "Right_C1_Comp"
@@ -25,13 +25,13 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Trench"
+      "linkedName": "Right_Trench_Shoot"
     }
   ],
   "rotationTargets": [
     {
       "waypointRelativePos": 0.8,
-      "rotationDegrees": 9.323807668932638
+      "rotationDegrees": 9.32380766893264
     }
   ],
   "constraintZones": [],
@@ -59,7 +59,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -0.9022211615301331
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "RightSide_Comp",

@@ -20,15 +20,20 @@
         "y": 0.6418071065989852
       },
       "prevControl": {
-        "x": 6.115299492385787,
-        "y": 0.5681421319796971
+        "x": 6.971654822335024,
+        "y": 0.5589340101522862
       },
       "nextControl": null,
       "isLocked": false,
       "linkedName": "Right_Trench"
     }
   ],
-  "rotationTargets": [],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.6731280881794061,
+      "rotationDegrees": -179.43740290677232
+    }
+  ],
   "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
@@ -53,14 +58,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 1.0,
-    "rotation": -0.9022211615301331
+    "velocity": 3.5,
+    "rotation": -178.9488192504563
   },
   "reversed": false,
   "folder": "RightSide_Comp",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 65.05609473657559
+    "rotation": 83.36748538486165
   },
   "useDefaultConstraints": true
 }

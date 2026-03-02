@@ -7,25 +7,31 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right_T_C1_Comp"
+            "pathName": "Right_Pass"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Right_C1_T_Comp"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SHOOT"
+            "pathName": "Right_C2_T"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Right_T_HP_Comp"
+            "pathName": "Right_T_HP"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_HP_S"
           }
         },
         {
@@ -35,19 +41,19 @@
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.1
+                  "waitTime": 1.0
                 }
               },
               {
                 "type": "named",
                 "data": {
-                  "name": "SHOOT"
+                  "name": "INTAKE"
                 }
               },
               {
                 "type": "wait",
                 "data": {
-                  "waitTime": 0.5
+                  "waitTime": 1.0
                 }
               },
               {

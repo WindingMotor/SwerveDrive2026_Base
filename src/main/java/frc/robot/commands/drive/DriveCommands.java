@@ -87,6 +87,18 @@ public class DriveCommands {
 			double omegaScalar) {
 		return Commands.run(
 				() -> {
+
+					boolean isRed = DriverStation.getAlliance().isPresent() && DriverStation.getAlliance().get() == Alliance.Red;
+
+					double x = xSupplier.getAsDouble();
+					double y = ySupplier.getAsDouble();
+					double z = omegaSupplier.getAsDouble();
+
+					if (isRed) {
+						x *= -1;
+						y *= -1;
+					}
+
 					Translation2d linearVelocity =
 							getLinearVelocityFromJoysticks(xSupplier.getAsDouble(), ySupplier.getAsDouble());
 
@@ -116,9 +128,19 @@ public class DriveCommands {
 			double rExpo) {
 		return Commands.run(
 				() -> {
+
+					boolean isRed =
+						DriverStation.getAlliance().isPresent()
+								&& DriverStation.getAlliance().get() == Alliance.Red;
+
 					double x = xSupplier.getAsDouble();
 					double y = ySupplier.getAsDouble();
 					double z = omegaSupplier.getAsDouble();
+
+					if (isRed) {
+						x *= -1;
+						y *= -1;
+					}
 
 					double xExpo = (1.0 - mExpo) * x + mExpo * x * x * x;
 					double yExpo = (1.0 - mExpo) * y + mExpo * y * y * y;

@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.1521218274111678,
-        "y": 1.1482538071065997
+        "x": 1.0504942843946845,
+        "y": 1.1016157583335735
       },
       "isLocked": false,
       "linkedName": "Right_HP"
@@ -20,8 +20,8 @@
         "y": 2.2163959390862953
       },
       "prevControl": {
-        "x": 1.3731167512690354,
-        "y": 1.3784568527918784
+        "x": 1.353902230949545,
+        "y": 1.5078304296527285
       },
       "nextControl": null,
       "isLocked": false,
@@ -40,6 +40,17 @@
         "type": "named",
         "data": {
           "name": "INTAKE"
+        }
+      }
+    },
+    {
+      "name": "SHOOT",
+      "waypointRelativePos": 0.9196342637151051,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "SHOOT"
         }
       }
     }

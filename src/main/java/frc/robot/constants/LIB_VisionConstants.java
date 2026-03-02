@@ -208,8 +208,8 @@ public class LIB_VisionConstants {
 					26,
 					27,
 					28,
-					// 29,
-					// 30,
+					29,
+					30,
 					31,
 					32);
 }

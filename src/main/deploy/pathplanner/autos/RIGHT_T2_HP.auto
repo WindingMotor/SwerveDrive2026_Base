@@ -59,12 +59,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "SHOOT"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "Right_T_HP"
@@ -89,9 +83,27 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "INTAKE_IN"
+          }
+        },
+        {
           "type": "wait",
           "data": {
             "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.2
           }
         },
         {

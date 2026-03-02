@@ -25,13 +25,13 @@
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_Trench"
+      "linkedName": "Right_Trench_Shoot"
     }
   ],
   "rotationTargets": [
     {
       "waypointRelativePos": 0.799315849486888,
-      "rotationDegrees": 9.323807668932638
+      "rotationDegrees": 9.32380766893264
     }
   ],
   "constraintZones": [
@@ -73,7 +73,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -0.9022211615301331
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "RightSide",

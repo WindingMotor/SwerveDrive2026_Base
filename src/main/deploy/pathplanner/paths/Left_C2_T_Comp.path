@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.579390862944161,
-        "y": 4.840710659898478
+        "x": 7.781969543147207,
+        "y": 4.822294416243656
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.778284263959389,
-        "y": 7.5663147208121835
+        "x": 7.781969543147207,
+        "y": 7.511065989847716
       },
       "isLocked": false,
       "linkedName": "Left_C2_Comp"
@@ -60,7 +60,7 @@
   "folder": "LeftSide_Comp",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -70.42687416958964
+    "rotation": -85.03025927188935
   },
   "useDefaultConstraints": true
 }

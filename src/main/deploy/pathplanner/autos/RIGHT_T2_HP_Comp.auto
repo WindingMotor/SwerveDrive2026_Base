@@ -71,12 +71,6 @@
           }
         },
         {
-          "type": "named",
-          "data": {
-            "name": "SHOOT"
-          }
-        },
-        {
           "type": "path",
           "data": {
             "pathName": "Right_T_HP_Comp"
@@ -85,7 +79,13 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.5
+            "waitTime": 1.0
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_HP_S"
           }
         },
         {

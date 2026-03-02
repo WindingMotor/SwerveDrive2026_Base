@@ -177,7 +177,7 @@ public class SUB_Superstructure extends SubsystemBase {
 
 				// Climb
 			case CLIMB_DOWN:
-				indexerRef.setClimbVoltage(-3.0);
+				indexerRef.setClimbVoltage(-5.0);
 				break;
 
 			case CLIMB_STOP:
@@ -185,7 +185,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case CLIMB_UP:
-				indexerRef.setClimbVoltage(3.0);
+				indexerRef.setClimbVoltage(5.0);
 				break;
 
 			case TEST_ONE:
