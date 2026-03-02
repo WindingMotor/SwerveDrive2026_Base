@@ -134,6 +134,12 @@ public class IO_ShooterReal implements IO_ShooterBase {
 	}
 
 	@Override
+	public double getTurretTargetPosition() {
+		// FIX: read actual encoder position, not the requested target position
+		return turretMotorRequest.Position * RobotConstants.Shooter.ROT_TO_RAD;
+	}
+
+	@Override
 	public void setShooterVoltages(double voltages) {
 		shooterMotorsVoltageRequest.withOutput(voltages);
 		shooterMotorOne.setControl(shooterMotorsVoltageRequest);

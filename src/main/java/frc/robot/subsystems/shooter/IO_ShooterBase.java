@@ -44,6 +44,8 @@ public interface IO_ShooterBase {
 
 	public double getTurretPosition();
 
+	public double getTurretTargetPosition();
+
 	public Boolean homeTurret(Boolean homed);
 
 	public default void onShootSimulation() {}

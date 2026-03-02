@@ -129,7 +129,7 @@ public final class RobotConstants {
 		public static final double TURRET_RADIANS_MAX = 0.5;
 		public static final double TURRET_RADIANS_MIN = -6.0;
 
-		public static final double TURRET_OFFSET = 0.0;
+		public static final double TURRET_ANGLE_OFFSET = 0.3;
 
 		public static final double ROT_TO_RAD = 2.0 * Math.PI;
 

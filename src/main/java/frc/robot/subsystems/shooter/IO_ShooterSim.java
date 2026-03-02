@@ -211,6 +211,11 @@ public class IO_ShooterSim implements IO_ShooterBase {
 	}
 
 	@Override
+	public double getTurretTargetPosition() {
+		return turretMotor.getPosition().getValueAsDouble() * RobotConstants.Shooter.ROT_TO_RAD;
+	}
+
+	@Override
 	public Boolean homeTurret(Boolean homed) {
 		if (!simHomed) {
 			setTurretVoltage(RobotConstants.Shooter.TURRET_SLOW_MOVE_VOLTAGE);

@@ -9,7 +9,6 @@ package frc.robot.subsystems.shooter;
 
 import com.ctre.phoenix6.StatusCode;
 import edu.wpi.first.math.Pair;
-import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.constants.RobotConstants;
 import org.littletonrobotics.junction.Logger;
@@ -45,6 +44,10 @@ public class SUB_Shooter extends SubsystemBase {
 		return io.getTurretPosition();
 	}
 
+	public double getTurretTargetPosition() {
+		return io.getTurretTargetPosition();
+	}
+
 	public double getShooterVelocityRPMSetpoint() {
 		return inputs.shooterMotorOneTargetVelocity;
 	}
@@ -55,10 +58,10 @@ public class SUB_Shooter extends SubsystemBase {
 	 * @param targetAngle The desired turret angle
 	 * @return true if turret is aimed within tolerance
 	 */
-	public boolean isTurretAtTarget(Rotation2d targetAngle) {
+	public boolean isTurretAtTarget() {
 		double currentAngle = getTurretPosition();
-		double targetRad = targetAngle.getRadians();
-		return Math.abs(targetRad - currentAngle) < RobotConstants.Shooter.TURRET_OFFSET;
+		double targetRad = getTurretTargetPosition();
+		return Math.abs(targetRad - currentAngle) < RobotConstants.Shooter.TURRET_ANGLE_OFFSET;
 	}
 
 	/**
@@ -90,8 +93,8 @@ public class SUB_Shooter extends SubsystemBase {
 	 * @param targetRPM The desired shooter velocity
 	 * @return true if both turret and shooter are ready
 	 */
-	public boolean isReadyToShoot(Rotation2d targetAngle, double targetRPM) {
-		return isTurretAtTarget(targetAngle) && isShooterAtSpeed(targetRPM);
+	public boolean isReadyToShoot(double targetRPM) {
+		return isTurretAtTarget() && isShooterAtSpeed(targetRPM);
 	}
 
 	/**

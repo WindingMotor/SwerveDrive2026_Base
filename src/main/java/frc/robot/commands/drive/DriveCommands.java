@@ -87,8 +87,9 @@ public class DriveCommands {
 			double omegaScalar) {
 		return Commands.run(
 				() -> {
-
-					boolean isRed = DriverStation.getAlliance().isPresent() && DriverStation.getAlliance().get() == Alliance.Red;
+					boolean isRed =
+							DriverStation.getAlliance().isPresent()
+									&& DriverStation.getAlliance().get() == Alliance.Red;
 
 					double x = xSupplier.getAsDouble();
 					double y = ySupplier.getAsDouble();
@@ -128,10 +129,9 @@ public class DriveCommands {
 			double rExpo) {
 		return Commands.run(
 				() -> {
-
 					boolean isRed =
-						DriverStation.getAlliance().isPresent()
-								&& DriverStation.getAlliance().get() == Alliance.Red;
+							DriverStation.getAlliance().isPresent()
+									&& DriverStation.getAlliance().get() == Alliance.Red;
 
 					double x = xSupplier.getAsDouble();
 					double y = ySupplier.getAsDouble();

@@ -143,8 +143,13 @@ public class SUB_Superstructure extends SubsystemBase {
 
 				// Shooting
 			case SHOOTING:
-				indexerRef.setSpinnerVoltage(12.0);
-				indexerRef.setKickerVoltage(10.0);
+				if (shooterRef.isTurretAtTarget()) {
+					indexerRef.setSpinnerVoltage(12.0);
+					indexerRef.setKickerVoltage(10.0);
+				} else {
+					indexerRef.setSpinnerVoltage(0.0);
+					indexerRef.setKickerVoltage(0.0);
+				}
 
 				// FOR SIMULATION ONLY
 				// Only trigger projectile when kicker is actually running and shooter is at target speed
