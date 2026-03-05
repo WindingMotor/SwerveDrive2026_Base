@@ -8,8 +8,8 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.584913705583757,
-        "y": 7.566314720812182
+        "x": 6.594121827411168,
+        "y": 7.575522842639593
       },
       "isLocked": false,
       "linkedName": "Left_C2"
@@ -20,8 +20,8 @@
         "y": 7.428192893401015
       },
       "prevControl": {
-        "x": 6.5480812182741115,
-        "y": 7.649187817258884
+        "x": 6.612538071065989,
+        "y": 7.557106598984772
       },
       "nextControl": null,
       "isLocked": false,
@@ -46,7 +46,7 @@
   ],
   "globalConstraints": {
     "maxVelocity": 3.85,
-    "maxAcceleration": 5.6,
+    "maxAcceleration": 4.0,
     "maxAngularVelocity": 1000.0,
     "maxAngularAcceleration": 1500.0,
     "nominalVoltage": 12.0,
@@ -62,5 +62,5 @@
     "velocity": 0,
     "rotation": -89.0289780689209
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }
