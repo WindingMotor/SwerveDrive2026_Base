@@ -40,7 +40,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration INTAKE_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 40; // Amps
+			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 45; // Amps
 			INTAKE_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
 					1.0; // Rotations to Whatever (gear ratio)
 			INTAKE_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
@@ -51,12 +51,12 @@ public final class RobotConstants {
 		// Slider motor
 		public static final int SLIDER_MOTOR_CAN_ID = 10;
 
-		public static final double INTAKE_MAX_EXTENSION_METERS = 11.3; // not meters
+		public static final double INTAKE_MAX_EXTENSION_METERS = 11.5; // not meters
 
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 30; // Amps
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 35; // Amps
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
 					1.0; // Rotations to Whatever (gear ratio)
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
@@ -92,11 +92,11 @@ public final class RobotConstants {
 			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.Inverted =
 					InvertedValue.CounterClockwise_Positive; // Which way is positive?
 
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.2; // Slot 0 P value
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.2; // Slot 0 P value .2
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kI = 0.0; // Slot 0 I value
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kD = 0.0; // Slot 0 D value
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kD = 0.06; // Slot 0 D value
 
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.232;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.232; // .232
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kV = 0.119;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kA = 0.0;
 		}
@@ -172,14 +172,14 @@ public final class RobotConstants {
 		// Shooter RPM lookup table: {distance_meters, rpm}
 
 		public static final double[][] SHOOTER_RPM_DATA = {
-			{2.0, 1700.0},
-			{2.5, 1850.0},
-			{3.0, 2000.0},
+			{2.0, 1750.0},
+			{2.5, 1900.0},
+			{3.0, 2050.0},
 			{3.5, 2150.0},
-			{4.0, 2300.0},
-			{4.5, 2450.0},
-			{5.0, 2600.0},
-			{5.5, 2750.0} // Far shot
+			{4.0, 2320.0},
+			{4.5, 2470.0},
+			{5.0, 2630.0},
+			{5.5, 2790.0} // Far shot
 		};
 
 		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(19.044);

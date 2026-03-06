@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.5757055837563465,
-        "y": 4.002771573604061
+        "x": 7.662263959390861,
+        "y": 4.417137055837564
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.584913705583757,
-        "y": 3.266121827411167
+        "x": 7.929299492385786,
+        "y": 2.501847715736041
       },
       "isLocked": false,
       "linkedName": "Middle_HG_set"
@@ -32,12 +32,12 @@
     },
     {
       "anchor": {
-        "x": 2.478091370558376,
-        "y": 2.9714619289340103
+        "x": 2.3768020304568536,
+        "y": 2.8149238578680205
       },
       "prevControl": {
-        "x": 3.504796954314722,
-        "y": 2.4281827411167516
+        "x": 3.4035076142131997,
+        "y": 2.2716446700507618
       },
       "nextControl": null,
       "isLocked": false,
@@ -47,7 +47,7 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.786773090079811,
-      "rotationDegrees": -35.09022567485165
+      "rotationDegrees": 137.39490162772432
     }
   ],
   "constraintZones": [
@@ -77,7 +77,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -67.06789956241026
+    "rotation": 125.69005982501395
   },
   "reversed": false,
   "folder": "Middle",

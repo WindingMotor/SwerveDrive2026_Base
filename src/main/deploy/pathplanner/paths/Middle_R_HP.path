@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 0.664091370558376,
-        "y": 0.6418071065989852
+        "x": 0.63,
+        "y": 0.68
       },
       "prevControl": {
-        "x": 2.3215532994923835,
-        "y": 0.9732994923857863
+        "x": 2.2874619289340066,
+        "y": 1.0114923857868012
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,9 +33,9 @@
     {
       "name": "Constraints Zone",
       "minWaypointRelativePos": 0,
-      "maxWaypointRelativePos": 0.5481231953801711,
+      "maxWaypointRelativePos": 0.37487969201155197,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.5,
         "maxAcceleration": 5.6,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
@@ -48,7 +48,7 @@
   "eventMarkers": [
     {
       "name": "SHOOT",
-      "waypointRelativePos": 0.09769008662174941,
+      "waypointRelativePos": 0.02,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -58,14 +58,25 @@
       }
     },
     {
-      "name": "IDLE",
-      "waypointRelativePos": 0.44610202117420555,
+      "name": "INTAKE_IN",
+      "waypointRelativePos": 0.17853705486044005,
       "endWaypointRelativePos": null,
       "command": null
     },
     {
+      "name": "IDLE",
+      "waypointRelativePos": 0.5019249278152086,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IDLE"
+        }
+      }
+    },
+    {
       "name": "INTAKE",
-      "waypointRelativePos": 0.6443695861405171,
+      "waypointRelativePos": 0.6424446583253064,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

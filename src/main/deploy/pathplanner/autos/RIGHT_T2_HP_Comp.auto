@@ -31,7 +31,7 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.3
           }
         },
         {
@@ -49,13 +49,43 @@
         {
           "type": "named",
           "data": {
-            "name": "IDLE"
+            "name": "INTAKE_IN"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.0
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE_IN"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 2.0
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "IDLE"
           }
         },
         {
@@ -77,15 +107,9 @@
           }
         },
         {
-          "type": "wait",
+          "type": "named",
           "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Right_HP_S"
+            "name": "SHOOT"
           }
         },
         {
@@ -97,13 +121,25 @@
         {
           "type": "named",
           "data": {
-            "name": "SHOOT"
+            "name": "INTAKE_IN"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
           }
         },
         {
