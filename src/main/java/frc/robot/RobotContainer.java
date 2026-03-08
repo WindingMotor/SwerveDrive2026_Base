@@ -42,7 +42,7 @@ import frc.robot.subsystems.superstructure.SUB_Superstructure.RobotState;
 public class RobotContainer {
 
 	// The auto to run
-	public static final String AUTO_NAME = "MIDDLE_HP";
+	public static final String AUTO_NAME = "RIGHT_T2_HP_Comp";
 	public static Command AUTO_COMMAND;
 
 	// Controllers

@@ -55,11 +55,11 @@ public class LIB_DriveConstants {
 	 */
 	private static final Slot0Configs driveGains =
 			new Slot0Configs()
-					.withKP(1.5) // Proportional gain 2.5
+					.withKP(1.8) // Proportional gain 2.5
 					.withKI(0) // Integral gain
 					.withKD(0) // Derivative gain
 					.withKS(0) // Static friction feedforward (V)
-					.withKV(0.0); // Velocity feedforward (V/(rot/s))0.75
+					.withKV(0.85); // Velocity feedforward (V/(rot/s))0.75
 
 	// ====================================================================
 	// SECTION 2: CONTROL CONFIGURATION
@@ -77,7 +77,7 @@ public class LIB_DriveConstants {
 	// ====================================================================
 
 	public static final LinearVelocity kSpeedAt12Volts =
-			MetersPerSecond.of(5); // Theoretical max speed (m/s)
+			MetersPerSecond.of(4.5); // Theoretical max speed (m/s)
 	public static final double kDriveGearRatio = 6.12; // Drive motor gear ratio
 	public static final double kSteerGearRatio = (150.0 / 7.0); // Steer motor gear ratio
 	private static final double kCoupleRatio = 3.57; // Azimuth coupling ratio

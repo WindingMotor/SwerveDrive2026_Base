@@ -56,7 +56,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 35; // Amps
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 55; // Amps
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
 					1.0; // Rotations to Whatever (gear ratio)
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
@@ -67,7 +67,7 @@ public final class RobotConstants {
 			SLIDER_MOTOR_CONFIG.Slot0.kI = 0.1; // Slot 0 I value
 			SLIDER_MOTOR_CONFIG.Slot0.kD = 0.0; // Slot 0 D value
 
-			SLIDER_MOTOR_CONFIG.Slot0.kS = 0.2;
+			SLIDER_MOTOR_CONFIG.Slot0.kS = 0.35;
 			SLIDER_MOTOR_CONFIG.Slot0.kV = 0.3;
 
 			SLIDER_MOTOR_CONFIG.Slot0.kG = -0.155;
@@ -172,14 +172,14 @@ public final class RobotConstants {
 		// Shooter RPM lookup table: {distance_meters, rpm}
 
 		public static final double[][] SHOOTER_RPM_DATA = {
-			{2.0, 1750.0},
-			{2.5, 1900.0},
-			{3.0, 2050.0},
+			{2.0, 1700.0},
+			{2.5, 1880.0},
+			{3.0, 2080.0},
 			{3.5, 2150.0},
-			{4.0, 2320.0},
-			{4.5, 2470.0},
-			{5.0, 2630.0},
-			{5.5, 2790.0} // Far shot
+			{3.7, 2180.0},
+			{4.0, 2370.0},
+			{4.5, 2530.0},
+			{5.0, 2530.0} // Far shot
 		};
 
 		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(19.044);
