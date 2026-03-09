@@ -14,6 +14,7 @@ import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.constants.RobotConstants;
@@ -81,6 +82,9 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	private Boolean homed = false;
 
+	private boolean isRed =
+			DriverStation.getAlliance().isPresent() && DriverStation.getAlliance().get() == Alliance.Red;
+
 	// test values
 	// private Rotation2d center = new Rotation2d(0.0);
 	// private Rotation2d left = new Rotation2d(-Math.PI);
@@ -96,6 +100,8 @@ public class SUB_Superstructure extends SubsystemBase {
 			new Translation2d(
 					RobotConstants.Shooter.TURRET_OFFSET_X_METERS,
 					RobotConstants.Shooter.TURRET_OFFSET_Y_METERS);
+
+	private Timekeeper timekeeper;
 
 	public SUB_Superstructure(
 			SUB_Indexer indexerRef,
@@ -118,6 +124,8 @@ public class SUB_Superstructure extends SubsystemBase {
 		for (double[] dataPoint : RobotConstants.Shooter.SHOOTER_RPM_DATA) {
 			shooterRPMTable.put(dataPoint[0], dataPoint[1]);
 		}
+
+		timekeeper = new Timekeeper();
 	}
 
 	@Override
@@ -387,10 +395,6 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	public void updateTurretTarget() {
 
-		boolean isRed =
-				DriverStation.getAlliance().isPresent()
-						&& DriverStation.getAlliance().get() == Alliance.Red;
-
 		Pose2d robotPose = driveRef.getPose();
 
 		if (isRed) {
@@ -414,6 +418,38 @@ public class SUB_Superstructure extends SubsystemBase {
 			} else {
 				turretTargetPose = TurretTarget.BLUE_AIMING_BOTTOM_CORNER.getPosition(); // aim to zone
 			}
+		}
+	}
+
+	public void findShift() {
+		String gameData = DriverStation.getGameSpecificMessage();
+		if (gameData.length() > 0) {
+			switch (gameData.charAt(0)) {
+				case 'B':
+					// Blue case code
+					if (!isRed) { // second shift
+
+						SmartDashboard.putBoolean("Timekeeper/IsHubOn", false);
+						SmartDashboard.putNumber("Timerkeeper/Countdown", 12);
+
+					} else { // first shift
+
+					}
+					break;
+				case 'R':
+					// Red case code
+					if (isRed) { // second shift
+
+					} else { // first shift
+
+					}
+					break;
+				default:
+					// This is corrupt data
+					break;
+			}
+		} else {
+			// Code for no data received yet
 		}
 	}
 
