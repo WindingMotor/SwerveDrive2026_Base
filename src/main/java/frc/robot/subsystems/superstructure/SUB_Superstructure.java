@@ -82,7 +82,7 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	private Boolean homed = false;
 
-	private boolean isRed =
+	private boolean isRedGlobal =
 			DriverStation.getAlliance().isPresent() && DriverStation.getAlliance().get() == Alliance.Red;
 
 	// test values
@@ -395,9 +395,13 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	public void updateTurretTarget() {
 
+    	// Evaluate alliance dynamically every loop -> DS may not be connected at construction time!
+		isRedGlobal = DriverStation.getAlliance().isPresent()
+				&& DriverStation.getAlliance().get() == Alliance.Red;
+
 		Pose2d robotPose = driveRef.getPose();
 
-		if (isRed) {
+		if (isRedGlobal) {
 
 			if (robotPose.getX()
 					> TurretTarget.RED_HUB.getPosition().getX()) { // robot is not past blue hub
@@ -427,7 +431,7 @@ public class SUB_Superstructure extends SubsystemBase {
 			switch (gameData.charAt(0)) {
 				case 'B':
 					// Blue case code
-					if (!isRed) { // second shift
+					if (!isRedGlobal) { // second shift
 
 						SmartDashboard.putBoolean("Timekeeper/IsHubOn", false);
 						SmartDashboard.putNumber("Timerkeeper/Countdown", 12);
@@ -438,7 +442,7 @@ public class SUB_Superstructure extends SubsystemBase {
 					break;
 				case 'R':
 					// Red case code
-					if (isRed) { // second shift
+					if (isRedGlobal) { // second shift
 
 					} else { // first shift
 
