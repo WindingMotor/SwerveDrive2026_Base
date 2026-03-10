@@ -56,7 +56,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 55; // Amps
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 20; // Amps
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
 					1.0; // Rotations to Whatever (gear ratio)
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast

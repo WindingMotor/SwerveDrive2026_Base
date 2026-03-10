@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5231809922732014,
-        "y": 0.5504916183428528
+        "x": 2.662365596071836,
+        "y": 0.6152094484598946
       },
       "isLocked": false,
       "linkedName": "Right_Trench"
     },
     {
       "anchor": {
-        "x": 0.86,
-        "y": 0.68
+        "x": 1.0140000000000002,
+        "y": 0.6510152284263961
       },
       "prevControl": {
-        "x": 1.8750331452479563,
-        "y": 0.7014532393935505
+        "x": 2.1625401098741626,
+        "y": 0.638152269389245
       },
       "nextControl": null,
       "isLocked": false,
@@ -29,29 +29,9 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.72714148219442,
-      "maxWaypointRelativePos": 1.0,
-      "constraints": {
-        "maxVelocity": 2.5,
-        "maxAcceleration": 5.6,
-        "maxAngularVelocity": 1000.0,
-        "maxAngularAcceleration": 1500.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    }
-  ],
+  "constraintZones": [],
   "pointTowardsZones": [],
   "eventMarkers": [
-    {
-      "name": "SHOOT",
-      "waypointRelativePos": 0.15543792107795687,
-      "endWaypointRelativePos": null,
-      "command": null
-    },
     {
       "name": "INTAKE",
       "waypointRelativePos": 0.5558229066409982,
@@ -65,7 +45,7 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.85,
+    "maxVelocity": 4.5,
     "maxAcceleration": 5.6,
     "maxAngularVelocity": 1000.0,
     "maxAngularAcceleration": 1500.0,
@@ -80,7 +60,7 @@
   "folder": "RightSide_Comp",
   "idealStartingState": {
     "velocity": 3.0,
-    "rotation": -178.9488192504563
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

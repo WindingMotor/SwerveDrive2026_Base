@@ -3,45 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 6.511248730964468,
-        "y": 3.3858274111675133
+        "x": 4.227634517766497,
+        "y": 0.5865583756345187
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.594121827411168,
-        "y": 0.5405177664974619
+        "x": 1.9639448507174295,
+        "y": 0.6113451253073439
       },
       "isLocked": false,
-      "linkedName": "Right_C2"
+      "linkedName": "Right_Trench"
     },
     {
       "anchor": {
-        "x": 4.255,
-        "y": 0.6418071065989852
+        "x": 1.0140000000000002,
+        "y": 0.6510152284263961
       },
       "prevControl": {
-        "x": 6.621746192893401,
-        "y": 0.577350253807108
+        "x": 2.4162672188450416,
+        "y": 0.6482357520938499
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Right_HP"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.5,
-      "rotationDegrees": -161.18950078899488
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5692974013474503,
+      "minWaypointRelativePos": 0.6097208854667947,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 3.0,
-        "maxAcceleration": 5.6,
+        "maxVelocity": 2.0,
+        "maxAcceleration": 3.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
         "nominalVoltage": 12.0,
@@ -52,13 +47,13 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "IDLE",
-      "waypointRelativePos": 0.1438883541867197,
+      "name": "INTAKE",
+      "waypointRelativePos": 0.48845043310874825,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "IDLE"
+          "name": "INTAKE"
         }
       }
     }
@@ -72,14 +67,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 5.0,
+    "velocity": 0,
     "rotation": 180.0
   },
   "reversed": false,
-  "folder": "RightSide",
+  "folder": "RightSide_Comp",
   "idealStartingState": {
-    "velocity": 0,
-    "rotation": 90.0
+    "velocity": 3.0,
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }

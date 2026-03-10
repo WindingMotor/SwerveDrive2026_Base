@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.86,
-        "y": 0.68
+        "x": 1.0140000000000002,
+        "y": 0.6510152284263961
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.8700952033435798,
-        "y": 1.695552161745555
+        "x": 2.02409520334358,
+        "y": 1.6665673901719509
       },
       "isLocked": false,
       "linkedName": "Right_HP"
@@ -139,7 +139,7 @@
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.85,
+    "maxVelocity": 4.5,
     "maxAcceleration": 5.6,
     "maxAngularVelocity": 1000.0,
     "maxAngularAcceleration": 1500.0,

@@ -29,7 +29,7 @@ import frc.robot.lib.windingmotor.vision.IO_VisionCamera;
 import frc.robot.lib.windingmotor.vision.SUB_Vision;
 import frc.robot.subsystems.indexer.IO_IndexerReal;
 import frc.robot.subsystems.indexer.SUB_Indexer;
-import frc.robot.subsystems.intake.IO_IntakeReal;
+import frc.robot.subsystems.intake.IO_IntakeRealNew;
 import frc.robot.subsystems.intake.SUB_Intake;
 import frc.robot.subsystems.led.SUB_Led;
 import frc.robot.subsystems.shooter.IO_ShooterReal;
@@ -206,7 +206,7 @@ public class RobotContainer {
 
 		intake =
 				new SUB_Intake(
-						new IO_IntakeReal(
+						new IO_IntakeRealNew(
 								RobotConstants.Intake.INTAKE_MOTOR_CONFIG,
 								RobotConstants.Intake.SLIDER_MOTOR_CONFIG));
 

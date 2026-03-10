@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 7.671472081218274,
-        "y": 3.293746192893401
+        "x": 7.303147208121827,
+        "y": 3.1832487309644684
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.781969543147207,
-        "y": 0.4944771573604072
+        "x": 7.41364467005076,
+        "y": 0.3839796954314729
       },
       "isLocked": false,
       "linkedName": "Right_C2_Comp"
@@ -73,13 +73,13 @@
   },
   "goalEndState": {
     "velocity": 3.0,
-    "rotation": -178.9488192504563
+    "rotation": 180.0
   },
   "reversed": false,
   "folder": "RightSide_Comp",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 83.36748538486165
+    "rotation": 78.69006752597988
   },
   "useDefaultConstraints": false
 }
