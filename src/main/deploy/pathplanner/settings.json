@@ -16,7 +16,7 @@
     "Middle",
     "Right_Side"
   ],
-  "defaultMaxVel": 4.5,
+  "defaultMaxVel": 3.8,
   "defaultMaxAccel": 5.6,
   "defaultMaxAngVel": 1000.0,
   "defaultMaxAngAccel": 1500.0,

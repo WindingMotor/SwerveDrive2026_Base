@@ -3,44 +3,60 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.347340101522843,
-        "y": 7.409776649746193
+        "x": 4.227634517766497,
+        "y": 0.5865583756345187
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.505725888324873,
-        "y": 7.409776649746193
+        "x": 3.1318680203045686,
+        "y": 0.7707208121827418
+      },
+      "isLocked": false,
+      "linkedName": "Right_Trench"
+    },
+    {
+      "anchor": {
+        "x": 1.907187817258884,
+        "y": 1.7651979695431477
+      },
+      "prevControl": {
+        "x": 2.412739423525307,
+        "y": 1.7243453144913148
+      },
+      "nextControl": {
+        "x": 0.9955837563451793,
+        "y": 1.8388629441624382
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 7.809593908629443,
-        "y": 4.7210050761421325
+        "x": 0.654883248730965,
+        "y": 0.7062639593908637
       },
       "prevControl": {
-        "x": 7.8556345177665,
-        "y": 7.244030456852796
+        "x": 0.8171690436336644,
+        "y": 0.8964305199970833
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Left_C2_Comp"
+      "linkedName": "HP_REAL"
     }
   ],
   "rotationTargets": [
     {
-      "waypointRelativePos": 0.477004941087039,
-      "rotationDegrees": -79.16717683459508
+      "waypointRelativePos": 0.3063473964272167,
+      "rotationDegrees": 130.2910899263677
     }
   ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.43070259865254884,
-      "maxWaypointRelativePos": 1.0,
+      "minWaypointRelativePos": 0.09913378248315499,
+      "maxWaypointRelativePos": 0.7767083734359954,
       "constraints": {
-        "maxVelocity": 1.2,
+        "maxVelocity": 0.8,
         "maxAcceleration": 5.6,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
@@ -52,19 +68,8 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "INTAKE",
-      "waypointRelativePos": 0.1535129932627492,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE"
-        }
-      }
-    },
-    {
       "name": "SHOOT",
-      "waypointRelativePos": 0.3960538979788173,
+      "waypointRelativePos": 0.0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -74,13 +79,35 @@
       }
     },
     {
+      "name": "INTAKE_IN",
+      "waypointRelativePos": 0.17613089509143004,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "INTAKE_IN"
+        }
+      }
+    },
+    {
       "name": "IDLE",
-      "waypointRelativePos": 1.0,
+      "waypointRelativePos": 0.7343599615014376,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
           "name": "IDLE"
+        }
+      }
+    },
+    {
+      "name": "INTAKE",
+      "waypointRelativePos": 1.2386910490856535,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "INTAKE"
         }
       }
     }
@@ -95,13 +122,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -101.07020257793961
+    "rotation": -178.806510576018
   },
   "reversed": false,
-  "folder": "LeftSide_Comp",
+  "folder": "RightSide_Comp",
   "idealStartingState": {
-    "velocity": 0,
-    "rotation": 0.0
+    "velocity": 1.0,
+    "rotation": 180.0
   },
   "useDefaultConstraints": true
 }
