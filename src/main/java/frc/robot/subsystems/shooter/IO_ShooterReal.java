@@ -31,7 +31,7 @@ public class IO_ShooterReal implements IO_ShooterBase {
 	private final TalonFX turretMotor;
 	private final PositionVoltage turretMotorRequest;
 
-	private final DigitalInput turretHomingSensor = new DigitalInput(9); // DIO 9
+	private final DigitalInput turretHomingSensor = new DigitalInput(9);
 	private double slowVolts = RobotConstants.Shooter.TURRET_SLOW_MOVE_VOLTAGE;
 
 	public IO_ShooterReal(
@@ -57,8 +57,6 @@ public class IO_ShooterReal implements IO_ShooterBase {
 				new TalonFX(RobotConstants.Shooter.TURRET_MOTOR_CAN_ID, RobotConstants.CANBUS_CANIVORE);
 		turretMotor.getConfigurator().apply(turretMotorConfiguration);
 		turretMotorRequest = new PositionVoltage(0.0);
-
-		// turretMotor.setPosition(0.0);
 	}
 
 	@Override
@@ -71,71 +69,69 @@ public class IO_ShooterReal implements IO_ShooterBase {
 		inputs.shooterMotorTwoTargetVelocity = shooterMotorsRequest.getVelocityMeasure().in(RPM);
 		inputs.shooterMotorTwoCurrent = shooterMotorTwo.getStatorCurrent().getValueAsDouble();
 
-		// Read actual encoder position and convert rotations -> radians for logging
 		inputs.turretMotorCurrentPosition =
 				turretMotor.getPosition().getValueAsDouble() * RobotConstants.Shooter.ROT_TO_RAD;
 		inputs.turretMotorCurrentTargetPosition =
 				turretMotorRequest.Position * RobotConstants.Shooter.ROT_TO_RAD;
 		inputs.turretMotorCurrent = turretMotor.getStatorCurrent().getValueAsDouble();
 		inputs.turretPositionSensor = turretHomingSensor.get();
-		inputs.turretVelocity = Math.abs(turretMotor.getVelocity().getValueAsDouble()); // rps
+		inputs.turretVelocity = Math.abs(turretMotor.getVelocity().getValueAsDouble());
 	}
 
 	@Override
 	public Pair<StatusCode, StatusCode> setShooterVelocities(double targetRPM) {
-		double targetRPS = targetRPM / 60.0; // convert RPM -> rps
+		double targetRPS = targetRPM / 60.0;
 		shooterMotorsRequest.withVelocity(targetRPS);
 		return Pair.of(
 				shooterMotorOne.setControl(shooterMotorsRequest),
 				shooterMotorTwo.setControl(shooterMotorsRequest));
 	}
 
-	/*@Override
-	public StatusCode setTurretPosition(Rotation2d position) {
-		double targetRadians = position.getRadians();
-
-		// Clamp to physical turret limits
-		if (targetRadians > RobotConstants.Shooter.TURRET_RADIANS_MAX) {
-			targetRadians = RobotConstants.Shooter.TURRET_RADIANS_MAX;
-		} else if (targetRadians < RobotConstants.Shooter.TURRET_RADIANS_MIN) {
-			targetRadians = RobotConstants.Shooter.TURRET_RADIANS_MIN;
-		}
-
-		// Convert radians -> turret rotations via shared helper
-		double targetRotations = RobotConstants.Shooter.toRotations(targetRadians);
-		turretMotorRequest.withPosition(targetRotations);
-		return turretMotor.setControl(turretMotorRequest);
-	} */
-
+	/**
+	 * Sets the turret position with velocity feedforward.
+	 *
+	 * <p>SensorToMechanismRatio = 157/11 is already configured on the Kraken, so Phoenix 6 handles
+	 * the gear ratio internally. Both position and velocity are in MECHANISM units: - position:
+	 * toRotations(radians) → mechanism rotations - velocity: velocityRadPerSec / (2π) → mechanism
+	 * rot/s (NO gear ratio needed here)
+	 *
+	 * <p>The Kraken uses .withVelocity() at 1kHz via: FF = kS*sign(v) + kV*v This fills in the 9 PID
+	 * cycles between each 10ms Java update automatically.
+	 */
 	@Override
-	public StatusCode setTurretPosition(double radians) {
-		// Clamp to physical turret limits
+	public StatusCode setTurretPosition(double radians, double velocityRadPerSec) {
+		// Clamp to physical soft limits
 		double targetRadians =
 				Math.max(
 						RobotConstants.Shooter.TURRET_RADIANS_MIN,
 						Math.min(RobotConstants.Shooter.TURRET_RADIANS_MAX, radians));
 
+		// Convert to mechanism rotations — SensorToMechanismRatio handles gear ratio internally
 		double targetRotations = RobotConstants.Shooter.toRotations(targetRadians);
-		turretMotorRequest.withPosition(targetRotations);
+
+		// Convert rad/s → mechanism rot/s — again NO manual gear ratio, Phoenix handles it
+		double velocityMechRotPerSec = velocityRadPerSec / RobotConstants.Shooter.ROT_TO_RAD;
+
+		turretMotorRequest
+				.withPosition(targetRotations)
+				.withVelocity(velocityMechRotPerSec); // Kraken interpolates at 1kHz using kV
+
 		return turretMotor.setControl(turretMotorRequest);
 	}
 
 	@Override
 	public void setTurretVoltage(double voltage) {
-		// FIX: must call setControl() or the motor never receives the command
 		turretMotorVoltageRequest.withOutput(voltage);
 		turretMotor.setControl(turretMotorVoltageRequest);
 	}
 
 	@Override
 	public double getTurretPosition() {
-		// FIX: read actual encoder position, not the requested target position
 		return turretMotor.getPosition().getValueAsDouble() * RobotConstants.Shooter.ROT_TO_RAD;
 	}
 
 	@Override
 	public double getTurretTargetPosition() {
-		// FIX: read actual encoder position, not the requested target position
 		return turretMotorRequest.Position * RobotConstants.Shooter.ROT_TO_RAD;
 	}
 
@@ -150,16 +146,16 @@ public class IO_ShooterReal implements IO_ShooterBase {
 	public Boolean homeTurret(Boolean homed) {
 
 		var homingLimit = new CurrentLimitsConfigs();
-		homingLimit.StatorCurrentLimit = 10.0; // 10A stator limit
+		homingLimit.StatorCurrentLimit = 10.0;
 		homingLimit.StatorCurrentLimitEnable = true;
 		turretMotor.getConfigurator().apply(homingLimit);
 
 		setTurretVoltage(slowVolts);
 
 		double current = turretMotor.getStatorCurrent().getValueAsDouble();
-		double velocity = Math.abs(turretMotor.getVelocity().getValueAsDouble()); // rps
+		double velocity = Math.abs(turretMotor.getVelocity().getValueAsDouble());
 
-		boolean isStalled = (current > 8.0) && (velocity < 1.0); // Tune these thresholds!
+		boolean isStalled = (current > 8.0) && (velocity < 1.0);
 
 		if (isStalled) {
 			slowVolts = slowVolts * -1;
@@ -178,13 +174,11 @@ public class IO_ShooterReal implements IO_ShooterBase {
 				homeRadians = homeRadiansCenter + magnetEdge;
 			}
 
-			// Convert home angle from radians -> turret rotations
 			double homeRotations = homeRadians / RobotConstants.Shooter.ROT_TO_RAD;
-
-			turretMotor.setPosition(homeRotations); // Now in rotations!
+			turretMotor.setPosition(homeRotations);
 
 			var normalLimit = new CurrentLimitsConfigs();
-			normalLimit.StatorCurrentLimit = 30.0; // your normal value
+			normalLimit.StatorCurrentLimit = 30.0;
 			normalLimit.StatorCurrentLimitEnable = true;
 			turretMotor.getConfigurator().apply(normalLimit);
 			homed = true;
@@ -193,6 +187,5 @@ public class IO_ShooterReal implements IO_ShooterBase {
 	}
 
 	@Override
-	// DO NOTHING, only used in simulation class.
 	public void onShootSimulation() {}
 }

@@ -264,4 +264,12 @@ public class RobotContainer {
 			return new PrintCommand("Auto Command is NULL!");
 		}
 	}
+
+	// ====================================================================
+	// Superstructure accessor for Robot.java addPeriodic
+	// ====================================================================
+
+	public SUB_Superstructure getSuperstructure() {
+		return superstructure;
+	}
 }

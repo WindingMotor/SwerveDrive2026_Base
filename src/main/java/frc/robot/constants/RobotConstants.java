@@ -16,124 +16,93 @@ public final class RobotConstants {
 
 	/** Operating mode for the robot (REAL, SIM, or REPLAY). */
 	public enum RobotMode {
-		REAL, // Physical robot hardware
-		SIM, // Simulation mode for testing
-		REPLAY // Replay mode for log analysis
+		REAL,
+		SIM,
+		REPLAY
 	}
 
-	// Robot global CAN BUS "rio" for robo-rio "canivore" for canivore name
 	public static final CANBus CANBUS_CANIVORE = new CANBus("canivore", "./logs/canivore.hoot");
-
-	// Robot operating mode
 	public static final RobotMode ROBOT_MODE = RobotMode.REAL;
-
-	// For POWERFUL machines using sim ONLY
 	public static final boolean ENABLE_SIM_MANAGER = false;
 
 	// Intake
-	// ---------------------------------------------------------------------------------------------------------------
 	public final class Intake {
 
-		// Intake motor
 		public static final int INTAKE_MOTOR_CAN_ID = 9;
-
 		public static final TalonFXConfiguration INTAKE_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 45; // Amps
-			INTAKE_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
-					1.0; // Rotations to Whatever (gear ratio)
-			INTAKE_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
-			INTAKE_MOTOR_CONFIG.MotorOutput.Inverted =
-					InvertedValue.Clockwise_Positive; // Which way is positive?
+			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 45;
+			INTAKE_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
+			INTAKE_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+			INTAKE_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 		}
 
-		// Slider motor
 		public static final int SLIDER_MOTOR_CAN_ID = 10;
-
-		public static final double INTAKE_MAX_EXTENSION_METERS = 11.5; // not meters
-
+		public static final double INTAKE_MAX_EXTENSION_METERS = 11.5;
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 35; // Amps
-			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
-					1.0; // Rotations to Whatever (gear ratio)
-			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
-			SLIDER_MOTOR_CONFIG.MotorOutput.Inverted =
-					InvertedValue.Clockwise_Positive; // Which way is positive?
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 35;
+			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
+			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+			SLIDER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
-			SLIDER_MOTOR_CONFIG.Slot0.kP = 1.9; // Slot 0 P value
-			SLIDER_MOTOR_CONFIG.Slot0.kI = 0.1; // Slot 0 I value
-			SLIDER_MOTOR_CONFIG.Slot0.kD = 0.0; // Slot 0 D value
-
+			SLIDER_MOTOR_CONFIG.Slot0.kP = 1.9;
+			SLIDER_MOTOR_CONFIG.Slot0.kI = 0.1;
+			SLIDER_MOTOR_CONFIG.Slot0.kD = 0.0;
 			SLIDER_MOTOR_CONFIG.Slot0.kS = 0.35;
 			SLIDER_MOTOR_CONFIG.Slot0.kV = 0.3;
-
 			SLIDER_MOTOR_CONFIG.Slot0.kG = -0.155;
 		}
 
-		public static final int SENSOR_RIO_ID = 9; // RIO DIO port for beam break sensor
+		public static final int SENSOR_RIO_ID = 9;
 	}
 
-	// Shooter-----------------------------------------------------------------------------------------------------
+	// Shooter
 	public static class Shooter {
 
-		// Shooter motor one left
 		public static final int SHOOTER_MOTOR_ONE_CAN_ID = 21;
-
 		public static final TalonFXConfiguration SHOOTER_MOTOR_ONE_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SHOOTER_MOTOR_ONE_CONFIG.CurrentLimits.StatorCurrentLimit = 55; // Amps
-			SHOOTER_MOTOR_ONE_CONFIG.Feedback.SensorToMechanismRatio =
-					1.0; // Rotations to Whatever (gear ratio)
-			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
-			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.Inverted =
-					InvertedValue.CounterClockwise_Positive; // Which way is positive?
+			SHOOTER_MOTOR_ONE_CONFIG.CurrentLimits.StatorCurrentLimit = 55;
+			SHOOTER_MOTOR_ONE_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
+			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.2; // Slot 0 P value .2
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kI = 0.0; // Slot 0 I value
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kD = 0.06; // Slot 0 D value
-
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.232; // .232
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.2;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kI = 0.0;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kD = 0.06;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.232;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kV = 0.119;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kA = 0.0;
 		}
 
-		// Shooter motor two right
 		public static final int SHOOTER_MOTOR_TWO_CAN_ID = 20;
-
 		public static final TalonFXConfiguration SHOOTER_MOTOR_TWO_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SHOOTER_MOTOR_TWO_CONFIG.CurrentLimits.StatorCurrentLimit = 55; // Amps
-			SHOOTER_MOTOR_TWO_CONFIG.Feedback.SensorToMechanismRatio =
-					1.0; // Rotations to Whatever (gear ratio)
-			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
-			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.Inverted =
-					InvertedValue.Clockwise_Positive; // Which way is positive?
+			SHOOTER_MOTOR_TWO_CONFIG.CurrentLimits.StatorCurrentLimit = 55;
+			SHOOTER_MOTOR_TWO_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
+			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.2; // Slot 0 P value 0.2
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kI = 0.0; // Slot 0 I value
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kD = 0.0; // Slot 0 D value
-
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.232; // 0.232
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.119; // 0.119
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.2;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kI = 0.0;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kD = 0.0;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.232;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.119;
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kA = 0.0;
 		}
 
-		// Turret motor
 		public static final int TURRET_MOTOR_CAN_ID = 22;
 
 		public static final double TURRET_RADIANS_MAX = 0.5;
 		public static final double TURRET_RADIANS_MIN = -6.0;
-
 		public static final double TURRET_ANGLE_OFFSET = Math.toRadians(9.0);
-
 		public static final double ROT_TO_RAD = 2.0 * Math.PI;
 
-		/** Converts radians to turret mechanism rotations using ROT_TO_RAD */
 		public static double toRotations(double radians) {
 			return radians / ROT_TO_RAD;
 		}
@@ -143,7 +112,11 @@ public final class RobotConstants {
 
 		static {
 			TURRET_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 40;
-			TURRET_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 157.0 / 11.0; // 154 / 11
+
+			// SensorToMechanismRatio = 157/11 means Phoenix 6 handles the gear ratio
+			// internally. All position and velocity commands are in MECHANISM units
+			// (output shaft rotations / rot/s), NOT motor units.
+			TURRET_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 157.0 / 11.0;
 
 			TURRET_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			TURRET_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -152,10 +125,16 @@ public final class RobotConstants {
 			TURRET_MOTOR_CONFIG.Slot0.kI = 0.5;
 			TURRET_MOTOR_CONFIG.Slot0.kD = 0.1;
 			TURRET_MOTOR_CONFIG.Slot0.kS = 2.5;
-			TURRET_MOTOR_CONFIG.Slot0.kV = 0.0;
+
+			// ✅ kV MUST be non-zero for .withVelocity() to have any effect.
+			// Formula the Kraken uses: FF = kS*sign(v) + kV*v
+			// Units: Volts per mechanism rot/s
+			// At ~0.5 mech rot/s (≈π rad/s), kV=5.0 gives 2.5V of feedforward
+			// on top of kS. Start here and increase by 1.0 until lag shrinks
+			// without oscillation at speed.
+			TURRET_MOTOR_CONFIG.Slot0.kV = 5.0; // TUNE: start 5.0, increase by 1.0 increments
 			TURRET_MOTOR_CONFIG.Slot0.kA = 0.0;
 
-			// Soft limits converted to rotations via toRotations()
 			TURRET_MOTOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
 			TURRET_MOTOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitThreshold =
 					toRotations(TURRET_RADIANS_MAX);
@@ -165,11 +144,8 @@ public final class RobotConstants {
 					toRotations(TURRET_RADIANS_MIN);
 		}
 
-		// Turret offset from robot center (in robot frame)
 		public static final double TURRET_OFFSET_X_METERS = -0.1444752;
 		public static final double TURRET_OFFSET_Y_METERS = 0.15875;
-
-		// Shooter RPM lookup table: {distance_meters, rpm}
 
 		public static final double[][] SHOOTER_RPM_DATA = {
 			{2.0, 1700.0},
@@ -179,69 +155,54 @@ public final class RobotConstants {
 			{3.7, 2180.0},
 			{4.0, 2370.0},
 			{4.5, 2530.0},
-			{5.0, 2530.0} // Far shot
+			{5.0, 2530.0}
 		};
 
-		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67); // 19.044
-		public static final double SHOOTER_WHEEL_DIAMETER_METERS =
-				0.0762; // 3 inches between 4in and 2in
-		public static final double SHOOTER_EFFICIENCY_FACTOR =
-				0.85; // CHARACTERIZE THIS (0.4-0.6 typical)
+		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67);
+		public static final double SHOOTER_WHEEL_DIAMETER_METERS = 0.0762;
+		public static final double SHOOTER_EFFICIENCY_FACTOR = 0.85;
 	}
 
-	// Indexer----------------------------------------------------------------------------------------------------
+	// Indexer
 	public static class Indexer {
 
-		// Spinner motor
 		public static final int SPINNER_MOTOR_CAN_ID = 15;
-
 		public static final TalonFXConfiguration SPINNER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SPINNER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 80; // Amps
-			SPINNER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
-					1.0; // Rotations to Whatever (gear ratio)
-			SPINNER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake; // Break or Coast
-			SPINNER_MOTOR_CONFIG.MotorOutput.Inverted =
-					InvertedValue.CounterClockwise_Positive; // Which way is positive?
+			SPINNER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 80;
+			SPINNER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
+			SPINNER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+			SPINNER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			SPINNER_MOTOR_CONFIG.Slot0.kP = 1.0; // Slot 0 P value
-			SPINNER_MOTOR_CONFIG.Slot0.kI = 0.0; // Slot 0 I value
-			SPINNER_MOTOR_CONFIG.Slot0.kD = 0.0; // Slot 0 D value
-
+			SPINNER_MOTOR_CONFIG.Slot0.kP = 1.0;
+			SPINNER_MOTOR_CONFIG.Slot0.kI = 0.0;
+			SPINNER_MOTOR_CONFIG.Slot0.kD = 0.0;
 			SPINNER_MOTOR_CONFIG.Slot0.kS = 0.0;
 			SPINNER_MOTOR_CONFIG.Slot0.kV = 0.0;
 			SPINNER_MOTOR_CONFIG.Slot0.kA = 0.0;
 		}
 
-		// Kicker motor
 		public static final int KICKER_MOTOR_CAN_ID = 29;
-
 		public static final TalonFXConfiguration KICKER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			KICKER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 15; // Amps
-			KICKER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
-					1.0; // Rotations to Whatever (gear ratio)
-			KICKER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
-			KICKER_MOTOR_CONFIG.MotorOutput.Inverted =
-					InvertedValue.CounterClockwise_Positive; // Which way is positive?
+			KICKER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 15;
+			KICKER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
+			KICKER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
+			KICKER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 		}
 
-		// climb motor
 		public static final int CLIMB_MOTOR_CAN_ID = 33;
-
 		public static final TalonFXConfiguration CLIMB_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			CLIMB_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 30; // Amps
-			CLIMB_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
-					1.0; // Rotations to Whatever (gear ratio)
-			CLIMB_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake; // Break or Coast
-			CLIMB_MOTOR_CONFIG.MotorOutput.Inverted =
-					InvertedValue.CounterClockwise_Positive; // Which way is positive?
+			CLIMB_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 30;
+			CLIMB_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
+			CLIMB_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake;
+			CLIMB_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 		}
 
-		public static final int BEAM_BREAK_DIO = 0; // RIO DIO port for beam break sensor
+		public static final int BEAM_BREAK_DIO = 0;
 	}
 }

@@ -25,15 +25,26 @@ public class SUB_Shooter extends SubsystemBase {
 	public void periodic() {
 		io.updateInputs(inputs);
 		Logger.processInputs("Shooter", inputs);
-		// io.setShooterVelocities(2000);
 	}
 
 	public Pair<StatusCode, StatusCode> setShooterVelocities(double velocity) {
 		return io.setShooterVelocities(velocity);
 	}
 
+	/**
+	 * Sets turret position with velocity feedforward for 1kHz Kraken interpolation. Called at 100Hz
+	 * from Robot.java's addPeriodic loop.
+	 *
+	 * @param position Target angle in radians
+	 * @param velocityRadPerSec Setpoint velocity in rad/s (derivative of position setpoint)
+	 */
+	public StatusCode setTurretPosition(double position, double velocityRadPerSec) {
+		return io.setTurretPosition(position, velocityRadPerSec);
+	}
+
+	/** Zero-velocity overload — used by homing and any static setpoint callers. */
 	public StatusCode setTurretPosition(double position) {
-		return io.setTurretPosition(position);
+		return io.setTurretPosition(position, 0.0);
 	}
 
 	public void setShooterVoltages(double voltages) {
@@ -52,56 +63,25 @@ public class SUB_Shooter extends SubsystemBase {
 		return inputs.shooterMotorOneTargetVelocity;
 	}
 
-	/**
-	 * Check if turret is within acceptable tolerance of target angle
-	 *
-	 * @param targetAngle The desired turret angle
-	 * @return true if turret is aimed within tolerance
-	 */
 	public boolean isTurretAtTarget() {
 		double currentAngle = getTurretPosition();
 		double targetRad = getTurretTargetPosition();
 		return Math.abs(targetRad - currentAngle) < RobotConstants.Shooter.TURRET_ANGLE_OFFSET;
 	}
 
-	/**
-	 * Check if shooter wheels are at target velocity within tolerance
-	 *
-	 * @param targetRPM The desired shooter velocity in RPM
-	 * @param toleranceRPM The acceptable velocity tolerance in RPM
-	 * @return true if both shooter motors are within tolerance
-	 */
 	public boolean isShooterAtSpeed(double targetRPM, double toleranceRPM) {
 		return Math.abs(inputs.shooterMotorOneVelocity - targetRPM) < toleranceRPM
 				&& Math.abs(inputs.shooterMotorTwoVelocity - targetRPM) < toleranceRPM;
 	}
 
-	/**
-	 * Check if shooter wheels are at target velocity with default tolerance (50 RPM)
-	 *
-	 * @param targetRPM The desired shooter velocity in RPM
-	 * @return true if both shooter motors are within 50 RPM tolerance
-	 */
 	public boolean isShooterAtSpeed(double targetRPM) {
 		return isShooterAtSpeed(targetRPM, 50.0);
 	}
 
-	/**
-	 * Check if shooter is ready to fire (turret aimed and wheels at speed)
-	 *
-	 * @param targetAngle The desired turret angle
-	 * @param targetRPM The desired shooter velocity
-	 * @return true if both turret and shooter are ready
-	 */
 	public boolean isReadyToShoot(double targetRPM) {
 		return isTurretAtTarget() && isShooterAtSpeed(targetRPM);
 	}
 
-	/**
-	 * Get the current shooter motor velocities average
-	 *
-	 * @return Average velocity of both shooter motors in RPM
-	 */
 	public double getAverageShooterVelocity() {
 		return (inputs.shooterMotorOneVelocity + inputs.shooterMotorTwoVelocity) / 2.0;
 	}
@@ -114,7 +94,6 @@ public class SUB_Shooter extends SubsystemBase {
 		return homed;
 	}
 
-	// FOR SIMULATION ONLY
 	public void onShoot() {
 		io.onShootSimulation();
 	}

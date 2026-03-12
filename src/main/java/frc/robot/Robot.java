@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobotBase;
+import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import edu.wpi.first.wpilibj.Watchdog;
@@ -16,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.constants.BuildConstants;
 import frc.robot.constants.RobotConstants;
+import frc.robot.lib.windingmotor.drive.Drive;
 import frc.robot.lib.windingmotor.util.fieldsim.SimulationManager;
 import java.lang.reflect.Field;
 import org.littletonrobotics.junction.LogFileUtil;
@@ -52,6 +54,9 @@ public class Robot extends LoggedRobot {
 	/** The robot container that holds all subsystems and commands. */
 	private final RobotContainer m_robotContainer;
 
+	// Notifier runs the turret update loop at 100Hz on a dedicated thread
+	private final Notifier turretUpdateNotifier;
+
 	/**
 	 * Constructs the Robot and initializes logging infrastructure.
 	 *
@@ -63,7 +68,6 @@ public class Robot extends LoggedRobot {
 	public Robot() {
 		m_robotContainer = new RobotContainer();
 
-		// Log build metadata for debugging and version tracking
 		Logger.recordMetadata("Maven Name", BuildConstants.MAVEN_NAME);
 		Logger.recordMetadata("Git SHA", BuildConstants.GIT_SHA);
 		Logger.recordMetadata("Build Date", BuildConstants.BUILD_DATE);
@@ -72,33 +76,44 @@ public class Robot extends LoggedRobot {
 		Logger.recordMetadata("Git Branch", BuildConstants.GIT_BRANCH);
 		Logger.recordMetadata("Authors", "(WindingMotor) Isaac S & FRC 2106 Junkyard Dogs");
 
-		// Configure logging based on robot mode
 		switch (RobotConstants.ROBOT_MODE) {
 			case REAL:
-				// Log to USB stick ("/U/logs") and NetworkTables
 				Logger.addDataReceiver(new WPILOGWriter());
 				Logger.addDataReceiver(new NT4Publisher());
-				// Enable power distribution logging for current monitoring
 				new PowerDistribution(1, ModuleType.kRev);
 				break;
 			case SIM:
-				// Publish to NetworkTables for dashboard viewing
 				Logger.addDataReceiver(new NT4Publisher());
 				break;
 			case REPLAY:
-				// Read from an existing log file for replay analysis
 				String logPath = LogFileUtil.findReplayLog();
 				Logger.setReplaySource(new WPILOGReader(logPath));
-				// Save outputs to a new log file for verification
 				Logger.addDataReceiver(new WPILOGWriter(LogFileUtil.addPathSuffix(logPath, "_sim")));
 				break;
 		}
 
-		// Start logging; must be called after all data receivers are added
 		Logger.start();
 
-		// Adjust loop overrun warning timeout to reduce spam from occasional overruns
-		// The default is very aggressive; this makes it more tolerant of brief spikes
+		// Turret update notifier at 100Hz
+		// Notifier runs on its own thread — we acquire odometryLock before reading
+		// drive pose/speeds so we don't race with the 250Hz odometry thread.
+		turretUpdateNotifier =
+				new Notifier(
+						() -> {
+							// Guard drive reads against the odometry thread (same lock Drive uses)
+							Drive.odometryLock.lock();
+							try {
+								m_robotContainer.getSuperstructure().updateTurretTarget();
+								m_robotContainer.getSuperstructure().updateTurretAngle();
+								m_robotContainer.getSuperstructure().updateShooterVelocity();
+							} finally {
+								Drive.odometryLock.unlock();
+							}
+						});
+
+		turretUpdateNotifier.setName("TurretUpdate100Hz");
+		turretUpdateNotifier.startPeriodic(0.010); // 100Hz
+
 		try {
 			Field watchdogField = IterativeRobotBase.class.getDeclaredField("m_watchdog");
 			watchdogField.setAccessible(true);
@@ -107,33 +122,6 @@ public class Robot extends LoggedRobot {
 		} catch (Exception e) {
 			DriverStation.reportWarning("Failed to disable loop overrun warnings.", false);
 		}
-
-		// Optional: Log all command lifecycle events for debugging
-		// This is commented out to reduce log volume but can be enabled for troubleshooting
-		/*
-		Map<String, Integer> commandCounts = new HashMap<>();
-		BiConsumer<Command, Boolean> logCommandFunction =
-						(Command command, Boolean active) -> {
-								String name = command.getName();
-								int count = commandCounts.getOrDefault(name, 0) + (active ? 1 : -1);
-								commandCounts.put(name, count);
-								Logger.recordOutput(
-												"CommandsUnique/" + name + "_" + Integer.toHexString(command.hashCode()), active);
-								Logger.recordOutput("CommandsAll/" + name, count > 0);
-						};
-		CommandScheduler.getInstance()
-						.onCommandInitialize((Command command) -> logCommandFunction.accept(command, true));
-		CommandScheduler.getInstance()
-						.onCommandFinish((Command command) -> logCommandFunction.accept(command, false));
-		CommandScheduler.getInstance()
-						.onCommandInterrupt((Command command) -> logCommandFunction.accept(command, false));
-		*/
-
-		// Optional: Configure brownout voltage for battery protection
-		// RobotController.setBrownoutVoltage(6.0);
-
-		// Optional: Increase thread priority for more consistent loop timing
-		// Threads.setCurrentThreadPriority(true, 10);
 	}
 
 	/**

@@ -190,7 +190,7 @@ public class IO_ShooterSim implements IO_ShooterBase {
 	}
 
 	@Override
-	public StatusCode setTurretPosition(double radians) {
+	public StatusCode setTurretPosition(double radians, double rps) {
 		double clamped =
 				Math.max(
 						RobotConstants.Shooter.TURRET_RADIANS_MIN,

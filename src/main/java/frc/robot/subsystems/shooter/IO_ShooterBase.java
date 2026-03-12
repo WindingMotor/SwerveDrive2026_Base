@@ -38,7 +38,20 @@ public interface IO_ShooterBase {
 
 	public void setShooterVoltages(double voltages);
 
-	public StatusCode setTurretPosition(double position);
+	/**
+	 * Sets turret position with a velocity feedforward hint. The velocity (mechanism rot/s) is passed
+	 * to the Kraken via .withVelocity() so its 1kHz onboard PID can interpolate between 10ms Java
+	 * updates using kV.
+	 *
+	 * @param radians Target position in radians
+	 * @param velocityRadPerSec How fast the setpoint is moving (rad/s) — used for kV feedforward
+	 */
+	public StatusCode setTurretPosition(double radians, double velocityRadPerSec);
+
+	/** Zero-velocity overload — used by homing, sim, and any caller that doesn't track velocity. */
+	public default StatusCode setTurretPosition(double radians) {
+		return setTurretPosition(radians, 0.0);
+	}
 
 	public void setTurretVoltage(double voltage);
 
