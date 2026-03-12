@@ -56,7 +56,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 25; // Amps
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 35; // Amps
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio =
 					1.0; // Rotations to Whatever (gear ratio)
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast; // Break or Coast
@@ -129,7 +129,7 @@ public final class RobotConstants {
 		public static final double TURRET_RADIANS_MAX = 0.5;
 		public static final double TURRET_RADIANS_MIN = -6.0;
 
-		public static final double TURRET_ANGLE_OFFSET = 0.3;
+		public static final double TURRET_ANGLE_OFFSET = Math.toRadians(9.0);
 
 		public static final double ROT_TO_RAD = 2.0 * Math.PI;
 
@@ -148,10 +148,10 @@ public final class RobotConstants {
 			TURRET_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			TURRET_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			TURRET_MOTOR_CONFIG.Slot0.kP = 29.0;
+			TURRET_MOTOR_CONFIG.Slot0.kP = 48.0;
 			TURRET_MOTOR_CONFIG.Slot0.kI = 0.5;
-			TURRET_MOTOR_CONFIG.Slot0.kD = 0.167;
-			TURRET_MOTOR_CONFIG.Slot0.kS = 4.5;
+			TURRET_MOTOR_CONFIG.Slot0.kD = 0.1;
+			TURRET_MOTOR_CONFIG.Slot0.kS = 2.5;
 			TURRET_MOTOR_CONFIG.Slot0.kV = 0.0;
 			TURRET_MOTOR_CONFIG.Slot0.kA = 0.0;
 
@@ -182,11 +182,11 @@ public final class RobotConstants {
 			{5.0, 2530.0} // Far shot
 		};
 
-		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(19.044);
+		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67); // 19.044
 		public static final double SHOOTER_WHEEL_DIAMETER_METERS =
 				0.0762; // 3 inches between 4in and 2in
 		public static final double SHOOTER_EFFICIENCY_FACTOR =
-				0.34; // CHARACTERIZE THIS (0.4-0.6 typical)
+				0.85; // CHARACTERIZE THIS (0.4-0.6 typical)
 	}
 
 	// Indexer----------------------------------------------------------------------------------------------------

@@ -28,9 +28,8 @@ import frc.robot.lib.windingmotor.vision.IO_VisionCamera;
 import frc.robot.lib.windingmotor.vision.SUB_Vision;
 import frc.robot.subsystems.indexer.IO_IndexerReal;
 import frc.robot.subsystems.indexer.SUB_Indexer;
-import frc.robot.subsystems.intake.IO_IntakeRealNew;
+import frc.robot.subsystems.intake.IO_IntakeReal;
 import frc.robot.subsystems.intake.SUB_Intake;
-import frc.robot.subsystems.led.SUB_Led;
 import frc.robot.subsystems.shooter.IO_ShooterReal;
 import frc.robot.subsystems.shooter.IO_ShooterSim;
 import frc.robot.subsystems.shooter.SUB_Shooter;
@@ -44,7 +43,7 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "RIGHT_T2_HP_Comp";
+	public static final String AUTO_NAME = "RIGHT_T2_Scoop";
 	public static Command AUTO_COMMAND;
 
 	// ====================================================================
@@ -106,7 +105,7 @@ public class RobotContainer {
 
 		intake =
 				new SUB_Intake(
-						new IO_IntakeRealNew(
+						new IO_IntakeReal(
 								RobotConstants.Intake.INTAKE_MOTOR_CONFIG,
 								RobotConstants.Intake.SLIDER_MOTOR_CONFIG));
 
@@ -163,10 +162,11 @@ public class RobotContainer {
 								LIB_VisionConstants.camera0Name, LIB_VisionConstants.robotToCamera0),
 						new IO_VisionCamera(
 								LIB_VisionConstants.camera1Name, LIB_VisionConstants.robotToCamera1));
+		/*new IO_VisionCamera(
+		LIB_VisionConstants.camera1Name, LIB_VisionConstants.robotToCamera2));*/
 		// TODO: Where is other camera ben?
 
-		superstructure =
-				new SUB_Superstructure(indexer, intake, shooter, drive);
+		superstructure = new SUB_Superstructure(indexer, intake, shooter, drive);
 	}
 
 	// ====================================================================

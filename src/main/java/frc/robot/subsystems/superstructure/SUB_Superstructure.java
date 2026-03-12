@@ -109,10 +109,7 @@ public class SUB_Superstructure extends SubsystemBase {
 	// ====================================================================
 
 	public SUB_Superstructure(
-			SUB_Indexer indexerRef,
-			SUB_Intake intakeRef,
-			SUB_Shooter shooterRef,
-			Drive driveRef) {
+			SUB_Indexer indexerRef, SUB_Intake intakeRef, SUB_Shooter shooterRef, Drive driveRef) {
 		this.indexerRef = indexerRef;
 		this.intakeRef = intakeRef;
 		this.shooterRef = shooterRef;
@@ -165,9 +162,11 @@ public class SUB_Superstructure extends SubsystemBase {
 				if (shooterRef.isTurretAtTarget()) {
 					indexerRef.setSpinnerVoltage(12.0);
 					indexerRef.setKickerVoltage(10.0);
+					Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", true);
 				} else {
 					indexerRef.setSpinnerVoltage(0.0);
 					indexerRef.setKickerVoltage(0.0);
+					Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", false);
 				}
 				// FOR SIMULATION ONLY
 				if (RobotConstants.ROBOT_MODE == RobotMode.SIM) {
@@ -193,7 +192,7 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case INTAKE_IN:
 				intakeRef.setSliderPosition(0.0);
-				intakeRef.setIntakeVoltage(0.0);
+				intakeRef.setIntakeVoltage(2.0);
 				break;
 
 			case CLIMB_UP:
@@ -299,6 +298,9 @@ public class SUB_Superstructure extends SubsystemBase {
 		Logger.recordOutput(
 				"Superstructure/Turret/TargetAngleFieldRelative", Math.toDegrees(fieldAngleRad));
 		Logger.recordOutput("Superstructure/Turret/CurrentAngle", shooterRef.getTurretPosition());
+		Logger.recordOutput(
+				"Superstructure/Turret/turretDeltaDegrees",
+				Math.toDegrees(turretAngleRad - shooterRef.getTurretPosition()));
 	}
 
 	/**
