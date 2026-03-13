@@ -28,7 +28,7 @@ import frc.robot.lib.windingmotor.vision.IO_VisionCamera;
 import frc.robot.lib.windingmotor.vision.SUB_Vision;
 import frc.robot.subsystems.indexer.IO_IndexerReal;
 import frc.robot.subsystems.indexer.SUB_Indexer;
-import frc.robot.subsystems.intake.IO_IntakeReal;
+import frc.robot.subsystems.intake.IO_IntakeRealNew;
 import frc.robot.subsystems.intake.SUB_Intake;
 import frc.robot.subsystems.shooter.IO_ShooterReal;
 import frc.robot.subsystems.shooter.IO_ShooterSim;
@@ -43,7 +43,7 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "RIGHT_T2_Scoop";
+	public static final String AUTO_NAME = "RIGHT_T2_HP";
 	public static Command AUTO_COMMAND;
 
 	// ====================================================================
@@ -105,7 +105,7 @@ public class RobotContainer {
 
 		intake =
 				new SUB_Intake(
-						new IO_IntakeReal(
+						new IO_IntakeRealNew(
 								RobotConstants.Intake.INTAKE_MOTOR_CONFIG,
 								RobotConstants.Intake.SLIDER_MOTOR_CONFIG));
 

@@ -74,11 +74,12 @@ public class Robot extends LoggedRobot {
 		Logger.recordMetadata("ProjectName", "SwerveDrive2025");
 		Logger.recordMetadata("Robot Mode", RobotConstants.ROBOT_MODE.toString());
 		Logger.recordMetadata("Git Branch", BuildConstants.GIT_BRANCH);
-		Logger.recordMetadata("Authors", "(WindingMotor) Isaac S & FRC 2106 Junkyard Dogs");
+		Logger.recordMetadata(
+				"Authors", "Benjamin L & (WindingMotor) Isaac S & FRC 2106 Junkyard Dogs");
 
 		switch (RobotConstants.ROBOT_MODE) {
 			case REAL:
-				Logger.addDataReceiver(new WPILOGWriter());
+				Logger.addDataReceiver(new WPILOGWriter("/u/usblogs"));
 				Logger.addDataReceiver(new NT4Publisher());
 				new PowerDistribution(1, ModuleType.kRev);
 				break;

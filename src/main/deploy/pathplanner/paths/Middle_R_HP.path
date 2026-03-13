@@ -16,16 +16,16 @@
     },
     {
       "anchor": {
-        "x": 1.0140000000000002,
-        "y": 0.6510152284263961
+        "x": 0.8758781725888332,
+        "y": 0.6786395939086309
       },
       "prevControl": {
-        "x": 2.671461928934004,
-        "y": 0.9825076142131973
+        "x": 2.5333401015228367,
+        "y": 1.0101319796954322
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_HP"
+      "linkedName": "HP_REAL"
     }
   ],
   "rotationTargets": [],
@@ -48,7 +48,7 @@
   "eventMarkers": [
     {
       "name": "SHOOT",
-      "waypointRelativePos": 0.02,
+      "waypointRelativePos": 0.05149181905678476,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -61,7 +61,12 @@
       "name": "INTAKE_IN",
       "waypointRelativePos": 0.17853705486044005,
       "endWaypointRelativePos": null,
-      "command": null
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "INTAKE_IN"
+        }
+      }
     },
     {
       "name": "IDLE",
@@ -76,7 +81,7 @@
     },
     {
       "name": "INTAKE",
-      "waypointRelativePos": 0.6424446583253064,
+      "waypointRelativePos": 0.7887391722810481,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -88,7 +93,7 @@
   ],
   "globalConstraints": {
     "maxVelocity": 3.8,
-    "maxAcceleration": 5.6,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 1000.0,
     "maxAngularAcceleration": 1500.0,
     "nominalVoltage": 12.0,
@@ -96,7 +101,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -178.806510576018
   },
   "reversed": false,
   "folder": "Middle",

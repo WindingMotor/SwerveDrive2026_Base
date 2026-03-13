@@ -32,7 +32,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration INTAKE_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 45;
+			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 55;
 			INTAKE_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			INTAKE_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			INTAKE_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -43,7 +43,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 35;
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 25;
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SLIDER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -100,7 +100,7 @@ public final class RobotConstants {
 
 		public static final double TURRET_RADIANS_MAX = 0.5;
 		public static final double TURRET_RADIANS_MIN = -6.0;
-		public static final double TURRET_ANGLE_OFFSET = Math.toRadians(9.0);
+		public static final double TURRET_ANGLE_OFFSET = Math.toRadians(12.0);
 		public static final double ROT_TO_RAD = 2.0 * Math.PI;
 
 		public static double toRotations(double radians) {
@@ -121,7 +121,7 @@ public final class RobotConstants {
 			TURRET_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			TURRET_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			TURRET_MOTOR_CONFIG.Slot0.kP = 48.0;
+			TURRET_MOTOR_CONFIG.Slot0.kP = 40.0;
 			TURRET_MOTOR_CONFIG.Slot0.kI = 0.5;
 			TURRET_MOTOR_CONFIG.Slot0.kD = 0.1;
 			TURRET_MOTOR_CONFIG.Slot0.kS = 2.5;
@@ -160,7 +160,7 @@ public final class RobotConstants {
 
 		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67);
 		public static final double SHOOTER_WHEEL_DIAMETER_METERS = 0.0762;
-		public static final double SHOOTER_EFFICIENCY_FACTOR = 0.85;
+		public static final double SHOOTER_EFFICIENCY_FACTOR = 0.93;
 	}
 
 	// Indexer
