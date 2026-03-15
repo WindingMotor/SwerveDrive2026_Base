@@ -3,40 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.227634517766497,
-        "y": 0.5865583756345187
+        "x": 7.7994633273703045,
+        "y": 3.848407871198569
       },
       "prevControl": null,
       "nextControl": {
-        "x": 1.9639448507174295,
-        "y": 0.6113451253073439
+        "x": 7.514011550720559,
+        "y": 1.5187530488635437
       },
       "isLocked": false,
-      "linkedName": "Right_Trench"
+      "linkedName": "Right_C2_Comp"
     },
     {
       "anchor": {
-        "x": 0.75,
-        "y": 0.6520035778175304
+        "x": 4.227634517766497,
+        "y": 0.5865583756345187
       },
       "prevControl": {
-        "x": 2.152267218845042,
-        "y": 0.6492241014849841
+        "x": 7.054527918781726,
+        "y": 0.6233908629441636
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_HP"
+      "linkedName": null
     }
   ],
   "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.6097208854667947,
+      "minWaypointRelativePos": 0.8349374398460087,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 2.0,
-        "maxAcceleration": 3.0,
+        "maxVelocity": 3.0,
+        "maxAcceleration": 4.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
         "nominalVoltage": 12.0,
@@ -47,34 +47,34 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "INTAKE",
-      "waypointRelativePos": 0.48845043310874825,
+      "name": "IDLE",
+      "waypointRelativePos": 0.1438883541867197,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "INTAKE"
+          "name": "IDLE"
         }
       }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.8,
-    "maxAcceleration": 5.0,
+    "maxVelocity": 3.85,
+    "maxAcceleration": 4.0,
     "maxAngularVelocity": 1000.0,
     "maxAngularAcceleration": 1500.0,
     "nominalVoltage": 12.0,
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": 180.0
+    "velocity": 0.0,
+    "rotation": 0.06164650628675529
   },
   "reversed": false,
   "folder": "RightSide_Comp",
   "idealStartingState": {
-    "velocity": 3.0,
-    "rotation": 180.0
+    "velocity": 0,
+    "rotation": 87.99916739646928
   },
-  "useDefaultConstraints": true
+  "useDefaultConstraints": false
 }

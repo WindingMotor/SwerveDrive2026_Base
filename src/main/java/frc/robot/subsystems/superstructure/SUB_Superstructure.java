@@ -55,10 +55,12 @@ public class SUB_Superstructure extends SubsystemBase {
 		READY,
 		UNJAM,
 		INTAKE,
+		INTAKE_AUTO,
 		INTAKE_IN,
 		CLIMB_UP,
 		CLIMB_DOWN,
 		CLIMB_STOP,
+		EJECT
 	}
 
 	// ====================================================================
@@ -139,6 +141,7 @@ public class SUB_Superstructure extends SubsystemBase {
 		Logger.recordOutput("Superstructure/RobotState", currentRobotState.toString());
 		Logger.recordOutput("Superstructure/ActivelyShooting", activelyShooting);
 		Logger.recordOutput("Superstructure/ActivelyReady", activelyReady);
+		Logger.recordOutput("Superstructure/RobotPose", driveRef.getPose());
 
 		// Setpoints are already sent at 100Hz by Robot.java's addPeriodic.
 		// The state machine just gates the indexer/kicker — 50Hz is fine for that.
@@ -189,6 +192,18 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case INTAKE:
 				intakeRef.setIntakeVoltage(10.0);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				break;
+
+			case INTAKE_AUTO:
+				intakeRef.setIntakeVoltage(12.0);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				break;
+
+			case EJECT:
+				intakeRef.setIntakeVoltage(-10.0);
+				indexerRef.setSpinnerVoltage(-12.0);
+				indexerRef.setKickerVoltage(-10.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 

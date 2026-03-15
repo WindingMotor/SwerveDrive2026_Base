@@ -43,7 +43,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 25;
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 20;
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SLIDER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -155,7 +155,7 @@ public final class RobotConstants {
 			{3.7, 2180.0},
 			{4.0, 2370.0},
 			{4.5, 2530.0},
-			{5.0, 2530.0}
+			{5.0, 2600.0}
 		};
 
 		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67);
@@ -197,7 +197,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration CLIMB_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			CLIMB_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 30;
+			CLIMB_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 50;
 			CLIMB_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			CLIMB_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 			CLIMB_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;

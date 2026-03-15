@@ -43,7 +43,9 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "RIGHT_T2_HP";
+	public static final String AUTO_NAME =
+			"RIGHT_T2_HP_NEW"; // middle = MIDDLE_HP and RIGHT_T2_HP_NEW   /   right = RIGHT_T2_HP   /
+	// left = LEFT_T2_Comp
 	public static Command AUTO_COMMAND;
 
 	// ====================================================================
@@ -203,6 +205,13 @@ public class RobotContainer {
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
+		operatorController
+				.rightTrigger()
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
+		operatorController
+				.rightTrigger()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+
 		// --- Shoot ---
 		driverController
 				.rightTrigger()
@@ -233,7 +242,7 @@ public class RobotContainer {
 		NamedCommands.registerCommand(
 				"SHOOT", new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		NamedCommands.registerCommand(
-				"INTAKE", new CMD_Superstructure(superstructure, RobotState.INTAKE));
+				"INTAKE", new CMD_Superstructure(superstructure, RobotState.INTAKE_AUTO));
 		NamedCommands.registerCommand(
 				"INTAKE_IN", new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
 		NamedCommands.registerCommand(

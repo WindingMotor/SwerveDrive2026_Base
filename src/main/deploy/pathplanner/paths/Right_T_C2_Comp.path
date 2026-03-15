@@ -16,12 +16,12 @@
     },
     {
       "anchor": {
-        "x": 7.80038578680203,
-        "y": 3.5239492385786804
+        "x": 7.7994633273703045,
+        "y": 3.848407871198569
       },
       "prevControl": {
-        "x": 7.634639593908629,
-        "y": 1.3876649746192884
+        "x": 7.633717134476903,
+        "y": 1.7121236072391768
       },
       "nextControl": null,
       "isLocked": false,
@@ -31,16 +31,16 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 0.7780311668567138,
-      "rotationDegrees": 70.64742579841327
+      "rotationDegrees": 79.10124303248078
     }
   ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8156881616939363,
+      "minWaypointRelativePos": 0.7852941176470589,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.5,
+        "maxVelocity": 1.3,
         "maxAcceleration": 5.6,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
@@ -73,7 +73,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 78.69006752597988
+    "rotation": 87.99916739646928
   },
   "reversed": false,
   "folder": "RightSide_Comp",

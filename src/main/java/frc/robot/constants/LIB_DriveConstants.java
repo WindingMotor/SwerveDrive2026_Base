@@ -82,7 +82,7 @@ public class LIB_DriveConstants {
 	public static final double kSteerGearRatio = (150.0 / 7.0); // Steer motor gear ratio
 	private static final double kCoupleRatio = 3.57; // Azimuth coupling ratio
 	private static final Distance kWheelRadius = Inches.of(2.1); // Effective wheel radius (in)
-	private static final Current kSlipCurrent = Amps.of(120.0); // Wheel slip current threshold (A)
+	private static final Current kSlipCurrent = Amps.of(100.0); // Wheel slip current threshold (A)
 
 	// ====================================================================
 	// SECTION 4: MOTOR INVERSIONS (Set for correct rotation direction)
