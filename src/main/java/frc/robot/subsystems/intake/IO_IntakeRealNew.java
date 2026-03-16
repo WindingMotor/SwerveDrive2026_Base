@@ -69,8 +69,8 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 	@Override
 	public StatusCode setSliderPosition(double meters) {
 		// sliderMotorRequest.withPosition(meters);
-		if (meters > 0.0) {
-			sliderMotorRequest.withOutput(6.0);
+		if (meters > 0) {
+			sliderMotorRequest.withOutput(8.0);
 		} else {
 			sliderMotorRequest.withOutput(-8.0);
 		}

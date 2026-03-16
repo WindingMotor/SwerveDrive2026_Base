@@ -155,7 +155,7 @@ public final class RobotConstants {
 			{3.7, 2180.0},
 			{4.0, 2370.0},
 			{4.5, 2530.0},
-			{5.0, 2600.0}
+			{5.0, 2630.0}
 		};
 
 		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67);

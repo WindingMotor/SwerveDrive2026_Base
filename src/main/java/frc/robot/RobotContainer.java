@@ -43,8 +43,9 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME =
-			"RIGHT_T2_HP_NEW"; // middle = MIDDLE_HP and RIGHT_T2_HP_NEW   /   right = RIGHT_T2_HP   /
+	public static final String AUTO_NAME = "RIGHT_T2_HP_NEW";
+	// middle = MIDDLE_HP
+	// right = RIGHT_T2_HP_NEW and RIGHT_T2
 	// left = LEFT_T2_Comp
 	public static Command AUTO_COMMAND;
 
@@ -182,7 +183,7 @@ public class RobotContainer {
 						() -> -driverController.getRawAxis(1),
 						() -> -driverController.getRawAxis(0),
 						() -> -driverController.getRawAxis(4),
-						1.0, // A VALUE OF 1.0 is FULL ROBOT SPEED
+						0.70, // A VALUE OF 1.0 is FULL ROBOT SPEED
 						0.8, // Keep rotation conservative
 						0.1, // Movement expo
 						0.2)); // Rotation expo
@@ -213,12 +214,12 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
 		// --- Shoot ---
-		driverController
+		/*driverController
 				.rightTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		driverController
 				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY)); */
 
 		operatorController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		operatorController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));

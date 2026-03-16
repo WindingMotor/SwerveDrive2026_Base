@@ -19,7 +19,6 @@ import frc.robot.constants.BuildConstants;
 import frc.robot.constants.RobotConstants;
 import frc.robot.lib.windingmotor.drive.Drive;
 import frc.robot.lib.windingmotor.util.fieldsim.SimulationManager;
-import frc.robot.subsystems.superstructure.SUB_Superstructure.RobotState;
 import java.lang.reflect.Field;
 import org.littletonrobotics.junction.LogFileUtil;
 import org.littletonrobotics.junction.LoggedRobot;
@@ -80,7 +79,7 @@ public class Robot extends LoggedRobot {
 
 		switch (RobotConstants.ROBOT_MODE) {
 			case REAL:
-				Logger.addDataReceiver(new WPILOGWriter("/u/usblogs"));
+				// logger.addDataReceiver(new WPILOGWriter("/u/usblogs"));
 				// Logger.addDataReceiver(new NT4Publisher());
 				new PowerDistribution(1, ModuleType.kRev);
 				break;
@@ -190,7 +189,7 @@ public class Robot extends LoggedRobot {
 			m_autonomousCommand.cancel();
 		}
 
-		m_robotContainer.getSuperstructure().setRobotState(RobotState.IDLE);
+		// m_robotContainer.getSuperstructure().setRobotState(RobotState.IDLE);
 	}
 
 	/** Called periodically during teleop mode. */
