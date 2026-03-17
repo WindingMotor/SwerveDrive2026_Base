@@ -30,5 +30,5 @@ public interface IO_IntakeBase {
 
 	public StatusCode setIntakeVoltage(double voltage);
 
-	public StatusCode setSliderPosition(double meters);
+	public StatusCode setSliderVoltage(double meters);
 }

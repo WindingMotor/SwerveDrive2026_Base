@@ -74,12 +74,12 @@ public class SUB_Shooter extends SubsystemBase {
 				&& Math.abs(inputs.shooterMotorTwoVelocity - targetRPM) < toleranceRPM;
 	}
 
-	public boolean isShooterAtSpeed(double targetRPM) {
-		return isShooterAtSpeed(targetRPM, 50.0);
+	public boolean isShooterAtSpeed() {
+		return isShooterAtSpeed(inputs.shooterMotorOneTargetVelocity, RobotConstants.Shooter.SHOOTER_RPM_TOLERANCE);
 	}
 
-	public boolean isReadyToShoot(double targetRPM) {
-		return isTurretAtTarget() && isShooterAtSpeed(targetRPM);
+	public boolean isReadyToShoot() {
+		return isTurretAtTarget() && isShooterAtSpeed();
 	}
 
 	public double getAverageShooterVelocity() {

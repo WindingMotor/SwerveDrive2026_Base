@@ -67,8 +67,8 @@ public class IO_IntakeReal implements IO_IntakeBase {
 	}
 
 	@Override
-	public StatusCode setSliderPosition(double meters) {
-		sliderMotorRequest.withPosition(meters);
+	public StatusCode setSliderVoltage(double voltage) {
+		sliderMotorRequest.withPosition(voltage);
 		return sliderMotor.setControl(sliderMotorRequest);
 	}
 }

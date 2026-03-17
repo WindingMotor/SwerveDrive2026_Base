@@ -67,13 +67,16 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 	}
 
 	@Override
-	public StatusCode setSliderPosition(double meters) {
+	public StatusCode setSliderVoltage(double voltage) {
 		// sliderMotorRequest.withPosition(meters);
-		if (meters > 0) {
+		/*if (meters > 0) {
 			sliderMotorRequest.withOutput(8.0);
 		} else {
 			sliderMotorRequest.withOutput(-8.0);
-		}
+		} */
+
+
+		sliderMotorRequest.withOutput(voltage);
 		return sliderMotor.setControl(sliderMotorRequest);
 	}
 }

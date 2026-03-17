@@ -52,7 +52,7 @@ public class IO_IntakeRealBoxBot implements IO_IntakeBase {
 	}
 
 	@Override
-	public StatusCode setSliderPosition(double meters) {
+	public StatusCode setSliderVoltage(double voltage) {
 		return StatusCode.kInvalidClass;
 	}
 }

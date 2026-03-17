@@ -180,10 +180,10 @@ public class RobotContainer {
 		drive.setDefaultCommand(
 				DriveCommands.driveNormalExpo(
 						drive,
-						() -> -driverController.getRawAxis(1),
-						() -> -driverController.getRawAxis(0),
-						() -> -driverController.getRawAxis(4),
-						0.70, // A VALUE OF 1.0 is FULL ROBOT SPEED
+						() -> driverController.getRawAxis(1),
+						() -> driverController.getRawAxis(0),
+						() -> driverController.getRawAxis(4),
+						1.0, // A VALUE OF 1.0 is FULL ROBOT SPEED
 						0.8, // Keep rotation conservative
 						0.1, // Movement expo
 						0.2)); // Rotation expo
@@ -194,10 +194,10 @@ public class RobotContainer {
 		// --- Intake ---
 		driverController
 				.leftTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 		driverController
 				.leftTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
 		operatorController
 				.leftTrigger()
@@ -234,6 +234,16 @@ public class RobotContainer {
 				.povDown()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_DOWN));
 		driverController
+				.povDown()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
+
+		operatorController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_UP));
+		operatorController.povUp().onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
+
+		operatorController
+				.povDown()
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_DOWN));
+		operatorController
 				.povDown()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
 	}

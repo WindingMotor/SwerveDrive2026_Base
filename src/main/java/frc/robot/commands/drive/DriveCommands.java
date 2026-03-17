@@ -101,7 +101,7 @@ public class DriveCommands {
 					}
 
 					Translation2d linearVelocity =
-							getLinearVelocityFromJoysticks(xSupplier.getAsDouble(), ySupplier.getAsDouble());
+							getLinearVelocityFromJoysticks(x, y);
 
 					double omega = MathUtil.applyDeadband(omegaSupplier.getAsDouble(), DEADBAND);
 					// Square for soft curve — preserves sign, gentle at low input, full power at full stick
@@ -133,9 +133,9 @@ public class DriveCommands {
 							DriverStation.getAlliance().isPresent()
 									&& DriverStation.getAlliance().get() == Alliance.Red;
 
-					double x = xSupplier.getAsDouble();
-					double y = ySupplier.getAsDouble();
-					double z = omegaSupplier.getAsDouble();
+					double x = -xSupplier.getAsDouble();
+					double y = -ySupplier.getAsDouble();
+					double z = -omegaSupplier.getAsDouble();
 
 					if (isRed) {
 						x *= -1;

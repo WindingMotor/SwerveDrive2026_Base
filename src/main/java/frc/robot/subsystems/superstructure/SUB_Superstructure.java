@@ -160,12 +160,13 @@ public class SUB_Superstructure extends SubsystemBase {
 				indexerRef.setSpinnerVoltage(0.0);
 				indexerRef.setKickerVoltage(0.0);
 				intakeRef.setIntakeVoltage(0.0);
-				intakeRef.setSliderPosition(0.0);
+				intakeRef.setSliderVoltage(0.0);
 				shooterRef.setShooterVelocities(0.0);
+				indexerRef.setClimbVoltage(0.0);
 				break;
 
 			case SHOOTING:
-				if (shooterRef.isTurretAtTarget()) {
+				if (shooterRef.isReadyToShoot()) {
 					indexerRef.setSpinnerVoltage(12.0);
 					indexerRef.setKickerVoltage(10.0);
 					// Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", true);
@@ -192,36 +193,35 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case INTAKE:
 				intakeRef.setIntakeVoltage(10.0);
-				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				intakeRef.setSliderVoltage(8.0);
 				break;
 
 			case INTAKE_AUTO:
 				intakeRef.setIntakeVoltage(12.0);
-				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				intakeRef.setSliderVoltage(8.0);
 				break;
 
 			case INTAKE_LIMP:
-				intakeRef.setSliderPosition(1.0);
+				intakeRef.setIntakeVoltage(2.0);
+				intakeRef.setSliderVoltage(0.0);
 				break;
 
-				/*case EJECT:
+			case EJECT:
 				intakeRef.setIntakeVoltage(-10.0);
-				indexerRef.setSpinnerVoltage(-5.0);
-				indexerRef.setKickerVoltage(-4.0);
-				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-				break; */
+				intakeRef.setSliderVoltage(8.0);
+				break;
 
 			case INTAKE_IN:
-				intakeRef.setSliderPosition(0.0);
+				intakeRef.setSliderVoltage(8.0);
 				intakeRef.setIntakeVoltage(2.0);
 				break;
 
 			case CLIMB_UP:
-				indexerRef.setClimbVoltage(5.0);
+				indexerRef.setClimbVoltage(8.0);
 				break;
 
 			case CLIMB_DOWN:
-				indexerRef.setClimbVoltage(-5.0);
+				indexerRef.setClimbVoltage(-8.0);
 				break;
 
 			case CLIMB_STOP:
