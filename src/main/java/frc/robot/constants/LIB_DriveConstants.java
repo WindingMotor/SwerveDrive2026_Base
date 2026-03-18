@@ -77,8 +77,8 @@ public class LIB_DriveConstants {
 	// ====================================================================
 
 	public static final LinearVelocity kSpeedAt12Volts =
-			MetersPerSecond.of(5.0); // Theoretical max speed (m/s)
-	public static final double kDriveGearRatio = 6.12; // Drive motor gear ratio
+			MetersPerSecond.of(4.5); // Theoretical max speed (m/s)
+	public static final double kDriveGearRatio = 6.75; // Drive motor gear ratio
 	public static final double kSteerGearRatio = (150.0 / 7.0); // Steer motor gear ratio
 	private static final double kCoupleRatio = 3.57; // Azimuth coupling ratio
 	private static final Distance kWheelRadius = Inches.of(2.1); // Effective wheel radius (in)
