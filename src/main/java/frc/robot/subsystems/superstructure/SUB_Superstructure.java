@@ -196,12 +196,14 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case INTAKE:
 				intakeRef.setIntakeVoltage(10.0);
-				intakeRef.setSliderVoltage(8.0);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				//intakeRef.setSliderVoltage(8.0);
 				break;
 
 			case INTAKE_AUTO:
 				intakeRef.setIntakeVoltage(12.0);
-				intakeRef.setSliderVoltage(8.0);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				//intakeRef.setSliderVoltage(8.0);
 				break;
 
 			case INTAKE_LIMP:
@@ -211,11 +213,13 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case EJECT:
 				intakeRef.setIntakeVoltage(-10.0);
-				intakeRef.setSliderVoltage(8.0);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				//intakeRef.setSliderVoltage(8.0);
 				break;
 
 			case INTAKE_IN:
-				intakeRef.setSliderVoltage(-8.0);
+				//intakeRef.setSliderVoltage(-8.0);
+				intakeRef.setSliderPosition(0.0);
 				intakeRef.setIntakeVoltage(2.0);
 				break;
 

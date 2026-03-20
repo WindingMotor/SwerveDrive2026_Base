@@ -201,7 +201,7 @@ public class RobotContainer {
 
 		driverController
 				.rightTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
 		driverController
 				.rightTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
