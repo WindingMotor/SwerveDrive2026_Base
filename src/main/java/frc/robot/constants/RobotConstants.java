@@ -43,7 +43,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 30;
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 13;
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SLIDER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -203,6 +203,13 @@ public final class RobotConstants {
 			CLIMB_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			CLIMB_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 			CLIMB_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
+
+			CLIMB_MOTOR_CONFIG.Slot0.kP = 1.0;
+			CLIMB_MOTOR_CONFIG.Slot0.kI = 0.0;
+			CLIMB_MOTOR_CONFIG.Slot0.kD = 0.0;
+			CLIMB_MOTOR_CONFIG.Slot0.kS = 0.0;
+			CLIMB_MOTOR_CONFIG.Slot0.kV = 0.0;
+			CLIMB_MOTOR_CONFIG.Slot0.kA = 0.0;
 		}
 
 		public static final int BEAM_BREAK_DIO = 0;

@@ -3,45 +3,40 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.40258883248731,
-        "y": 0.6233908629441636
+        "x": 0.75,
+        "y": 0.6520035778175304
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.465208121827411,
-        "y": 0.6694314720812178
+        "x": 1.0784568527918785,
+        "y": 1.010131979695433
       },
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Right_HP"
     },
     {
       "anchor": {
-        "x": 7.828010152284264,
-        "y": 2.7136345177664976
+        "x": 1.1152893401015231,
+        "y": 2.8425482233502546
       },
       "prevControl": {
-        "x": 7.9779427549195,
-        "y": 0.8467084078711984
+        "x": 0.40626395939086324,
+        "y": 2.8333401015228437
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Right_C1_Comp"
+      "linkedName": null
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.6320790573926266,
-      "rotationDegrees": 83.56897485536614
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5,
+      "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
         "maxVelocity": 1.0,
-        "maxAcceleration": 4.0,
+        "maxAcceleration": 5.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
         "nominalVoltage": 12.0,
@@ -52,20 +47,31 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
-      "name": "INTAKE",
-      "waypointRelativePos": 0.22352941176470617,
+      "name": "CLIMB_TOP",
+      "waypointRelativePos": 0,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "INTAKE"
+          "name": "CLIMB_TOP"
+        }
+      }
+    },
+    {
+      "name": "CLIMB_BOTTOM",
+      "waypointRelativePos": 1.0,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "CLIMB_BOTTOM"
         }
       }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 3.0,
-    "maxAcceleration": 4.0,
+    "maxVelocity": 3.8,
+    "maxAcceleration": 5.0,
     "maxAngularVelocity": 1000.0,
     "maxAngularAcceleration": 1500.0,
     "nominalVoltage": 12.0,
@@ -73,13 +79,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 79.31508759999727
+    "rotation": -91.02303018866782
   },
   "reversed": false,
   "folder": "RightSide_Comp",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 0.9877603996397615
+    "rotation": 180.0
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

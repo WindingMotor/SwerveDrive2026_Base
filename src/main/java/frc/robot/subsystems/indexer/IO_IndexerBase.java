@@ -25,6 +25,8 @@ public interface IO_IndexerBase {
 
 		public double climbVoltage = 0.0;
 		public double climbTargetVoltage = 0.0;
+		public double climbPosition = 0.0;
+		public double climbTargetPosition = 0.0;
 		public double climbCurrent = 0.0;
 
 		public boolean sensor = false;
@@ -37,4 +39,6 @@ public interface IO_IndexerBase {
 	public StatusCode setKickerVoltage(double voltage);
 
 	public StatusCode setClimbVoltage(double voltage);
+
+	public StatusCode setClimbPosition(double meters);
 }

@@ -37,4 +37,8 @@ public class SUB_Indexer extends SubsystemBase {
 	public StatusCode setClimbVoltage(double voltage) {
 		return io.setClimbVoltage(voltage);
 	}
+
+	public StatusCode setClimbPosition(double meters) {
+		return io.setClimbPosition(meters);
+	}
 }

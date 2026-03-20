@@ -1,0 +1,19 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_T_C1_Comp"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Right_Side",
+  "choreoAuto": false
+}

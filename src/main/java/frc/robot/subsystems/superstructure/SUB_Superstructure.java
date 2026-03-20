@@ -22,6 +22,7 @@ import frc.robot.lib.windingmotor.drive.Drive;
 import frc.robot.subsystems.indexer.SUB_Indexer;
 import frc.robot.subsystems.intake.SUB_Intake;
 import frc.robot.subsystems.shooter.SUB_Shooter;
+import org.littletonrobotics.junction.Logger;
 
 public class SUB_Superstructure extends SubsystemBase {
 
@@ -57,6 +58,8 @@ public class SUB_Superstructure extends SubsystemBase {
 		INTAKE_AUTO,
 		INTAKE_IN,
 		INTAKE_LIMP,
+		CLIMB_TOP,
+		CLIMB_BOTTOM,
 		CLIMB_UP,
 		CLIMB_DOWN,
 		CLIMB_STOP,
@@ -138,10 +141,10 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		//	Logger.recordOutput("Superstructure/RobotState", currentRobotState.toString());
-		//	Logger.recordOutput("Superstructure/ActivelyShooting", activelyShooting);
-		//	Logger.recordOutput("Superstructure/ActivelyReady", activelyReady);
-		//	Logger.recordOutput("Superstructure/RobotPose", driveRef.getPose());
+		Logger.recordOutput("Superstructure/RobotState", currentRobotState.toString());
+		Logger.recordOutput("Superstructure/ActivelyShooting", activelyShooting);
+		Logger.recordOutput("Superstructure/ActivelyReady", activelyReady);
+		Logger.recordOutput("Superstructure/RobotPose", driveRef.getPose());
 
 		// Setpoints are already sent at 100Hz by Robot.java's addPeriodic.
 		// The state machine just gates the indexer/kicker — 50Hz is fine for that.
@@ -169,11 +172,11 @@ public class SUB_Superstructure extends SubsystemBase {
 				if (shooterRef.isReadyToShoot()) {
 					indexerRef.setSpinnerVoltage(12.0);
 					indexerRef.setKickerVoltage(10.0);
-					// Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", true);
+					Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", true);
 				} else {
 					indexerRef.setSpinnerVoltage(0.0);
 					indexerRef.setKickerVoltage(0.0);
-					// Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", false);
+					Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", false);
 				}
 				if (RobotConstants.ROBOT_MODE == RobotMode.SIM) {
 					if (shooterRef.isShooterAtSpeed(shooterRef.getShooterVelocityRPMSetpoint(), 100.0)) {
@@ -212,8 +215,16 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE_IN:
-				intakeRef.setSliderVoltage(8.0);
+				intakeRef.setSliderVoltage(-8.0);
 				intakeRef.setIntakeVoltage(2.0);
+				break;
+
+			case CLIMB_TOP:
+				indexerRef.setClimbPosition(100.0);
+				break;
+
+			case CLIMB_BOTTOM:
+				indexerRef.setClimbPosition(1.0);
 				break;
 
 			case CLIMB_UP:
@@ -307,7 +318,7 @@ public class SUB_Superstructure extends SubsystemBase {
 
 		// Send both position AND velocity — Kraken uses kV*velocity as feedforward at 1kHz
 		shooterRef.setTurretPosition(turretAngleRad, turretSetpointVelocityRadPerSec);
-		/*
+
 		Logger.recordOutput(
 				"Superstructure/Turret/TurretPosition",
 				new Pose2d(turretPos, new Rotation2d(fieldAngleRad)));
@@ -332,7 +343,6 @@ public class SUB_Superstructure extends SubsystemBase {
 				Math.toDegrees(turretAngleRad - shooterRef.getTurretPosition()));
 		Logger.recordOutput(
 				"Superstructure/Turret/SetpointVelocityRadPerSec", turretSetpointVelocityRadPerSec);
-				*/
 	}
 
 	/**
@@ -360,11 +370,11 @@ public class SUB_Superstructure extends SubsystemBase {
 					new Pose2d(turretPos, new Rotation2d()), new Pose2d(virtualGoal, new Rotation2d())
 				};
 
-		//	Logger.recordOutput("Superstructure/Shooter/DistanceToVirtualGoal", distance);
-		//	Logger.recordOutput("Superstructure/Shooter/TargetRPM", targetRPM);
-		// Logger.recordOutput(
-		//		"Superstructure/Shooter/AverageRPM", shooterRef.getAverageShooterVelocity());
-		//	Logger.recordOutput("Superstructure/Shooter/DistanceToVirtualGoalLine", shotLine);
+		Logger.recordOutput("Superstructure/Shooter/DistanceToVirtualGoal", distance);
+		Logger.recordOutput("Superstructure/Shooter/TargetRPM", targetRPM);
+		Logger.recordOutput(
+				"Superstructure/Shooter/AverageRPM", shooterRef.getAverageShooterVelocity());
+		Logger.recordOutput("Superstructure/Shooter/DistanceToVirtualGoalLine", shotLine);
 	}
 
 	// ====================================================================
@@ -393,22 +403,20 @@ public class SUB_Superstructure extends SubsystemBase {
 
 		double compensationOffset = turretTargetPose.getDistance(virtualGoal);
 
-		/*
-				Logger.recordOutput(
-						"Superstructure/MotionComp/ActualGoal", new Pose2d(turretTargetPose, new Rotation2d()));
-				Logger.recordOutput(
-						"Superstructure/MotionComp/VirtualGoal", new Pose2d(virtualGoal, new Rotation2d()));
-				Logger.recordOutput("Superstructure/MotionComp/DistanceToActualGoal", distanceToTarget);
-				Logger.recordOutput("Superstructure/MotionComp/TargetRPM", targetRPM);
-				Logger.recordOutput("Superstructure/MotionComp/ExitVelocityMPS", exitVelocity);
-				Logger.recordOutput("Superstructure/MotionComp/HorizontalVelocityMPS", horizontalVelocity);
-				Logger.recordOutput("Superstructure/MotionComp/FlightTimeSeconds", flightTime);
-				Logger.recordOutput("Superstructure/MotionComp/RobotVelocityX", fieldSpeeds.vxMetersPerSecond);
-				Logger.recordOutput("Superstructure/MotionComp/RobotVelocityY", fieldSpeeds.vyMetersPerSecond);
-				Logger.recordOutput("Superstructure/MotionComp/DisplacementX", displacementX);
-				Logger.recordOutput("Superstructure/MotionComp/DisplacementY", displacementY);
-				Logger.recordOutput("Superstructure/MotionComp/CompensationOffsetMeters", compensationOffset);
-		*/
+		Logger.recordOutput(
+				"Superstructure/MotionComp/ActualGoal", new Pose2d(turretTargetPose, new Rotation2d()));
+		Logger.recordOutput(
+				"Superstructure/MotionComp/VirtualGoal", new Pose2d(virtualGoal, new Rotation2d()));
+		Logger.recordOutput("Superstructure/MotionComp/DistanceToActualGoal", distanceToTarget);
+		Logger.recordOutput("Superstructure/MotionComp/TargetRPM", targetRPM);
+		Logger.recordOutput("Superstructure/MotionComp/ExitVelocityMPS", exitVelocity);
+		Logger.recordOutput("Superstructure/MotionComp/HorizontalVelocityMPS", horizontalVelocity);
+		Logger.recordOutput("Superstructure/MotionComp/FlightTimeSeconds", flightTime);
+		Logger.recordOutput("Superstructure/MotionComp/RobotVelocityX", fieldSpeeds.vxMetersPerSecond);
+		Logger.recordOutput("Superstructure/MotionComp/RobotVelocityY", fieldSpeeds.vyMetersPerSecond);
+		Logger.recordOutput("Superstructure/MotionComp/DisplacementX", displacementX);
+		Logger.recordOutput("Superstructure/MotionComp/DisplacementY", displacementY);
+		Logger.recordOutput("Superstructure/MotionComp/CompensationOffsetMeters", compensationOffset);
 
 		return virtualGoal;
 	}
@@ -445,7 +453,7 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	public void setTurretTarget(Translation2d newTarget) {
 		turretTargetPose = newTarget;
-		// Logger.recordOutput("Superstructure/TargetPoseUpdated", newTarget);
+		Logger.recordOutput("Superstructure/TargetPoseUpdated", newTarget);
 	}
 
 	public Translation2d getTurretTarget() {

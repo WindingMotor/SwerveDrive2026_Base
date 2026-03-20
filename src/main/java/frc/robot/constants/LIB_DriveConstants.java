@@ -128,7 +128,8 @@ public class LIB_DriveConstants {
 	private static final int kBackLeftDriveMotorId = 1; // Drive motor CAN ID 5
 	private static final int kBackLeftSteerMotorId = 2; // Steer motor CAN ID 6
 	private static final int kBackLeftEncoderId = 20; // CANcoder CAN ID 22
-	private static final Angle kBackLeftEncoderOffset = Radians.of(1.732); // Encoder offset (rad)
+	private static final Angle kBackLeftEncoderOffset =
+			Radians.of(-0.209); // Encoder offset (rad) 1.732
 	private static final boolean kBackLeftSteerMotorInverted = true; // Steer motor inversion
 	private static final boolean kBackLeftEncoderInverted = false; // Encoder inversion
 

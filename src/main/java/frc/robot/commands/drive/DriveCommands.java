@@ -100,8 +100,7 @@ public class DriveCommands {
 						y *= -1;
 					}
 
-					Translation2d linearVelocity =
-							getLinearVelocityFromJoysticks(x, y);
+					Translation2d linearVelocity = getLinearVelocityFromJoysticks(x, y);
 
 					double omega = MathUtil.applyDeadband(omegaSupplier.getAsDouble(), DEADBAND);
 					// Square for soft curve — preserves sign, gentle at low input, full power at full stick
@@ -282,7 +281,7 @@ public class DriveCommands {
 							// Check if isRed is null, if the field is stupid....
 							/*
 							if (isRed == null) {
-								// Logger.recordMetadata("Auto Align NULL Trip", "TRUE");
+								Logger.recordMetadata("Auto Align NULL Trip", "TRUE");
 								DriverStation.reportError("Auto Align Null", true);
 								return;
 							}*/

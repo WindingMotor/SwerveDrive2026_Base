@@ -75,7 +75,6 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 			sliderMotorRequest.withOutput(-8.0);
 		} */
 
-
 		sliderMotorRequest.withOutput(voltage);
 		return sliderMotor.setControl(sliderMotorRequest);
 	}

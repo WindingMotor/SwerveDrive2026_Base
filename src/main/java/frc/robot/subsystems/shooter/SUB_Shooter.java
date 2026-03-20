@@ -75,7 +75,8 @@ public class SUB_Shooter extends SubsystemBase {
 	}
 
 	public boolean isShooterAtSpeed() {
-		return isShooterAtSpeed(inputs.shooterMotorOneTargetVelocity, RobotConstants.Shooter.SHOOTER_RPM_TOLERANCE);
+		return isShooterAtSpeed(
+				inputs.shooterMotorOneTargetVelocity, RobotConstants.Shooter.SHOOTER_RPM_TOLERANCE);
 	}
 
 	public boolean isReadyToShoot() {

@@ -11,6 +11,7 @@ import static edu.wpi.first.units.Units.Volts;
 
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import frc.robot.constants.RobotConstants;
@@ -26,6 +27,7 @@ public class IO_IndexerReal implements IO_IndexerBase {
 
 	private final TalonFX climbMotor;
 	private final VoltageOut climbVoltageRequest;
+	private final PositionVoltage climbPositionRequest;
 
 	private final IRBeamBreak sensor;
 
@@ -47,6 +49,7 @@ public class IO_IndexerReal implements IO_IndexerBase {
 		climbMotor = new TalonFX(33, RobotConstants.CANBUS_CANIVORE);
 		climbMotor.getConfigurator().apply(climbMotorConfiguration);
 		climbVoltageRequest = new VoltageOut(0.0);
+		climbPositionRequest = new PositionVoltage(0.0);
 
 		sensor = new IRBeamBreak(0);
 	}
@@ -63,6 +66,10 @@ public class IO_IndexerReal implements IO_IndexerBase {
 
 		inputs.climbVoltage = climbMotor.getMotorVoltage().getValueAsDouble();
 		inputs.climbTargetVoltage = climbVoltageRequest.getOutputMeasure().in(Volts);
+
+		inputs.climbPosition = climbMotor.getPosition().getValueAsDouble();
+		inputs.climbTargetPosition = climbPositionRequest.Position;
+
 		inputs.climbCurrent = climbMotor.getStatorCurrent().getValueAsDouble();
 
 		inputs.sensor = sensor.getValueAsBoolean();
@@ -84,5 +91,11 @@ public class IO_IndexerReal implements IO_IndexerBase {
 	public StatusCode setClimbVoltage(double voltage) {
 		climbVoltageRequest.withOutput(voltage);
 		return climbMotor.setControl(climbVoltageRequest);
+	}
+
+	@Override
+	public StatusCode setClimbPosition(double meters) {
+		climbPositionRequest.withPosition(meters);
+		return climbMotor.setControl(climbPositionRequest);
 	}
 }

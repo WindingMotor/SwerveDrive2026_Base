@@ -199,6 +199,13 @@ public class RobotContainer {
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
+		driverController
+				.rightTrigger()
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+		driverController
+				.rightTrigger()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
+
 		operatorController
 				.leftTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
@@ -227,18 +234,15 @@ public class RobotContainer {
 		operatorController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
 
 		// --- Climb ---
-		driverController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_UP));
-		driverController.povUp().onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
-
+		driverController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_TOP));
 		driverController
 				.povDown()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_DOWN));
-		driverController
-				.povDown()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_BOTTOM));
 
 		operatorController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_UP));
-		operatorController.povUp().onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
+		operatorController
+				.povUp()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
 
 		operatorController
 				.povDown()
@@ -258,7 +262,10 @@ public class RobotContainer {
 				"INTAKE_IN", new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
 		NamedCommands.registerCommand(
 				"READY", new CMD_Superstructure(superstructure, RobotState.READY));
-		NamedCommands.registerCommand("CLIMB", new CMD_Superstructure(superstructure, RobotState.IDLE));
+		NamedCommands.registerCommand(
+				"CLIMB_TOP", new CMD_Superstructure(superstructure, RobotState.CLIMB_TOP));
+		NamedCommands.registerCommand(
+				"CLIMB_BOTTOM", new CMD_Superstructure(superstructure, RobotState.CLIMB_BOTTOM));
 	}
 
 	private void configureSim() {
