@@ -11,6 +11,7 @@ import static edu.wpi.first.units.Units.Volts;
 
 import com.ctre.phoenix6.StatusCode;
 import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import frc.robot.constants.RobotConstants;
@@ -23,6 +24,7 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 
 	private final TalonFX sliderMotor;
 	private final VoltageOut sliderMotorRequest;
+	private final PositionVoltage sliderPositionRequest;
 
 	private final IRBeamBreak sensor;
 
@@ -40,6 +42,7 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 		sliderMotor.getConfigurator().apply(sliderMotorConfiguration);
 		sliderMotor.setPosition(0.0);
 		sliderMotorRequest = new VoltageOut(0.0);
+		sliderPositionRequest = new PositionVoltage(0.0);
 
 		sensor = new IRBeamBreak(1);
 	}
@@ -51,10 +54,14 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 		inputs.intakeCurrent = intakeMotor.getStatorCurrent().getValueAsDouble();
 
 		inputs.sliderPosition = sliderMotor.getPosition().getValueAsDouble();
-		inputs.sliderTargetPosition =
+		inputs.sliderTargetPosition = sliderPositionRequest.Position;
+
+		inputs.sliderVoltage = sliderMotor.getMotorVoltage().getValueAsDouble();
+		inputs.sliderTargetVoltage =
 				sliderMotorRequest
 						.getOutputMeasure()
 						.in(Volts); // TODO: Might need to multiply by motor conversion factor in future.
+
 		inputs.sliderCurrent = sliderMotor.getStatorCurrent().getValueAsDouble();
 
 		inputs.sensor = sensor.getValueAsBoolean();
@@ -77,5 +84,11 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 
 		sliderMotorRequest.withOutput(voltage);
 		return sliderMotor.setControl(sliderMotorRequest);
+	}
+
+	@Override
+	public StatusCode setSliderPosition(double meters) {
+		sliderPositionRequest.withPosition(meters);
+		return sliderMotor.setControl(sliderPositionRequest);
 	}
 }

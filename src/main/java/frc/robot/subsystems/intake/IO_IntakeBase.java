@@ -21,6 +21,8 @@ public interface IO_IntakeBase {
 
 		public double sliderPosition = 0.0;
 		public double sliderTargetPosition = 0.0;
+		public double sliderVoltage = 0.0;
+		public double sliderTargetVoltage = 0.0;
 		public double sliderCurrent = 0.0;
 
 		public boolean sensor = false;
@@ -30,5 +32,7 @@ public interface IO_IntakeBase {
 
 	public StatusCode setIntakeVoltage(double voltage);
 
-	public StatusCode setSliderVoltage(double meters);
+	public StatusCode setSliderVoltage(double voltage);
+
+	public StatusCode setSliderPosition(double meters);
 }
