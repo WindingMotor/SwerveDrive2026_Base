@@ -43,9 +43,9 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "RIGHT_T2_HP_NEW";
+	public static final String AUTO_NAME = "LEFT_T2_Comp";
 	// middle = MIDDLE_HP
-	// right = RIGHT_T2_HP_NEW and RIGHT_T2
+	// right = RIGHT_T2_HP_NEW, RIGHT_T2, RIGHT_CLIMB
 	// left = LEFT_T2_Comp
 	public static Command AUTO_COMMAND;
 
@@ -164,9 +164,9 @@ public class RobotContainer {
 						new IO_VisionCamera(
 								LIB_VisionConstants.camera0Name, LIB_VisionConstants.robotToCamera0),
 						new IO_VisionCamera(
-								LIB_VisionConstants.camera1Name, LIB_VisionConstants.robotToCamera1));
-		/*new IO_VisionCamera(
-		LIB_VisionConstants.camera1Name, LIB_VisionConstants.robotToCamera2));*/
+								LIB_VisionConstants.camera1Name, LIB_VisionConstants.robotToCamera1),
+						new IO_VisionCamera(
+								LIB_VisionConstants.camera2Name, LIB_VisionConstants.robotToCamera2));
 		// TODO: Where is other camera ben?
 
 		superstructure = new SUB_Superstructure(indexer, intake, shooter, drive);
@@ -260,6 +260,8 @@ public class RobotContainer {
 				"INTAKE", new CMD_Superstructure(superstructure, RobotState.INTAKE_AUTO));
 		NamedCommands.registerCommand(
 				"INTAKE_IN", new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+		NamedCommands.registerCommand(
+				"INTAKE_LIMP", new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 		NamedCommands.registerCommand(
 				"READY", new CMD_Superstructure(superstructure, RobotState.READY));
 		NamedCommands.registerCommand(

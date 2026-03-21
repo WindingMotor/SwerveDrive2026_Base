@@ -40,7 +40,7 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 		sliderMotor =
 				new TalonFX(RobotConstants.Intake.SLIDER_MOTOR_CAN_ID, RobotConstants.CANBUS_CANIVORE);
 		sliderMotor.getConfigurator().apply(sliderMotorConfiguration);
-		sliderMotor.setPosition(0.0);
+		// sliderMotor.setPosition(0.0);
 		sliderMotorRequest = new VoltageOut(0.0);
 		sliderPositionRequest = new PositionVoltage(0.0);
 

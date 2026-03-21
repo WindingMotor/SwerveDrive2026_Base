@@ -55,11 +55,11 @@ public class LIB_DriveConstants {
 	 */
 	private static final Slot0Configs driveGains =
 			new Slot0Configs()
-					.withKP(1.8) // Proportional gain 2.5
+					.withKP(2.5) // Proportional gain 2.5
 					.withKI(0) // Integral gain
 					.withKD(0) // Derivative gain
 					.withKS(0) // Static friction feedforward (V)
-					.withKV(0.85); // Velocity feedforward (V/(rot/s))0.75
+					.withKV(0.75); // Velocity feedforward (V/(rot/s))0.75
 
 	// ====================================================================
 	// SECTION 2: CONTROL CONFIGURATION

@@ -83,8 +83,8 @@ public class LIB_VisionConstants {
 							Units.inchesToMeters(-11.8325), // Y: left from robot center (in)
 							Units.inchesToMeters(8.244)), // Z: up from robot center (in)
 					new Rotation3d(
-							Units.degreesToRadians(3.0), // Roll: rotation about X-axis (deg)
-							Units.degreesToRadians(-30.0), // Pitch: rotation about Y-axis (deg)
+							Units.degreesToRadians(0.0), // Roll: rotation about X-axis (deg) 3
+							Units.degreesToRadians(-30.0), // Pitch: rotation about Y-axis (deg) -30
 							Units.degreesToRadians(-75.5))); // Yaw: rotation about Z-axis (deg)
 
 	// ====================================================================

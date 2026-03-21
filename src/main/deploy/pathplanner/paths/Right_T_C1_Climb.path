@@ -17,11 +17,11 @@
     {
       "anchor": {
         "x": 7.837218274111676,
-        "y": 2.916213197969544
+        "y": 3.2292893401015226
       },
       "prevControl": {
         "x": 7.818802030456853,
-        "y": 1.6454923857868025
+        "y": 1.9585685279187812
       },
       "nextControl": null,
       "isLocked": false,
@@ -29,9 +29,35 @@
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.42107795957651845,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 1.0,
+        "maxAcceleration": 5.0,
+        "maxAngularVelocity": 1000.0,
+        "maxAngularAcceleration": 1500.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "INTAKE",
+      "waypointRelativePos": 0.24590952839267807,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "INTAKE"
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 3.8,
     "maxAcceleration": 5.0,

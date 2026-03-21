@@ -1,0 +1,110 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 7.837218274111676,
+        "y": 3.2292893401015226
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 7.726720812182741,
+        "y": 0.697055837563453
+      },
+      "isLocked": false,
+      "linkedName": "Right_C1_Climb"
+    },
+    {
+      "anchor": {
+        "x": 4.227634517766497,
+        "y": 0.5865583756345187
+      },
+      "prevControl": {
+        "x": 6.317878172588833,
+        "y": 0.6325989847715743
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "Right_Trench"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 0.5,
+      "rotationDegrees": -166.04355561628822
+    }
+  ],
+  "constraintZones": [],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "SHOOT",
+      "waypointRelativePos": 0.55,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "SHOOT"
+        }
+      }
+    },
+    {
+      "name": "INTAKE_IN",
+      "waypointRelativePos": 0.6,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "INTAKE_IN"
+        }
+      }
+    },
+    {
+      "name": "IDLE",
+      "waypointRelativePos": 0.75,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IDLE"
+        }
+      }
+    },
+    {
+      "name": "INTAKE",
+      "waypointRelativePos": 0.8,
+      "endWaypointRelativePos": null,
+      "command": null
+    },
+    {
+      "name": "INTAKE_LIMP",
+      "waypointRelativePos": 0.9,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "INTAKE_LIMP"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.8,
+    "maxAcceleration": 5.0,
+    "maxAngularVelocity": 1000.0,
+    "maxAngularAcceleration": 1500.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 3.8,
+    "rotation": 180.0
+  },
+  "reversed": false,
+  "folder": "RightSide_Comp",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": 90.59065721464668
+  },
+  "useDefaultConstraints": true
+}

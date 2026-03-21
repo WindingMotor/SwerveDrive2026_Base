@@ -43,7 +43,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 13;
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 20;
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SLIDER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -158,7 +158,7 @@ public final class RobotConstants {
 			{5.0, 2630.0}
 		};
 
-		public static final double SHOOTER_RPM_TOLERANCE = 100;
+		public static final double SHOOTER_RPM_TOLERANCE = 300;
 
 		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67);
 		public static final double SHOOTER_WHEEL_DIAMETER_METERS = 0.0762;

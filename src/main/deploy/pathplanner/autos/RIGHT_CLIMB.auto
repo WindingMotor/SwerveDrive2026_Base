@@ -7,7 +7,43 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right_T_C1_Comp"
+            "pathName": "Right_T_C1_Climb"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_C1_T_Climb"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_T_HP_Climb"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SHOOT"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 2.5
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE_IN"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_Climb"
           }
         }
       ]
