@@ -93,10 +93,11 @@ public class SUB_Superstructure extends SubsystemBase {
 	private double previousTurretAngleRad = 0.0;
 
 	// ====================================================================
-	// Turret telemetry cache — written at 100Hz by updateTurretAngle(),
+	// Telemetry cache — written at 100Hz by the Notifier methods,
 	// read at 50Hz by periodic() for safe AdvantageKit logging.
 	// ====================================================================
 
+	// updateTurretAngle()
 	private Pose2d cache_turretPositionPose = new Pose2d();
 	private Pose2d cache_actualGoalPose = new Pose2d();
 	private Pose2d cache_virtualGoalPose = new Pose2d();
@@ -109,6 +110,26 @@ public class SUB_Superstructure extends SubsystemBase {
 	private double cache_currentAngle = 0.0;
 	private double cache_turretDeltaDegrees = 0.0;
 	private double cache_setpointVelocity = 0.0;
+
+	// updateShooterVelocity()
+	private double cache_shooterDistance = 0.0;
+	private double cache_shooterTargetRPM = 0.0;
+	private double cache_shooterAverageRPM = 0.0;
+	private Pose2d[] cache_shotLine = new Pose2d[] {new Pose2d(), new Pose2d()};
+
+	// calculateVirtualGoal() — called from both 100Hz methods, cache latest values
+	private Pose2d cache_motionComp_actualGoal = new Pose2d();
+	private Pose2d cache_motionComp_virtualGoal = new Pose2d();
+	private double cache_motionComp_distToActual = 0.0;
+	private double cache_motionComp_targetRPM = 0.0;
+	private double cache_motionComp_exitVelocity = 0.0;
+	private double cache_motionComp_horizVelocity = 0.0;
+	private double cache_motionComp_flightTime = 0.0;
+	private double cache_motionComp_robotVelX = 0.0;
+	private double cache_motionComp_robotVelY = 0.0;
+	private double cache_motionComp_displacementX = 0.0;
+	private double cache_motionComp_displacementY = 0.0;
+	private double cache_motionComp_compOffset = 0.0;
 
 	// ====================================================================
 	// Constants
@@ -153,18 +174,19 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	// ====================================================================
 	// Periodic — 50Hz main loop
-	// Only the state machine lives here. Turret updates run at 100Hz
-	// via addPeriodic in Robot.java and must NOT also run here.
+	// Only the state machine and ALL logging live here.
+	// Turret/shooter updates run at 100Hz via addPeriodic in Robot.java.
 	// ====================================================================
 
 	@Override
 	public void periodic() {
+		// General state
 		Logger.recordOutput("Superstructure/RobotState", currentRobotState.toString());
 		Logger.recordOutput("Superstructure/ActivelyShooting", activelyShooting);
 		Logger.recordOutput("Superstructure/ActivelyReady", activelyReady);
 		Logger.recordOutput("Superstructure/RobotPose", driveRef.getPose());
 
-		// Turret telemetry — values cached by the 100Hz Notifier, logged here safely on the main thread
+		// Turret — cached by updateTurretAngle()
 		Logger.recordOutput("Superstructure/Turret/TurretPosition", cache_turretPositionPose);
 		Logger.recordOutput("Superstructure/Turret/ActualGoal", cache_actualGoalPose);
 		Logger.recordOutput("Superstructure/Turret/VirtualGoal", cache_virtualGoalPose);
@@ -179,9 +201,31 @@ public class SUB_Superstructure extends SubsystemBase {
 		Logger.recordOutput("Superstructure/Turret/CurrentAngle", cache_currentAngle);
 		Logger.recordOutput("Superstructure/Turret/turretDeltaDegrees", cache_turretDeltaDegrees);
 		Logger.recordOutput("Superstructure/Turret/SetpointVelocityRadPerSec", cache_setpointVelocity);
+		Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", shooterRef.isReadyToShoot());
 
-		// Setpoints are already sent at 100Hz by Robot.java's addPeriodic.
-		// The state machine just gates the indexer/kicker — 50Hz is fine for that.
+		// Shooter — cached by updateShooterVelocity()
+		Logger.recordOutput("Superstructure/Shooter/DistanceToVirtualGoal", cache_shooterDistance);
+		Logger.recordOutput("Superstructure/Shooter/TargetRPM", cache_shooterTargetRPM);
+		Logger.recordOutput("Superstructure/Shooter/AverageRPM", cache_shooterAverageRPM);
+		Logger.recordOutput("Superstructure/Shooter/DistanceToVirtualGoalLine", cache_shotLine);
+
+		// Motion compensation — cached by calculateVirtualGoal()
+		Logger.recordOutput("Superstructure/MotionComp/ActualGoal", cache_motionComp_actualGoal);
+		Logger.recordOutput("Superstructure/MotionComp/VirtualGoal", cache_motionComp_virtualGoal);
+		Logger.recordOutput(
+				"Superstructure/MotionComp/DistanceToActualGoal", cache_motionComp_distToActual);
+		Logger.recordOutput("Superstructure/MotionComp/TargetRPM", cache_motionComp_targetRPM);
+		Logger.recordOutput("Superstructure/MotionComp/ExitVelocityMPS", cache_motionComp_exitVelocity);
+		Logger.recordOutput(
+				"Superstructure/MotionComp/HorizontalVelocityMPS", cache_motionComp_horizVelocity);
+		Logger.recordOutput("Superstructure/MotionComp/FlightTimeSeconds", cache_motionComp_flightTime);
+		Logger.recordOutput("Superstructure/MotionComp/RobotVelocityX", cache_motionComp_robotVelX);
+		Logger.recordOutput("Superstructure/MotionComp/RobotVelocityY", cache_motionComp_robotVelY);
+		Logger.recordOutput("Superstructure/MotionComp/DisplacementX", cache_motionComp_displacementX);
+		Logger.recordOutput("Superstructure/MotionComp/DisplacementY", cache_motionComp_displacementY);
+		Logger.recordOutput(
+				"Superstructure/MotionComp/CompensationOffsetMeters", cache_motionComp_compOffset);
+
 		runStateMachine();
 
 		timekeeper.update();
@@ -275,6 +319,7 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	// ====================================================================
 	// Turret & Shooter Updates — PUBLIC, called at 100Hz by Robot.java
+	// NO Logger calls permitted here — use the cache fields above.
 	// ====================================================================
 
 	/**
@@ -316,7 +361,7 @@ public class SUB_Superstructure extends SubsystemBase {
 	 * grow.
 	 *
 	 * <p>All Logger calls have been moved to periodic() (50Hz, main thread) to avoid
-	 * BufferOverflowException in the Notifier thread. Values are cached in fields below.
+	 * BufferOverflowException in the Notifier thread. Values are cached in fields above.
 	 */
 	public void updateTurretAngle() {
 		Pose2d robotPose = driveRef.getPose();
@@ -354,7 +399,7 @@ public class SUB_Superstructure extends SubsystemBase {
 		// Send both position AND velocity — Kraken uses kV*velocity as feedforward at 1kHz
 		shooterRef.setTurretPosition(turretAngleRad, turretSetpointVelocityRadPerSec);
 
-		// Cache telemetry for periodic() to log safely on the 50Hz main thread
+		// Cache for periodic() logging
 		cache_turretPositionPose = new Pose2d(turretPos, new Rotation2d(fieldAngleRad));
 		cache_actualGoalPose = new Pose2d(turretTargetPose, new Rotation2d());
 		cache_virtualGoalPose = new Pose2d(virtualGoal, new Rotation2d());
@@ -390,20 +435,18 @@ public class SUB_Superstructure extends SubsystemBase {
 
 		shooterRef.setShooterVelocities(targetRPM);
 
-		Pose2d[] shotLine =
+		// Cache for periodic() logging
+		cache_shooterDistance = distance;
+		cache_shooterTargetRPM = targetRPM;
+		cache_shooterAverageRPM = shooterRef.getAverageShooterVelocity();
+		cache_shotLine =
 				new Pose2d[] {
 					new Pose2d(turretPos, new Rotation2d()), new Pose2d(virtualGoal, new Rotation2d())
 				};
-
-		/* Logger.recordOutput("Superstructure/Shooter/DistanceToVirtualGoal", distance);
-		Logger.recordOutput("Superstructure/Shooter/TargetRPM", targetRPM);
-		Logger.recordOutput(
-				"Superstructure/Shooter/AverageRPM", shooterRef.getAverageShooterVelocity());
-		Logger.recordOutput("Superstructure/Shooter/DistanceToVirtualGoalLine", shotLine); */
 	}
 
 	// ====================================================================
-	// Virtual Goal (unchanged)
+	// Virtual Goal
 	// ====================================================================
 
 	private Translation2d calculateVirtualGoal(Translation2d turretPos, ChassisSpeeds fieldSpeeds) {
@@ -426,26 +469,27 @@ public class SUB_Superstructure extends SubsystemBase {
 				new Translation2d(
 						turretTargetPose.getX() - displacementX, turretTargetPose.getY() - displacementY);
 
-		/* Logger.recordOutput(
-				"Superstructure/MotionComp/ActualGoal", new Pose2d(turretTargetPose, new Rotation2d()));
-		Logger.recordOutput(
-				"Superstructure/MotionComp/VirtualGoal", new Pose2d(virtualGoal, new Rotation2d()));
-		Logger.recordOutput("Superstructure/MotionComp/DistanceToActualGoal", distanceToTarget);
-		Logger.recordOutput("Superstructure/MotionComp/TargetRPM", targetRPM);
-		Logger.recordOutput("Superstructure/MotionComp/ExitVelocityMPS", exitVelocity);
-		Logger.recordOutput("Superstructure/MotionComp/HorizontalVelocityMPS", horizontalVelocity);
-		Logger.recordOutput("Superstructure/MotionComp/FlightTimeSeconds", flightTime);
-		Logger.recordOutput("Superstructure/MotionComp/RobotVelocityX", fieldSpeeds.vxMetersPerSecond);
-		Logger.recordOutput("Superstructure/MotionComp/RobotVelocityY", fieldSpeeds.vyMetersPerSecond);
-		Logger.recordOutput("Superstructure/MotionComp/DisplacementX", displacementX);
-		Logger.recordOutput("Superstructure/MotionComp/DisplacementY", displacementY);
-		Logger.recordOutput("Superstructure/MotionComp/CompensationOffsetMeters", compensationOffset); */
+		double compensationOffset = turretTargetPose.getDistance(virtualGoal);
+
+		// Cache for periodic() logging
+		cache_motionComp_actualGoal = new Pose2d(turretTargetPose, new Rotation2d());
+		cache_motionComp_virtualGoal = new Pose2d(virtualGoal, new Rotation2d());
+		cache_motionComp_distToActual = distanceToTarget;
+		cache_motionComp_targetRPM = targetRPM;
+		cache_motionComp_exitVelocity = exitVelocity;
+		cache_motionComp_horizVelocity = horizontalVelocity;
+		cache_motionComp_flightTime = flightTime;
+		cache_motionComp_robotVelX = fieldSpeeds.vxMetersPerSecond;
+		cache_motionComp_robotVelY = fieldSpeeds.vyMetersPerSecond;
+		cache_motionComp_displacementX = displacementX;
+		cache_motionComp_displacementY = displacementY;
+		cache_motionComp_compOffset = compensationOffset;
 
 		return virtualGoal;
 	}
 
 	// ====================================================================
-	// Shift / Game Data (unchanged)
+	// Shift / Game Data
 	// ====================================================================
 
 	public void findShift() {
