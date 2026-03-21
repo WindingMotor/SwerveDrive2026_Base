@@ -93,6 +93,24 @@ public class SUB_Superstructure extends SubsystemBase {
 	private double previousTurretAngleRad = 0.0;
 
 	// ====================================================================
+	// Turret telemetry cache — written at 100Hz by updateTurretAngle(),
+	// read at 50Hz by periodic() for safe AdvantageKit logging.
+	// ====================================================================
+
+	private Pose2d cache_turretPositionPose = new Pose2d();
+	private Pose2d cache_actualGoalPose = new Pose2d();
+	private Pose2d cache_virtualGoalPose = new Pose2d();
+	private Pose2d cache_actualAimPose = new Pose2d();
+	private Pose2d cache_targetAimPose = new Pose2d();
+	private double cache_rangeCenter = 0.0;
+	private double cache_rawTurretTarget = 0.0;
+	private double cache_targetAngleRobotRel = 0.0;
+	private double cache_targetAngleFieldRel = 0.0;
+	private double cache_currentAngle = 0.0;
+	private double cache_turretDeltaDegrees = 0.0;
+	private double cache_setpointVelocity = 0.0;
+
+	// ====================================================================
 	// Constants
 	// ====================================================================
 
@@ -141,10 +159,26 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	@Override
 	public void periodic() {
-		// Logger.recordOutput("Superstructure/RobotState", currentRobotState.toString());
-		// Logger.recordOutput("Superstructure/ActivelyShooting", activelyShooting);
-		// Logger.recordOutput("Superstructure/ActivelyReady", activelyReady);
+		Logger.recordOutput("Superstructure/RobotState", currentRobotState.toString());
+		Logger.recordOutput("Superstructure/ActivelyShooting", activelyShooting);
+		Logger.recordOutput("Superstructure/ActivelyReady", activelyReady);
 		Logger.recordOutput("Superstructure/RobotPose", driveRef.getPose());
+
+		// Turret telemetry — values cached by the 100Hz Notifier, logged here safely on the main thread
+		Logger.recordOutput("Superstructure/Turret/TurretPosition", cache_turretPositionPose);
+		Logger.recordOutput("Superstructure/Turret/ActualGoal", cache_actualGoalPose);
+		Logger.recordOutput("Superstructure/Turret/VirtualGoal", cache_virtualGoalPose);
+		Logger.recordOutput("Superstructure/Turret/ActualAim", cache_actualAimPose);
+		Logger.recordOutput("Superstructure/Turret/TargetAim", cache_targetAimPose);
+		Logger.recordOutput("Superstructure/Turret/RangeCenter", cache_rangeCenter);
+		Logger.recordOutput("Superstructure/Turret/RawTurretTarget", cache_rawTurretTarget);
+		Logger.recordOutput(
+				"Superstructure/Turret/TargetAngleRobotRelative", cache_targetAngleRobotRel);
+		Logger.recordOutput(
+				"Superstructure/Turret/TargetAngleFieldRelative", cache_targetAngleFieldRel);
+		Logger.recordOutput("Superstructure/Turret/CurrentAngle", cache_currentAngle);
+		Logger.recordOutput("Superstructure/Turret/turretDeltaDegrees", cache_turretDeltaDegrees);
+		Logger.recordOutput("Superstructure/Turret/SetpointVelocityRadPerSec", cache_setpointVelocity);
 
 		// Setpoints are already sent at 100Hz by Robot.java's addPeriodic.
 		// The state machine just gates the indexer/kicker — 50Hz is fine for that.
@@ -172,11 +206,9 @@ public class SUB_Superstructure extends SubsystemBase {
 				if (shooterRef.isReadyToShoot()) {
 					indexerRef.setSpinnerVoltage(12.0);
 					indexerRef.setKickerVoltage(10.0);
-					// Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", true);
 				} else {
 					indexerRef.setSpinnerVoltage(0.0);
 					indexerRef.setKickerVoltage(0.0);
-					// Logger.recordOutput("Superstructure/Turret/isTurretAtTarget", false);
 				}
 				if (RobotConstants.ROBOT_MODE == RobotMode.SIM) {
 					if (shooterRef.isShooterAtSpeed(shooterRef.getShooterVelocityRPMSetpoint(), 100.0)) {
@@ -197,13 +229,11 @@ public class SUB_Superstructure extends SubsystemBase {
 			case INTAKE:
 				intakeRef.setIntakeVoltage(10.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-				// intakeRef.setSliderVoltage(8.0);
 				break;
 
 			case INTAKE_AUTO:
 				intakeRef.setIntakeVoltage(12.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-				// intakeRef.setSliderVoltage(8.0);
 				break;
 
 			case INTAKE_LIMP:
@@ -214,11 +244,9 @@ public class SUB_Superstructure extends SubsystemBase {
 			case EJECT:
 				intakeRef.setIntakeVoltage(-10.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-				// intakeRef.setSliderVoltage(8.0);
 				break;
 
 			case INTAKE_IN:
-				// intakeRef.setSliderVoltage(-8.0);
 				intakeRef.setSliderPosition(0.0);
 				intakeRef.setIntakeVoltage(2.0);
 				break;
@@ -286,6 +314,9 @@ public class SUB_Superstructure extends SubsystemBase {
 	 * <p>dt = TURRET_UPDATE_DT (0.010s) because this runs at 100Hz. The velocity feedforward lets the
 	 * Kraken's 1kHz PID interpolate between our 10ms Java updates instead of waiting for error to
 	 * grow.
+	 *
+	 * <p>All Logger calls have been moved to periodic() (50Hz, main thread) to avoid
+	 * BufferOverflowException in the Notifier thread. Values are cached in fields below.
 	 */
 	public void updateTurretAngle() {
 		Pose2d robotPose = driveRef.getPose();
@@ -323,30 +354,20 @@ public class SUB_Superstructure extends SubsystemBase {
 		// Send both position AND velocity — Kraken uses kV*velocity as feedforward at 1kHz
 		shooterRef.setTurretPosition(turretAngleRad, turretSetpointVelocityRadPerSec);
 
-		/* Logger.recordOutput(
-				"Superstructure/Turret/TurretPosition",
-				new Pose2d(turretPos, new Rotation2d(fieldAngleRad)));
-		*/ Logger.recordOutput(
-				"Superstructure/Turret/ActualGoal", new Pose2d(turretTargetPose, new Rotation2d()));
-		/*Logger.recordOutput(
-				"Superstructure/Turret/VirtualGoal", new Pose2d(virtualGoal, new Rotation2d()));
-		Logger.recordOutput(
-				"Superstructure/Turret/ActualAim",
-				new Pose2d(turretPos, new Rotation2d(shooterRef.getTurretPosition() + robotHeadingRad)));
-		Logger.recordOutput(
-				"Superstructure/Turret/TargetAim", new Pose2d(turretPos, new Rotation2d(fieldAngleRad)));
-		Logger.recordOutput("Superstructure/Turret/RangeCenter", turretRangeCenter);
-		Logger.recordOutput("Superstructure/Turret/RawTurretTarget", turretAngleRad);
-		Logger.recordOutput(
-				"Superstructure/Turret/TargetAngleRobotRelative", Math.toDegrees(turretAngleRad));
-		Logger.recordOutput(
-				"Superstructure/Turret/TargetAngleFieldRelative", Math.toDegrees(fieldAngleRad));
-		Logger.recordOutput("Superstructure/Turret/CurrentAngle", shooterRef.getTurretPosition());
-		Logger.recordOutput(
-				"Superstructure/Turret/turretDeltaDegrees",
-				Math.toDegrees(turretAngleRad - shooterRef.getTurretPosition()));
-		Logger.recordOutput(
-				"Superstructure/Turret/SetpointVelocityRadPerSec", turretSetpointVelocityRadPerSec); */
+		// Cache telemetry for periodic() to log safely on the 50Hz main thread
+		cache_turretPositionPose = new Pose2d(turretPos, new Rotation2d(fieldAngleRad));
+		cache_actualGoalPose = new Pose2d(turretTargetPose, new Rotation2d());
+		cache_virtualGoalPose = new Pose2d(virtualGoal, new Rotation2d());
+		cache_actualAimPose =
+				new Pose2d(turretPos, new Rotation2d(shooterRef.getTurretPosition() + robotHeadingRad));
+		cache_targetAimPose = new Pose2d(turretPos, new Rotation2d(fieldAngleRad));
+		cache_rangeCenter = turretRangeCenter;
+		cache_rawTurretTarget = turretAngleRad;
+		cache_targetAngleRobotRel = Math.toDegrees(turretAngleRad);
+		cache_targetAngleFieldRel = Math.toDegrees(fieldAngleRad);
+		cache_currentAngle = shooterRef.getTurretPosition();
+		cache_turretDeltaDegrees = Math.toDegrees(turretAngleRad - shooterRef.getTurretPosition());
+		cache_setpointVelocity = turretSetpointVelocityRadPerSec;
 	}
 
 	/**
@@ -405,8 +426,6 @@ public class SUB_Superstructure extends SubsystemBase {
 				new Translation2d(
 						turretTargetPose.getX() - displacementX, turretTargetPose.getY() - displacementY);
 
-		double compensationOffset = turretTargetPose.getDistance(virtualGoal);
-
 		/* Logger.recordOutput(
 				"Superstructure/MotionComp/ActualGoal", new Pose2d(turretTargetPose, new Rotation2d()));
 		Logger.recordOutput(
@@ -457,7 +476,6 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	public void setTurretTarget(Translation2d newTarget) {
 		turretTargetPose = newTarget;
-		// Logger.recordOutput("Superstructure/TargetPoseUpdated", newTarget);
 	}
 
 	public Translation2d getTurretTarget() {
