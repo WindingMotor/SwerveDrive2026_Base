@@ -63,7 +63,11 @@ public class SUB_Superstructure extends SubsystemBase {
 		CLIMB_UP,
 		CLIMB_DOWN,
 		CLIMB_STOP,
-		EJECT
+		EJECT,
+		TEST1,
+		TEST2,
+		TEST3,
+		TEST4
 	}
 
 	// ====================================================================
@@ -271,7 +275,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE:
-				intakeRef.setIntakeVoltage(10.0);
+				intakeRef.setIntakeVoltage(8.5);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 

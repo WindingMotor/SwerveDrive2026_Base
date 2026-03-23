@@ -84,7 +84,7 @@ public class LIB_VisionConstants {
 							Units.inchesToMeters(8.244)), // Z: up from robot center (in)
 					new Rotation3d(
 							Units.degreesToRadians(0.0), // Roll: rotation about X-axis (deg) 3
-							Units.degreesToRadians(-30.0), // Pitch: rotation about Y-axis (deg) -30
+							Units.degreesToRadians(-50.0), // Pitch: rotation about Y-axis (deg) -30
 							Units.degreesToRadians(-75.5))); // Yaw: rotation about Z-axis (deg)
 
 	// ====================================================================
@@ -179,22 +179,22 @@ public class LIB_VisionConstants {
 	public static Set<Integer> allowedTagIds =
 			Set.of(
 					// Red alliance tags
-					1,
+					// 1,
 					2,
 					3,
 					4,
 					5,
-					6,
-					7,
+					// 6,
+					// 7,
 					8,
 					9,
 					10,
 					11,
-					12,
-					13,
-					14,
-					15,
-					16,
+					// 12,
+					// 13,
+					// 14,
+					// 15,
+					// 16,
 					// Blue alliance tags
 					17,
 					18,

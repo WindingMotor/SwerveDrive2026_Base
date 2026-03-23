@@ -71,11 +71,11 @@ public final class RobotConstants {
 			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.2;
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kI = 0.0;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.35;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kI = 0.05;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kD = 0.0;
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.232;
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kV = 0.119;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.23; // 0.232
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kV = 0.117; // 0.119
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kA = 0.0;
 		}
 
@@ -88,11 +88,11 @@ public final class RobotConstants {
 			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.2;
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kI = 0.0;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.35;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kI = 0.05;
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kD = 0.0;
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.232;
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.119;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.23; // 0.232
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.117; // 0.119
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kA = 0.0;
 		}
 
@@ -121,10 +121,10 @@ public final class RobotConstants {
 			TURRET_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			TURRET_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			TURRET_MOTOR_CONFIG.Slot0.kP = 40.0;
-			TURRET_MOTOR_CONFIG.Slot0.kI = 0.5;
-			TURRET_MOTOR_CONFIG.Slot0.kD = 0.1;
-			TURRET_MOTOR_CONFIG.Slot0.kS = 2.5;
+			TURRET_MOTOR_CONFIG.Slot0.kP = 30.0; // 40
+			TURRET_MOTOR_CONFIG.Slot0.kI = 0.2;
+			TURRET_MOTOR_CONFIG.Slot0.kD = 0.18; // 0.1
+			TURRET_MOTOR_CONFIG.Slot0.kS = 2.3;
 
 			// ✅ kV MUST be non-zero for .withVelocity() to have any effect.
 			// Formula the Kraken uses: FF = kS*sign(v) + kV*v
@@ -132,7 +132,7 @@ public final class RobotConstants {
 			// At ~0.5 mech rot/s (≈π rad/s), kV=5.0 gives 2.5V of feedforward
 			// on top of kS. Start here and increase by 1.0 until lag shrinks
 			// without oscillation at speed.
-			TURRET_MOTOR_CONFIG.Slot0.kV = 5.0; // TUNE: start 5.0, increase by 1.0 increments
+			TURRET_MOTOR_CONFIG.Slot0.kV = 5.2; // TUNE: start 5.0, increase by 1.0 increments
 			TURRET_MOTOR_CONFIG.Slot0.kA = 0.0;
 
 			TURRET_MOTOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
@@ -146,23 +146,24 @@ public final class RobotConstants {
 
 		public static final double TURRET_OFFSET_X_METERS = -0.1444752;
 		public static final double TURRET_OFFSET_Y_METERS = 0.15875;
+		public static final double VELOCITY_MULTIPLE = 0.90;
 
 		public static final double[][] SHOOTER_RPM_DATA = {
-			{2.0, 1700.0},
-			{2.5, 1880.0},
-			{3.0, 2080.0},
-			{3.5, 2150.0},
-			{3.7, 2180.0},
-			{4.0, 2370.0},
-			{4.5, 2530.0},
-			{5.0, 2630.0}
+			{2.0, 1700.0 * VELOCITY_MULTIPLE},
+			{2.5, 1880.0 * VELOCITY_MULTIPLE},
+			{3.0, 2080.0 * VELOCITY_MULTIPLE},
+			{3.5, 2150.0 * VELOCITY_MULTIPLE},
+			{3.7, 2180.0 * VELOCITY_MULTIPLE},
+			{4.0, 2370.0 * VELOCITY_MULTIPLE},
+			{4.5, 2530.0 * VELOCITY_MULTIPLE},
+			{5.0, 2630.0 * VELOCITY_MULTIPLE}
 		};
 
 		public static final double SHOOTER_RPM_TOLERANCE = 300;
 
 		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67);
 		public static final double SHOOTER_WHEEL_DIAMETER_METERS = 0.0762;
-		public static final double SHOOTER_EFFICIENCY_FACTOR = 0.93;
+		public static final double SHOOTER_EFFICIENCY_FACTOR = 0.9;
 	}
 
 	// Indexer

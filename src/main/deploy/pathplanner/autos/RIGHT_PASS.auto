@@ -19,19 +19,7 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right_T_HP"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Right_HP_S"
+            "pathName": "Right_T_HP_New"
           }
         },
         {

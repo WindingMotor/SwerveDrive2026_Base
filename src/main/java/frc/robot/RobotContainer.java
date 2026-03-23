@@ -43,7 +43,7 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "LEFT_T2_Comp";
+	public static final String AUTO_NAME = "RIGHT_T2";
 	// middle = MIDDLE_HP
 	// right = RIGHT_T2_HP_NEW, RIGHT_T2, RIGHT_CLIMB
 	// left = LEFT_T2_Comp
@@ -194,17 +194,17 @@ public class RobotContainer {
 		// --- Intake ---
 		driverController
 				.leftTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
 		driverController
 				.leftTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
-		driverController
+		/*driverController
 				.rightTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
 		driverController
 				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP)); */
 
 		operatorController
 				.leftTrigger()
@@ -221,12 +221,12 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
 		// --- Shoot ---
-		/*driverController
+		driverController
 				.rightTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		driverController
 				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY)); */
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
 		operatorController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		operatorController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
