@@ -180,8 +180,8 @@ public class RobotContainer {
 		drive.setDefaultCommand(
 				DriveCommands.driveNormalExpo(
 						drive,
-						() -> driverController.getRawAxis(1),
-						() -> driverController.getRawAxis(0),
+						() -> driverController.getRawAxis(1), // 1
+						() -> driverController.getRawAxis(0), // 0
 						() -> driverController.getRawAxis(4),
 						1.0, // A VALUE OF 1.0 is FULL ROBOT SPEED
 						0.8, // Keep rotation conservative
@@ -194,10 +194,13 @@ public class RobotContainer {
 		// --- Intake ---
 		driverController
 				.leftTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 		driverController
 				.leftTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
+
+		driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
+		driverController.a().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
 		/*driverController
 				.rightTrigger()
@@ -221,12 +224,12 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
 		// --- Shoot ---
-		driverController
+		/*driverController
 				.rightTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		driverController
 				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY)); */
 
 		operatorController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		operatorController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));

@@ -121,18 +121,24 @@ public final class RobotConstants {
 			TURRET_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			TURRET_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			TURRET_MOTOR_CONFIG.Slot0.kP = 30.0; // 40
+			/*TURRET_MOTOR_CONFIG.Slot0.kP = 30.0; // 40
 			TURRET_MOTOR_CONFIG.Slot0.kI = 0.2;
-			TURRET_MOTOR_CONFIG.Slot0.kD = 0.18; // 0.1
-			TURRET_MOTOR_CONFIG.Slot0.kS = 2.3;
-
+			TURRET_MOTOR_CONFIG.Slot0.kD = 0.3; // 0.18
+			TURRET_MOTOR_CONFIG.Slot0.kS = 1.5;
 			// ✅ kV MUST be non-zero for .withVelocity() to have any effect.
 			// Formula the Kraken uses: FF = kS*sign(v) + kV*v
 			// Units: Volts per mechanism rot/s
 			// At ~0.5 mech rot/s (≈π rad/s), kV=5.0 gives 2.5V of feedforward
 			// on top of kS. Start here and increase by 1.0 until lag shrinks
 			// without oscillation at speed.
-			TURRET_MOTOR_CONFIG.Slot0.kV = 5.2; // TUNE: start 5.0, increase by 1.0 increments
+			// TURRET_MOTOR_CONFIG.Slot0.kV = 4.5; // TUNE: start 5.0, increase by 1.0 increments
+			TURRET_MOTOR_CONFIG.Slot0.kA = 0.0; */
+
+			TURRET_MOTOR_CONFIG.Slot0.kP = 44.0;
+			TURRET_MOTOR_CONFIG.Slot0.kI = 0.5;
+			TURRET_MOTOR_CONFIG.Slot0.kD = 0.1;
+			TURRET_MOTOR_CONFIG.Slot0.kS = 0.0; // 1.2
+			TURRET_MOTOR_CONFIG.Slot0.kV = 0.0;
 			TURRET_MOTOR_CONFIG.Slot0.kA = 0.0;
 
 			TURRET_MOTOR_CONFIG.SoftwareLimitSwitch.ForwardSoftLimitEnable = true;
@@ -146,7 +152,7 @@ public final class RobotConstants {
 
 		public static final double TURRET_OFFSET_X_METERS = -0.1444752;
 		public static final double TURRET_OFFSET_Y_METERS = 0.15875;
-		public static final double VELOCITY_MULTIPLE = 0.90;
+		public static final double VELOCITY_MULTIPLE = 0.93;
 
 		public static final double[][] SHOOTER_RPM_DATA = {
 			{2.0, 1700.0 * VELOCITY_MULTIPLE},
@@ -156,14 +162,17 @@ public final class RobotConstants {
 			{3.7, 2180.0 * VELOCITY_MULTIPLE},
 			{4.0, 2370.0 * VELOCITY_MULTIPLE},
 			{4.5, 2530.0 * VELOCITY_MULTIPLE},
-			{5.0, 2630.0 * VELOCITY_MULTIPLE}
+			{5.0, 2630.0 * VELOCITY_MULTIPLE},
+			{5.5, 2730.0 * VELOCITY_MULTIPLE}
 		};
 
 		public static final double SHOOTER_RPM_TOLERANCE = 300;
 
 		public static final double SHOOTER_ANGLE_RADIANS = Math.toRadians(67);
 		public static final double SHOOTER_WHEEL_DIAMETER_METERS = 0.0762;
-		public static final double SHOOTER_EFFICIENCY_FACTOR = 0.9;
+		public static final double SHOOTER_EFFICIENCY_FACTOR = 0.97;
+		public static final double SHOOTER_Y_COMP = 1.0;
+		public static final double SHOOTER_X_COMP = 1.0;
 	}
 
 	// Indexer

@@ -466,8 +466,10 @@ public class SUB_Superstructure extends SubsystemBase {
 
 		double flightTime = distanceToTarget / horizontalVelocity;
 
-		double displacementX = flightTime * fieldSpeeds.vxMetersPerSecond;
-		double displacementY = flightTime * fieldSpeeds.vyMetersPerSecond;
+		double displacementX =
+				flightTime * fieldSpeeds.vxMetersPerSecond * RobotConstants.Shooter.SHOOTER_Y_COMP;
+		double displacementY =
+				flightTime * fieldSpeeds.vyMetersPerSecond * RobotConstants.Shooter.SHOOTER_Y_COMP;
 
 		Translation2d virtualGoal =
 				new Translation2d(
