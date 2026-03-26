@@ -43,7 +43,7 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "RIGHT_T2";
+	public static final String AUTO_NAME = "MIDDLE_HP";
 	// middle = MIDDLE_HP
 	// right = RIGHT_T2_HP_NEW, RIGHT_T2, RIGHT_CLIMB
 	// left = LEFT_T2_Comp
@@ -199,6 +199,13 @@ public class RobotContainer {
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
+		driverController
+				.rightTrigger()
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+		driverController
+				.rightTrigger()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
+
 		driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
 		driverController.a().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
@@ -224,12 +231,10 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
 		// --- Shoot ---
-		/*driverController
-				.rightTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
-		driverController
-				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY)); */
+		driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
+
+		driverController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
+		driverController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.IDLE));
 
 		operatorController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		operatorController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
@@ -237,10 +242,22 @@ public class RobotContainer {
 		operatorController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
 
 		// --- Climb ---
-		driverController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_TOP));
+		driverController
+				.rightBumper()
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_TOP));
+		driverController
+				.leftBumper()
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_BOTTOM));
+
+		driverController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_UP));
+		driverController.povUp().onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
+
 		driverController
 				.povDown()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_BOTTOM));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_DOWN));
+		driverController
+				.povDown()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
 
 		operatorController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_UP));
 		operatorController

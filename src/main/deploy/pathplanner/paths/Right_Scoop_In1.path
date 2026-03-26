@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 8.150294416243653,
-        "y": 2.2992690355329954
+        "y": 2.2163959390862953
       },
       "prevControl": null,
       "nextControl": {
         "x": 8.177918781725886,
-        "y": 3.063543147208122
+        "y": 2.9806700507614217
       },
       "isLocked": false,
       "linkedName": "Right_Scoop_Out1"
@@ -32,12 +32,12 @@
     },
     {
       "anchor": {
-        "x": 2.6530456852791877,
-        "y": 2.0874822335025387
+        "x": 2.8372081218274117,
+        "y": 1.9401522842639598
       },
       "prevControl": {
-        "x": 3.012162436548223,
-        "y": 2.5202639593908622
+        "x": 3.196324873096447,
+        "y": 2.3729340101522833
       },
       "nextControl": null,
       "isLocked": false,
@@ -51,7 +51,20 @@
       "minWaypointRelativePos": 1.219441770933562,
       "maxWaypointRelativePos": 2.0,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.7,
+        "maxAcceleration": 5.0,
+        "maxAngularVelocity": 1000.0,
+        "maxAngularAcceleration": 1500.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    },
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.0,
+      "maxWaypointRelativePos": 0.38017324350337023,
+      "constraints": {
+        "maxVelocity": 1.5,
         "maxAcceleration": 5.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,

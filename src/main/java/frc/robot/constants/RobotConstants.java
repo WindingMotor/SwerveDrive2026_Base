@@ -32,7 +32,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration INTAKE_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 55;
+			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 50;
 			INTAKE_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			INTAKE_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			INTAKE_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -71,9 +71,9 @@ public final class RobotConstants {
 			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.35;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.4;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kI = 0.05;
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kD = 0.0;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kD = 0.00;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.23; // 0.232
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kV = 0.117; // 0.119
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kA = 0.0;
@@ -88,9 +88,9 @@ public final class RobotConstants {
 			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.35;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.4; // 0.75
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kI = 0.05;
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kD = 0.0;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kD = 0.00;
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.23; // 0.232
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.117; // 0.119
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kA = 0.0;
@@ -152,7 +152,7 @@ public final class RobotConstants {
 
 		public static final double TURRET_OFFSET_X_METERS = -0.1444752;
 		public static final double TURRET_OFFSET_Y_METERS = 0.15875;
-		public static final double VELOCITY_MULTIPLE = 0.93;
+		public static final double VELOCITY_MULTIPLE = 0.975; // 0.945
 
 		public static final double[][] SHOOTER_RPM_DATA = {
 			{2.0, 1700.0 * VELOCITY_MULTIPLE},

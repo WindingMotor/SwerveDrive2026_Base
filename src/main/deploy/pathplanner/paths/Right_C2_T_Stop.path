@@ -56,6 +56,17 @@
           "name": "IDLE"
         }
       }
+    },
+    {
+      "name": "SHOOT",
+      "waypointRelativePos": 0.96,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "SHOOT"
+        }
+      }
     }
   ],
   "globalConstraints": {

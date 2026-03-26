@@ -97,19 +97,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right_C2_T_Comp"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Right_T_HP_New"
+            "pathName": "Right_C2_T_Climb"
           }
         },
         {
           "type": "named",
           "data": {
             "name": "SHOOT"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "CLIMB_BOTTOM"
           }
         },
         {

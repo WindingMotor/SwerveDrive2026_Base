@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.6530456852791877,
-        "y": 2.0874822335025387
+        "x": 2.8372081218274117,
+        "y": 1.9401522842639598
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.5057157360406097,
-        "y": 0.8812182741116761
+        "x": 2.717502538071066,
+        "y": 0.9088426395939087
       },
       "isLocked": false,
       "linkedName": "Right_Scoop_Shoot"
@@ -20,8 +20,8 @@
         "y": 0.5221015228426404
       },
       "prevControl": {
-        "x": 3.4578375634517764,
-        "y": 0.5221015228426404
+        "x": 3.325238578680203,
+        "y": 0.457644670050762
       },
       "nextControl": null,
       "isLocked": false,
@@ -35,7 +35,7 @@
       "minWaypointRelativePos": 0,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.7,
         "maxAcceleration": 5.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,

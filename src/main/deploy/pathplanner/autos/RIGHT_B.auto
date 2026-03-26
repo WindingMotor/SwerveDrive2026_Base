@@ -21,6 +21,24 @@
           "data": {
             "pathName": "Right_Scoop_Trench"
           }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_Scoop_Out2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_Scoop_In2"
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Right_Scoop_Out3"
+          }
         }
       ]
     }

@@ -251,7 +251,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case SHOOTING:
-				if (shooterRef.isReadyToShoot()) {
+				if (shooterRef.isTurretAtTarget()) {
 					indexerRef.setSpinnerVoltage(12.0);
 					indexerRef.setKickerVoltage(10.0);
 				} else {
@@ -280,12 +280,12 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE_AUTO:
-				intakeRef.setIntakeVoltage(12.0);
+				intakeRef.setIntakeVoltage(10.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
 			case INTAKE_LIMP:
-				intakeRef.setIntakeVoltage(2.0);
+				intakeRef.setIntakeVoltage(4.0);
 				intakeRef.setSliderVoltage(0.0);
 				break;
 

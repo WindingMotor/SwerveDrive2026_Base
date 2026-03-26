@@ -4,12 +4,12 @@
     {
       "anchor": {
         "x": 7.809593908629443,
-        "y": 4.7210050761421325
+        "y": 4.38030456852792
       },
       "prevControl": null,
       "nextControl": {
         "x": 7.809593908629443,
-        "y": 7.409776649746193
+        "y": 7.06907614213198
       },
       "isLocked": false,
       "linkedName": "Left_C2_Comp"
@@ -54,7 +54,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -17.417970792202873
   },
   "reversed": false,
   "folder": "LeftSide_Comp",
