@@ -8,20 +8,20 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.846426395939085,
-        "y": 2.1795634517766507
+        "x": 7.82801015228196,
+        "y": 2.455807106598985
       },
       "isLocked": false,
       "linkedName": "Right_C2_Comp"
     },
     {
       "anchor": {
-        "x": 1.152121827411168,
+        "x": 1.0784568527895764,
         "y": 2.879380710659899
       },
       "prevControl": {
-        "x": -0.7079187817258874,
-        "y": 2.33610152284264
+        "x": -1.0486192893424024,
+        "y": 1.8572791878172603
       },
       "nextControl": null,
       "isLocked": false,
@@ -37,23 +37,10 @@
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.38257940327237766,
-      "maxWaypointRelativePos": 0.5,
-      "constraints": {
-        "maxVelocity": 2.0,
-        "maxAcceleration": 4.0,
-        "maxAngularVelocity": 1000.0,
-        "maxAngularAcceleration": 1500.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    },
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.5423484119345401,
+      "minWaypointRelativePos": 0.47882579403272557,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 0.81,
         "maxAcceleration": 4.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
@@ -72,6 +59,17 @@
         "type": "named",
         "data": {
           "name": "IDLE"
+        }
+      }
+    },
+    {
+      "name": "SHOOT",
+      "waypointRelativePos": 0.5173243503368543,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "SHOOT"
         }
       }
     },

@@ -163,7 +163,14 @@ public final class RobotConstants {
 			{4.0, 2370.0 * VELOCITY_MULTIPLE},
 			{4.5, 2530.0 * VELOCITY_MULTIPLE},
 			{5.0, 2630.0 * VELOCITY_MULTIPLE},
-			{5.5, 2730.0 * VELOCITY_MULTIPLE}
+			{5.5, 2660.0 * VELOCITY_MULTIPLE},
+			{6.0, 2800.0 * VELOCITY_MULTIPLE},
+			{6.5, 3000.0 * VELOCITY_MULTIPLE},
+			{7.0, 3200.0 * VELOCITY_MULTIPLE},
+			{7.5, 3400.0 * VELOCITY_MULTIPLE},
+			{8.0, 3600.0 * VELOCITY_MULTIPLE},
+			{8.5, 3800.0 * VELOCITY_MULTIPLE},
+			{9.0, 4000.0 * VELOCITY_MULTIPLE}
 		};
 
 		public static final double SHOOTER_RPM_TOLERANCE = 300;
@@ -214,7 +221,7 @@ public final class RobotConstants {
 			CLIMB_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Brake;
 			CLIMB_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
 
-			CLIMB_MOTOR_CONFIG.Slot0.kP = 1.0;
+			CLIMB_MOTOR_CONFIG.Slot0.kP = 3.0;
 			CLIMB_MOTOR_CONFIG.Slot0.kI = 0.0;
 			CLIMB_MOTOR_CONFIG.Slot0.kD = 0.0;
 			CLIMB_MOTOR_CONFIG.Slot0.kS = 0.0;
