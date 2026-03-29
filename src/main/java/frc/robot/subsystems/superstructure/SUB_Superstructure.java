@@ -33,10 +33,10 @@ public class SUB_Superstructure extends SubsystemBase {
 	public enum TurretTarget {
 		BLUE_HUB(new Translation2d(4.62, 4.03)),
 		RED_HUB(new Translation2d(11.91, 4.03)),
-		BLUE_AIMING_TOP_CORNER(new Translation2d(4.0, 6.5)),
-		RED_AIMING_TOP_CORNER(new Translation2d(12.5, 6.5)),
-		BLUE_AIMING_BOTTOM_CORNER(new Translation2d(4.0, 1.5)),
-		RED_AIMING_BOTTOM_CORNER(new Translation2d(12.5, 1.5));
+		BLUE_AIMING_TOP_CORNER(new Translation2d(4.0, 6.0)), // 6.5
+		RED_AIMING_TOP_CORNER(new Translation2d(12.5, 6.0)),
+		BLUE_AIMING_BOTTOM_CORNER(new Translation2d(4.0, 2.0)), // 1.5
+		RED_AIMING_BOTTOM_CORNER(new Translation2d(12.5, 2.0));
 
 		private final Translation2d position;
 
@@ -55,6 +55,7 @@ public class SUB_Superstructure extends SubsystemBase {
 		READY,
 		UNJAM,
 		INTAKE,
+		INTAKE_SKIPPER,
 		INTAKE_AUTO,
 		INTAKE_IN,
 		INTAKE_LIMP,
@@ -246,7 +247,6 @@ public class SUB_Superstructure extends SubsystemBase {
 				indexerRef.setKickerVoltage(0.0);
 				intakeRef.setIntakeVoltage(0.0);
 				intakeRef.setSliderVoltage(0.0);
-				shooterRef.setShooterVelocities(0.0);
 				indexerRef.setClimbVoltage(0.0);
 				break;
 
@@ -297,6 +297,11 @@ public class SUB_Superstructure extends SubsystemBase {
 			case INTAKE_IN:
 				intakeRef.setSliderPosition(0.0);
 				intakeRef.setIntakeVoltage(2.0);
+				break;
+
+			case INTAKE_SKIPPER:
+				intakeRef.setSliderVoltage(8.0);
+				intakeRef.setIntakeVoltage(10.0);
 				break;
 
 			case CLIMB_TOP:

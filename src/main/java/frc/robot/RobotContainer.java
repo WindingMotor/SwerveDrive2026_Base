@@ -43,9 +43,9 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "MIDDLE_HP";
+	public static final String AUTO_NAME = "RIGHT_T2_New";
 	// middle = MIDDLE_HP
-	// right = RIGHT_T2, RIGHT_T2_Climb
+	// right = RIGHT_T2, RIGHT_T2_Climb, RIGHT_T2_New
 	// left = LEFT_T2_Comp
 	public static Command AUTO_COMMAND;
 
@@ -215,6 +215,14 @@ public class RobotContainer {
 		operatorController
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+
+		operatorController
+				.leftBumper()
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_SKIPPER));
+
+		operatorController
+				.leftBumper()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
 		operatorController
 				.rightTrigger()

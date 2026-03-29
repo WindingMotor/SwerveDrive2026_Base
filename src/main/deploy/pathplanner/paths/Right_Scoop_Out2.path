@@ -3,16 +3,16 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.457837563451776,
-        "y": 0.5221015228426404
+        "x": 4.2552588832487315,
+        "y": 0.6418071065989852
       },
       "prevControl": null,
       "nextControl": {
-        "x": 4.982700507614213,
-        "y": 0.5313096446700514
+        "x": 4.780121827411168,
+        "y": 0.6510152284263961
       },
       "isLocked": false,
-      "linkedName": "Right_Scoop_Trench"
+      "linkedName": "Right_Trench_Shoot"
     },
     {
       "anchor": {
@@ -47,7 +47,7 @@
   "rotationTargets": [
     {
       "waypointRelativePos": 1.385784872671993,
-      "rotationDegrees": 52.93024756482165
+      "rotationDegrees": 52.930247564821656
     }
   ],
   "constraintZones": [
@@ -89,13 +89,13 @@
   },
   "goalEndState": {
     "velocity": 1.0,
-    "rotation": 104.85861444792478
+    "rotation": 104.8586144479248
   },
   "reversed": false,
   "folder": "RightSide",
   "idealStartingState": {
     "velocity": 3.0,
-    "rotation": 90.0
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

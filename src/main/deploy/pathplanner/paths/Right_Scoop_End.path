@@ -32,31 +32,31 @@
     },
     {
       "anchor": {
-        "x": 1.0960991379310352,
-        "y": 2.8817025862068966
+        "x": 2.6884615384615382,
+        "y": 2.5990518783542043
       },
       "prevControl": {
-        "x": -0.8007333493786093,
-        "y": 2.244139134430247
+        "x": 4.0189445438282645,
+        "y": 2.5503756708407868
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Right_Scoop_Shoot2"
     }
   ],
   "rotationTargets": [
     {
       "waypointRelativePos": 0.7533257316609601,
-      "rotationDegrees": -122.25279665542934
+      "rotationDegrees": -138.68370599913257
     }
   ],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 1.354186717998072,
-      "maxWaypointRelativePos": 2.0,
+      "minWaypointRelativePos": 0,
+      "maxWaypointRelativePos": 1.0352941176470578,
       "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 2.0,
         "maxAcceleration": 5.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
@@ -69,23 +69,12 @@
   "eventMarkers": [
     {
       "name": "SHOOT",
-      "waypointRelativePos": 1.417647058823527,
+      "waypointRelativePos": 1.9235294117647042,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
           "name": "SHOOT"
-        }
-      }
-    },
-    {
-      "name": "CLIMB_TOP",
-      "waypointRelativePos": 1.452941176470588,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "CLIMB_TOP"
         }
       }
     }
@@ -100,7 +89,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -90.9429950784032
+    "rotation": 45.0
   },
   "reversed": false,
   "folder": "RightSide",
