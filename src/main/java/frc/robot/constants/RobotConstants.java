@@ -32,7 +32,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration INTAKE_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 50;
+			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 60;
 			INTAKE_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			INTAKE_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			INTAKE_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
