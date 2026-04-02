@@ -52,6 +52,17 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
+      "name": "EJECT",
+      "waypointRelativePos": 0.04379210779595533,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "EJECT"
+        }
+      }
+    },
+    {
       "name": "INTAKE",
       "waypointRelativePos": 0.3209817131857498,
       "endWaypointRelativePos": null,

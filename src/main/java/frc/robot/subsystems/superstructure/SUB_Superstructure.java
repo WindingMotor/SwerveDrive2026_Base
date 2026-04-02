@@ -275,7 +275,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE:
-				intakeRef.setIntakeVoltage(8.5);
+				intakeRef.setIntakeVoltage(10.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 

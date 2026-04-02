@@ -17,47 +17,47 @@
     {
       "anchor": {
         "x": 7.772761421319796,
-        "y": 5.227451776649746
+        "y": 5.199827411167512
       },
       "prevControl": {
-        "x": 7.748428153635746,
-        "y": 6.930780514532831
+        "x": 7.699096446700507,
+        "y": 6.286385786802031
       },
       "nextControl": {
-        "x": 7.781969543147209,
-        "y": 4.582883248730964
+        "x": 7.865077742973706,
+        "y": 3.8381616667723337
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 5.995593908629441,
-        "y": 4.932791878172589
+        "x": 6.216588832487309,
+        "y": 5.052497461928934
       },
       "prevControl": {
-        "x": 6.354492000225061,
-        "y": 4.384475349345947
+        "x": 6.3044243980533095,
+        "y": 3.9399136314262737
       },
       "nextControl": {
-        "x": 5.3326091370558375,
-        "y": 5.945685279187818
+        "x": 6.161340101522842,
+        "y": 5.7523147208121825
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 0.6917157360406094,
-        "y": 5.954893401015229
+        "x": 2.800375634517767,
+        "y": 5.632609137055838
       },
       "prevControl": {
-        "x": 2.0637258883248735,
-        "y": 5.623401015228427
+        "x": 4.061888324873096,
+        "y": 5.56815228426396
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Left_End"
     }
   ],
   "rotationTargets": [
@@ -66,16 +66,8 @@
       "rotationDegrees": -88.00496521601556
     },
     {
-      "waypointRelativePos": 1.3736221968833189,
-      "rotationDegrees": 177.89404181713923
-    },
-    {
-      "waypointRelativePos": 2.055872291904196,
-      "rotationDegrees": 144.416134372905
-    },
-    {
-      "waypointRelativePos": 2.466362599771954,
-      "rotationDegrees": 145.64834099502474
+      "waypointRelativePos": 1.8688711516533583,
+      "rotationDegrees": 127.79920942965758
     }
   ],
   "constraintZones": [
@@ -84,20 +76,7 @@
       "minWaypointRelativePos": 0.8243503368623755,
       "maxWaypointRelativePos": 2.0659287776708273,
       "constraints": {
-        "maxVelocity": 1.0,
-        "maxAcceleration": 5.0,
-        "maxAngularVelocity": 1000.0,
-        "maxAngularAcceleration": 1500.0,
-        "nominalVoltage": 12.0,
-        "unlimited": false
-      }
-    },
-    {
-      "name": "Constraints Zone",
-      "minWaypointRelativePos": 2.504812319538013,
-      "maxWaypointRelativePos": 3.0,
-      "constraints": {
-        "maxVelocity": 1.0,
+        "maxVelocity": 1.5,
         "maxAcceleration": 5.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
@@ -108,6 +87,17 @@
   ],
   "pointTowardsZones": [],
   "eventMarkers": [
+    {
+      "name": "IDLE",
+      "waypointRelativePos": 0.021655437921077603,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IDLE"
+        }
+      }
+    },
     {
       "name": "INTAKE",
       "waypointRelativePos": 0.443214629451414,
@@ -120,35 +110,13 @@
       }
     },
     {
-      "name": "INTAKE_IN",
-      "waypointRelativePos": 2.0428296438883367,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE_IN"
-        }
-      }
-    },
-    {
       "name": "SHOOT",
-      "waypointRelativePos": 2.53368623676612,
+      "waypointRelativePos": 2.87,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
           "name": "SHOOT"
-        }
-      }
-    },
-    {
-      "name": "INTAKE",
-      "waypointRelativePos": 2.7589027911453208,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE"
         }
       }
     }
@@ -163,7 +131,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 180.0
+    "rotation": -48.57633437499739
   },
   "reversed": false,
   "folder": "LeftSide_Comp",

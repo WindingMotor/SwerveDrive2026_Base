@@ -45,8 +45,8 @@ public class RobotContainer {
 
 	public static final String AUTO_NAME = "RIGHT_T2_New";
 	// middle = MIDDLE_HP
-	// right = RIGHT_T2, RIGHT_T2_Climb, RIGHT_T2_New
-	// left = LEFT_T2_Comp
+	// right = RIGHT_T2, RIGHT_T2_Climb
+	// left = LEFT_T2_Comp, LEFT_T2_DP
 	public static Command AUTO_COMMAND;
 
 	// ====================================================================
@@ -202,12 +202,12 @@ public class RobotContainer {
 		driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
 		driverController.a().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
-		/*driverController
-				.rightTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
 		driverController
 				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP)); */
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
+		driverController
+				.rightTrigger()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
 		operatorController
 				.leftTrigger()
@@ -215,14 +215,6 @@ public class RobotContainer {
 		operatorController
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
-
-		operatorController
-				.leftBumper()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_SKIPPER));
-
-		operatorController
-				.leftBumper()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
 		operatorController
 				.rightTrigger()
@@ -289,6 +281,8 @@ public class RobotContainer {
 				"CLIMB_TOP", new CMD_Superstructure(superstructure, RobotState.CLIMB_TOP));
 		NamedCommands.registerCommand(
 				"CLIMB_BOTTOM", new CMD_Superstructure(superstructure, RobotState.CLIMB_BOTTOM));
+		NamedCommands.registerCommand(
+				"EJECT", new CMD_Superstructure(superstructure, RobotState.EJECT));
 	}
 
 	private void configureSim() {
