@@ -169,7 +169,7 @@ public class RobotContainer {
 								LIB_VisionConstants.camera2Name, LIB_VisionConstants.robotToCamera2));
 		// TODO: Where is other camera ben?
 
-		superstructure = new SUB_Superstructure(indexer, intake, shooter, drive);
+		superstructure = new SUB_Superstructure(indexer, intake, shooter, drive, driverController);
 	}
 
 	// ====================================================================

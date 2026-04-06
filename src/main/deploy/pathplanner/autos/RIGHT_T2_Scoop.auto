@@ -91,61 +91,19 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right_Scoop"
+            "pathName": "Right_Scoop_Out2"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Right_T_HP_Shoot"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
+            "pathName": "Right_Scoop_End"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Right_HPReal_Shoot"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SHOOT"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE_IN"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE_IN"
+            "pathName": "Right_Scoop_End_End"
           }
         }
       ]

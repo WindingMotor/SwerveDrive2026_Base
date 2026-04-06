@@ -14,8 +14,10 @@ import edu.wpi.first.math.interpolation.InterpolatingDoubleTreeMap;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
+import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.constants.RobotConstants;
 import frc.robot.constants.RobotConstants.RobotMode;
 import frc.robot.lib.windingmotor.drive.Drive;
@@ -79,6 +81,7 @@ public class SUB_Superstructure extends SubsystemBase {
 	private SUB_Intake intakeRef;
 	private SUB_Shooter shooterRef;
 	private Drive driveRef;
+	private CommandXboxController driverController;
 
 	// ====================================================================
 	// State
@@ -163,11 +166,12 @@ public class SUB_Superstructure extends SubsystemBase {
 	// ====================================================================
 
 	public SUB_Superstructure(
-			SUB_Indexer indexerRef, SUB_Intake intakeRef, SUB_Shooter shooterRef, Drive driveRef) {
+			SUB_Indexer indexerRef, SUB_Intake intakeRef, SUB_Shooter shooterRef, Drive driveRef, CommandXboxController driverController) {
 		this.indexerRef = indexerRef;
 		this.intakeRef = intakeRef;
 		this.shooterRef = shooterRef;
 		this.driveRef = driveRef;
+		this.driverController = driverController;
 
 		shooterRPMTable = new InterpolatingDoubleTreeMap();
 		for (double[] dataPoint : RobotConstants.Shooter.SHOOTER_RPM_DATA) {
@@ -519,6 +523,14 @@ public class SUB_Superstructure extends SubsystemBase {
 			default:
 				break;
 		}
+	}
+
+	public void setContollerRumble() {
+		if (shooterRef.isTurretAtTarget()) {
+					driverController.setRumble(RumbleType.kBothRumble, 0.0);
+				} else {
+					driverController.setRumble(RumbleType.kBothRumble, 0.7);
+				}
 	}
 
 	// ====================================================================
