@@ -166,7 +166,11 @@ public class SUB_Superstructure extends SubsystemBase {
 	// ====================================================================
 
 	public SUB_Superstructure(
-			SUB_Indexer indexerRef, SUB_Intake intakeRef, SUB_Shooter shooterRef, Drive driveRef, CommandXboxController driverController) {
+			SUB_Indexer indexerRef,
+			SUB_Intake intakeRef,
+			SUB_Shooter shooterRef,
+			Drive driveRef,
+			CommandXboxController driverController) {
 		this.indexerRef = indexerRef;
 		this.intakeRef = intakeRef;
 		this.shooterRef = shooterRef;
@@ -284,7 +288,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE_AUTO:
-				intakeRef.setIntakeVoltage(10.0);
+				intakeRef.setIntakeVoltage(12.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
@@ -527,10 +531,10 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	public void setContollerRumble() {
 		if (shooterRef.isTurretAtTarget()) {
-					driverController.setRumble(RumbleType.kBothRumble, 0.0);
-				} else {
-					driverController.setRumble(RumbleType.kBothRumble, 0.7);
-				}
+			driverController.setRumble(RumbleType.kBothRumble, 0.0);
+		} else {
+			driverController.setRumble(RumbleType.kBothRumble, 0.7);
+		}
 	}
 
 	// ====================================================================

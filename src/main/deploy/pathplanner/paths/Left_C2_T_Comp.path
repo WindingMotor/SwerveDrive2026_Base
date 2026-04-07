@@ -54,7 +54,7 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -17.417970792202873
+    "rotation": 0.0
   },
   "reversed": false,
   "folder": "LeftSide_Comp",

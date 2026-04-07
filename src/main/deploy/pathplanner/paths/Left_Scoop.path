@@ -8,24 +8,24 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.787492385786802,
-        "y": 7.529482233502538
+        "x": 7.247898477157362,
+        "y": 7.520274111675127
       },
       "isLocked": false,
       "linkedName": "Left_TS"
     },
     {
       "anchor": {
-        "x": 7.772761421319796,
-        "y": 5.199827411167512
+        "x": 7.80038578680203,
+        "y": 5.209035532994924
       },
       "prevControl": {
-        "x": 7.699096446700507,
-        "y": 6.286385786802031
+        "x": 7.726720812182741,
+        "y": 6.295593908629443
       },
       "nextControl": {
-        "x": 7.865077742973706,
-        "y": 3.8381616667723337
+        "x": 7.89270210845594,
+        "y": 3.847369788599746
       },
       "isLocked": false,
       "linkedName": null
@@ -36,24 +36,24 @@
         "y": 5.052497461928934
       },
       "prevControl": {
-        "x": 6.3044243980533095,
-        "y": 3.9399136314262737
+        "x": 6.291537709346177,
+        "y": 3.9389712914543176
       },
       "nextControl": {
-        "x": 6.161340101522842,
-        "y": 5.7523147208121825
+        "x": 6.152131979695431,
+        "y": 6.010142131979697
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 2.800375634517767,
-        "y": 5.632609137055838
+        "x": 2.717502538071066,
+        "y": 6.3692588832487305
       },
       "prevControl": {
-        "x": 4.061888324873096,
-        "y": 5.56815228426396
+        "x": 2.717502538071066,
+        "y": 5.135370558375634
       },
       "nextControl": null,
       "isLocked": false,
@@ -111,7 +111,7 @@
     },
     {
       "name": "SHOOT",
-      "waypointRelativePos": 2.87,
+      "waypointRelativePos": 2.96,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -130,14 +130,14 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": -48.57633437499739
+    "velocity": 0.5,
+    "rotation": 45.00000000000003
   },
   "reversed": false,
   "folder": "LeftSide_Comp",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": -17.417970792202873
+    "rotation": 0.0
   },
   "useDefaultConstraints": true
 }

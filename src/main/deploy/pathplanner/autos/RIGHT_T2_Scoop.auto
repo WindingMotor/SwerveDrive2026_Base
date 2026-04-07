@@ -101,6 +101,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "SHOOT"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "Right_Scoop_End_End"

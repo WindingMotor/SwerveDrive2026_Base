@@ -8,40 +8,35 @@
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.16502538071066,
-        "y": 7.326903553299493
+        "x": 6.907197969543148,
+        "y": 7.391360406091371
       },
       "isLocked": false,
       "linkedName": "Left_TS"
     },
     {
       "anchor": {
-        "x": 7.809593908629443,
-        "y": 4.38030456852792
+        "x": 7.846426395939085,
+        "y": 5.135370558375635
       },
       "prevControl": {
-        "x": 7.9292994923857885,
-        "y": 6.912538071065991
+        "x": 7.818802030456853,
+        "y": 6.479756345177665
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": "Left_C2_Comp"
+      "linkedName": "Left_Scoop_Out"
     }
   ],
-  "rotationTargets": [
-    {
-      "waypointRelativePos": 0.6746484226529809,
-      "rotationDegrees": -70.34730108497651
-    }
-  ],
+  "rotationTargets": [],
   "constraintZones": [
     {
       "name": "Constraints Zone",
-      "minWaypointRelativePos": 0.8272377285851834,
+      "minWaypointRelativePos": 0.7598652550529535,
       "maxWaypointRelativePos": 1.0,
       "constraints": {
-        "maxVelocity": 1.2,
-        "maxAcceleration": 5.6,
+        "maxVelocity": 2.0,
+        "maxAcceleration": 5.0,
         "maxAngularVelocity": 1000.0,
         "maxAngularAcceleration": 1500.0,
         "nominalVoltage": 12.0,
@@ -52,8 +47,19 @@
   "pointTowardsZones": [],
   "eventMarkers": [
     {
+      "name": "IDLE",
+      "waypointRelativePos": 0.0514918190567836,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "IDLE"
+        }
+      }
+    },
+    {
       "name": "INTAKE",
-      "waypointRelativePos": 0.3209817131857498,
+      "waypointRelativePos": 0.3440808469682329,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -72,8 +78,8 @@
     "unlimited": false
   },
   "goalEndState": {
-    "velocity": 0,
-    "rotation": -101.07020257793961
+    "velocity": 2.0,
+    "rotation": -90.0
   },
   "reversed": false,
   "folder": "LeftSide_Comp",

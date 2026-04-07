@@ -97,7 +97,61 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right_Scoop_End"
+            "pathName": "Right_Scoop_Climb"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "SHOOT"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE_IN"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.3
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE_IN"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.6
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "IDLE"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "CLIMB_BOTTOM"
           }
         }
       ]

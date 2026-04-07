@@ -7,13 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right_T_C1_Comp"
+            "pathName": "Left_T_C1_Comp"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Right_C1_T_Comp"
+            "pathName": "Left_C1_T_Comp"
           }
         },
         {
@@ -91,49 +91,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "Right_Scoop_Out2"
+            "pathName": "Left_Scoop_Out"
           }
         },
         {
           "type": "path",
           "data": {
-            "pathName": "Right_Scoop_Climb"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SHOOT"
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE_IN"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE_IN"
+            "pathName": "Left_Scoop_Climb"
           }
         },
         {
@@ -158,6 +122,6 @@
     }
   },
   "resetOdom": true,
-  "folder": "Right_Side",
+  "folder": "Left_Side",
   "choreoAuto": false
 }
