@@ -91,6 +91,12 @@
           }
         },
         {
+          "type": "named",
+          "data": {
+            "name": "SHOOT"
+          }
+        },
+        {
           "type": "path",
           "data": {
             "pathName": "Left_End"

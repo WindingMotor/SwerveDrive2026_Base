@@ -43,7 +43,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 20;
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 30;
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SLIDER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;

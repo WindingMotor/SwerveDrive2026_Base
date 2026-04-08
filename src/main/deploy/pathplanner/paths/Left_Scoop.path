@@ -52,8 +52,8 @@
         "y": 6.3692588832487305
       },
       "prevControl": {
-        "x": 2.717502538071066,
-        "y": 5.135370558375634
+        "x": 2.634629441624366,
+        "y": 4.895959390862945
       },
       "nextControl": null,
       "isLocked": false,
@@ -106,17 +106,6 @@
         "type": "named",
         "data": {
           "name": "INTAKE"
-        }
-      }
-    },
-    {
-      "name": "SHOOT",
-      "waypointRelativePos": 2.96,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "SHOOT"
         }
       }
     }

@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 8.03979695431472,
-        "y": 5.356365482233502
+        "x": 8.095045685279187,
+        "y": 4.988040609137056
       },
       "prevControl": null,
       "nextControl": {
-        "x": 7.984548223350254,
-        "y": 7.069076142131979
+        "x": 8.03979695431472,
+        "y": 6.700751269035533
       },
       "isLocked": false,
       "linkedName": "Left_C1_Comp"
@@ -45,7 +45,7 @@
     },
     {
       "name": "SHOOT",
-      "waypointRelativePos": 0.9311838306063647,
+      "waypointRelativePos": 0.98,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",

@@ -43,7 +43,7 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "RIGHT_T2_SCOOP";
+	public static final String AUTO_NAME = "LEFT_T2_Climb";
 	// middle = MIDDLE_HP, MIDDLE_LEFT
 	// right = RIGHT_T2_SCOOP, RIGHT_T2_Climb
 	// left = LEFT_T2_SCOOP, LEFT_T2_Climb
@@ -204,10 +204,10 @@ public class RobotContainer {
 
 		driverController
 				.rightTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
 		driverController
 				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
 		operatorController
 				.leftTrigger()
@@ -225,6 +225,7 @@ public class RobotContainer {
 
 		// --- Shoot ---
 		driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
+		driverController.y().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
 		driverController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
 		driverController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.IDLE));
