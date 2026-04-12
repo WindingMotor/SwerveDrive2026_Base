@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 4.2552588832487315,
-        "y": 0.5599999999999999
+        "x": 4.0,
+        "y": 0.59
       },
       "prevControl": null,
       "nextControl": {
-        "x": 6.30867005076142,
-        "y": 0.5047512690355335
+        "x": 6.053411167512689,
+        "y": 0.5347512690355335
       },
       "isLocked": false,
       "linkedName": "Right_Trench_Shoot"

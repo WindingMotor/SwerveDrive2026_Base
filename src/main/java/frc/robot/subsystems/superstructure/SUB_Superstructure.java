@@ -308,7 +308,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE_SKIPPER:
-				intakeRef.setSliderVoltage(8.0);
+				intakeRef.setSliderVoltage(2.5); // (14.5);
 				intakeRef.setIntakeVoltage(10.0);
 				break;
 

@@ -43,7 +43,7 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "LEFT_T2_SCOOP";
+	public static final String AUTO_NAME = "RIGHT_T2_Scoop";
 	// middle = MIDDLE_HP, MIDDLE_LEFT
 	// right = RIGHT_T2_Scoop, RIGHT_T2_Climb
 	// left = LEFT_T2_SCOOP, LEFT_T2_Climb
@@ -215,6 +215,10 @@ public class RobotContainer {
 		operatorController
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+
+		operatorController
+				.leftBumper()
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_SKIPPER));
 
 		operatorController
 				.rightTrigger()
