@@ -36,25 +36,7 @@
   ],
   "constraintZones": [],
   "pointTowardsZones": [],
-  "eventMarkers": [
-    {
-      "name": "IDLE",
-      "waypointRelativePos": 0.34408084696823665,
-      "endWaypointRelativePos": null,
-      "command": null
-    },
-    {
-      "name": "SHOOT",
-      "waypointRelativePos": 0.98,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "SHOOT"
-        }
-      }
-    }
-  ],
+  "eventMarkers": [],
   "globalConstraints": {
     "maxVelocity": 3.8,
     "maxAcceleration": 5.0,

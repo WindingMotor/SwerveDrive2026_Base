@@ -104,29 +104,7 @@
     },
     {
       "name": "INTAKE_IN",
-      "waypointRelativePos": 1.758421559191548,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE_IN"
-        }
-      }
-    },
-    {
-      "name": "INTAKE",
-      "waypointRelativePos": 1.8739172281039493,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE"
-        }
-      }
-    },
-    {
-      "name": "INTAKE_IN",
-      "waypointRelativePos": 1.962463907603477,
+      "waypointRelativePos": 1.8354186717998067,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
