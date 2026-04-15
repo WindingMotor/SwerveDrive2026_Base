@@ -88,4 +88,9 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 	public boolean getIntakeSensor() {
 		return intakeSensor.get();
 	}
+
+	@Override
+	public void setNewSliderPosition(double meters) {
+		sliderMotor.setPosition(meters);
+	}
 }

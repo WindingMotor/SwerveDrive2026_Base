@@ -38,4 +38,6 @@ public interface IO_IntakeBase {
 	public StatusCode setSliderPosition(double meters);
 
 	public boolean getIntakeSensor();
+
+	public void setNewSliderPosition(double meters);
 }

@@ -47,4 +47,8 @@ public class SUB_Intake extends SubsystemBase {
 	public boolean getIntakeSensor() {
 		return io.getIntakeSensor();
 	}
+
+	public void setNewSliderPosition(double meters) {
+		io.setNewSliderPosition(meters);
+	}
 }

@@ -287,6 +287,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				// intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				intakeRef.setIntakeVoltage(4.0);
 				if (intakeRef.getIntakeSensor()) {
+					intakeRef.setNewSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 					setRobotState(RobotState.INTAKE_LIMP);
 				}
 				break;
