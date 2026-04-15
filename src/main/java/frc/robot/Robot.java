@@ -113,7 +113,7 @@ public class Robot extends LoggedRobot {
 						});
 
 		turretUpdateNotifier.setName("TurretUpdate100Hz");
-		turretUpdateNotifier.startPeriodic(0.010); // 100Hz
+		turretUpdateNotifier.startPeriodic(0.008333); // 0.01 = 100Hz 0.00833333333333
 
 		try {
 			Field watchdogField = IterativeRobotBase.class.getDeclaredField("m_watchdog");

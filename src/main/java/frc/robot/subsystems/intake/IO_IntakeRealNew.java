@@ -14,8 +14,8 @@ import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
+import edu.wpi.first.wpilibj.DigitalInput;
 import frc.robot.constants.RobotConstants;
-import frc.robot.lib.windingmotor.devices.IRBeamBreak;
 
 public class IO_IntakeRealNew implements IO_IntakeBase {
 
@@ -26,7 +26,7 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 	private final VoltageOut sliderMotorRequest;
 	private final PositionVoltage sliderPositionRequest;
 
-	private final IRBeamBreak sensor;
+	private final DigitalInput intakeSensor = new DigitalInput(0);
 
 	public IO_IntakeRealNew(
 			TalonFXConfiguration intakeMotorConfiguration,
@@ -43,8 +43,6 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 		// sliderMotor.setPosition(0.0);
 		sliderMotorRequest = new VoltageOut(0.0);
 		sliderPositionRequest = new PositionVoltage(0.0);
-
-		sensor = new IRBeamBreak(1);
 	}
 
 	@Override
@@ -64,7 +62,7 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 
 		inputs.sliderCurrent = sliderMotor.getStatorCurrent().getValueAsDouble();
 
-		inputs.sensor = sensor.getValueAsBoolean();
+		inputs.intakeIsOut = intakeSensor.get();
 	}
 
 	@Override
@@ -75,12 +73,6 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 
 	@Override
 	public StatusCode setSliderVoltage(double voltage) {
-		// sliderMotorRequest.withPosition(meters);
-		/*if (meters > 0) {
-			sliderMotorRequest.withOutput(8.0);
-		} else {
-			sliderMotorRequest.withOutput(-8.0);
-		} */
 
 		sliderMotorRequest.withOutput(voltage);
 		return sliderMotor.setControl(sliderMotorRequest);
@@ -90,5 +82,10 @@ public class IO_IntakeRealNew implements IO_IntakeBase {
 	public StatusCode setSliderPosition(double meters) {
 		sliderPositionRequest.withPosition(meters);
 		return sliderMotor.setControl(sliderPositionRequest);
+	}
+
+	@Override
+	public boolean getIntakeSensor() {
+		return intakeSensor.get();
 	}
 }

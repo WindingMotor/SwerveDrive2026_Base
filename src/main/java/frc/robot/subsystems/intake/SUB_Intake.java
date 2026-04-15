@@ -43,4 +43,8 @@ public class SUB_Intake extends SubsystemBase {
 	public boolean isIntakeRunning() {
 		return inputs.intakeTargetVoltage != 0.0;
 	}
+
+	public boolean getIntakeSensor() {
+		return io.getIntakeSensor();
+	}
 }

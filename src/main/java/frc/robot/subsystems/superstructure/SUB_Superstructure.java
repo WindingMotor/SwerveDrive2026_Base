@@ -284,7 +284,11 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case INTAKE:
 				intakeRef.setIntakeVoltage(9.0);
-				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				// intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				intakeRef.setIntakeVoltage(4.0);
+				if (intakeRef.getIntakeSensor()) {
+					setRobotState(RobotState.INTAKE_LIMP);
+				}
 				break;
 
 			case INTAKE_AUTO:
@@ -293,7 +297,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE_LIMP:
-				intakeRef.setIntakeVoltage(4.0);
+				intakeRef.setIntakeVoltage(9.0);
 				intakeRef.setSliderVoltage(0.0);
 				break;
 
@@ -408,13 +412,15 @@ public class SUB_Superstructure extends SubsystemBase {
 		while (turretAngleRad - turretRangeCenter < -Math.PI) turretAngleRad += 2 * Math.PI;
 
 		// Differentiate the position setpoint to get velocity feedforward
-		// dt = 0.010s because addPeriodic runs at 100Hz
+		// dt = 0.010s because addPeriodic runs at 100Hz for now
 		double turretSetpointVelocityRadPerSec =
 				(turretAngleRad - previousTurretAngleRad) / TURRET_UPDATE_DT;
 		previousTurretAngleRad = turretAngleRad;
 
 		// Send both position AND velocity — Kraken uses kV*velocity as feedforward at 1kHz
-		shooterRef.setTurretPosition(turretAngleRad, turretSetpointVelocityRadPerSec);
+		while (currentRobotState == RobotState.SHOOTING) {
+			shooterRef.setTurretPosition(turretAngleRad, turretSetpointVelocityRadPerSec);
+		}
 
 		// Cache for periodic() logging
 		cache_turretPositionPose = new Pose2d(turretPos, new Rotation2d(fieldAngleRad));
@@ -450,7 +456,13 @@ public class SUB_Superstructure extends SubsystemBase {
 		double distance = turretPos.getDistance(virtualGoal);
 		double targetRPM = shooterRPMTable.get(distance);
 
-		shooterRef.setShooterVelocities(targetRPM);
+		while (currentRobotState == RobotState.SHOOTING) {
+			shooterRef.setShooterVelocities(targetRPM);
+		}
+
+		while (!(currentRobotState == RobotState.SHOOTING)) {
+			shooterRef.setShooterVelocities(1000);
+		}
 
 		// Cache for periodic() logging
 		cache_shooterDistance = distance;

@@ -26,6 +26,7 @@ public interface IO_IntakeBase {
 		public double sliderCurrent = 0.0;
 
 		public boolean sensor = false;
+		public boolean intakeIsOut = false;
 	}
 
 	public void updateInputs(IntakeInputs inputs);
@@ -35,4 +36,6 @@ public interface IO_IntakeBase {
 	public StatusCode setSliderVoltage(double voltage);
 
 	public StatusCode setSliderPosition(double meters);
+
+	public boolean getIntakeSensor();
 }
