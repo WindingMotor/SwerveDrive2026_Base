@@ -144,6 +144,7 @@ public class SUB_Superstructure extends SubsystemBase {
 	// ====================================================================
 
 	private final double INTAKE_MAX_EXTENSION_METERS = 12.7;
+	private final double INTAKE_SLIDER_VOLTS = 5.0;
 
 	// dt for the 100Hz addPeriodic loop — used to differentiate the setpoint
 	private static final double TURRET_UPDATE_DT = 0.010;
@@ -284,17 +285,23 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case INTAKE:
 				intakeRef.setIntakeVoltage(9.0);
-				// intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-				intakeRef.setIntakeVoltage(4.0);
-				if (intakeRef.getIntakeSensor()) {
+				if (!intakeRef.getIntakeSensor()) {
+					intakeRef.setSliderVoltage(INTAKE_SLIDER_VOLTS);
+				} else {
 					intakeRef.setNewSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-					setRobotState(RobotState.INTAKE_LIMP);
+					intakeRef.setSliderVoltage(0.0);
 				}
 				break;
 
 			case INTAKE_AUTO:
-				intakeRef.setIntakeVoltage(9.5);
-				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				intakeRef.setIntakeVoltage(10.0);
+				intakeRef.setSliderVoltage(INTAKE_SLIDER_VOLTS);
+				if (!intakeRef.getIntakeSensor()) {
+					intakeRef.setSliderVoltage(INTAKE_SLIDER_VOLTS);
+				} else {
+					intakeRef.setNewSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+					intakeRef.setSliderVoltage(0.0);
+				}
 				break;
 
 			case INTAKE_LIMP:
@@ -303,8 +310,14 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case EJECT:
-				intakeRef.setIntakeVoltage(-10.0);
-				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+				intakeRef.setIntakeVoltage(-6.0);
+				if (!intakeRef.getIntakeSensor()) {
+					intakeRef.setSliderVoltage(INTAKE_SLIDER_VOLTS);
+				} else {
+					intakeRef.setNewSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+					intakeRef.setSliderVoltage(0.0);
+				}
+				
 				break;
 
 			case INTAKE_IN:
