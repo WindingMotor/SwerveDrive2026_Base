@@ -79,8 +79,8 @@ public class Robot extends LoggedRobot {
 
 		switch (RobotConstants.ROBOT_MODE) {
 			case REAL:
-				Logger.addDataReceiver(new WPILOGWriter("/u/usblogs"));
-				// Logger.addDataReceiver(new NT4Publisher());
+				// Logger.addDataReceiver(new WPILOGWriter("/u/usblogs"));
+				Logger.addDataReceiver(new NT4Publisher());
 				new PowerDistribution(1, ModuleType.kRev);
 				break;
 			case SIM:
@@ -113,7 +113,7 @@ public class Robot extends LoggedRobot {
 						});
 
 		turretUpdateNotifier.setName("TurretUpdate100Hz");
-		turretUpdateNotifier.startPeriodic(0.008333); // 0.01 = 100Hz 0.00833333333333
+		turretUpdateNotifier.startPeriodic(0.01); // 0.01 = 100Hz
 
 		try {
 			Field watchdogField = IterativeRobotBase.class.getDeclaredField("m_watchdog");

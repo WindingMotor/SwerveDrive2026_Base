@@ -15,7 +15,6 @@ import com.ctre.phoenix6.controls.PositionVoltage;
 import com.ctre.phoenix6.controls.VoltageOut;
 import com.ctre.phoenix6.hardware.TalonFX;
 import frc.robot.constants.RobotConstants;
-import frc.robot.lib.windingmotor.devices.IRBeamBreak;
 
 public class IO_IndexerReal implements IO_IndexerBase {
 
@@ -28,8 +27,6 @@ public class IO_IndexerReal implements IO_IndexerBase {
 	private final TalonFX climbMotor;
 	private final VoltageOut climbVoltageRequest;
 	private final PositionVoltage climbPositionRequest;
-
-	private final IRBeamBreak sensor;
 
 	public IO_IndexerReal(
 			TalonFXConfiguration spinnerMotorConfiguration,
@@ -50,8 +47,6 @@ public class IO_IndexerReal implements IO_IndexerBase {
 		climbMotor.getConfigurator().apply(climbMotorConfiguration);
 		climbVoltageRequest = new VoltageOut(0.0);
 		climbPositionRequest = new PositionVoltage(0.0);
-
-		sensor = new IRBeamBreak(0);
 	}
 
 	@Override
@@ -71,8 +66,6 @@ public class IO_IndexerReal implements IO_IndexerBase {
 		inputs.climbTargetPosition = climbPositionRequest.Position;
 
 		inputs.climbCurrent = climbMotor.getStatorCurrent().getValueAsDouble();
-
-		inputs.sensor = sensor.getValueAsBoolean();
 	}
 
 	@Override

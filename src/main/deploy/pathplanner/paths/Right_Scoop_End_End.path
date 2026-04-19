@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.791167512690356,
-        "y": 2.1887715736040616
+        "x": 2.7359187817258883,
+        "y": 2.2992690355329954
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.6622538071066,
-        "y": 0.9917157360406088
+        "x": 2.450467005076142,
+        "y": 1.590243654822335
       },
       "isLocked": false,
       "linkedName": "Right_Scoop_Shoot2"
     },
     {
       "anchor": {
-        "x": 4.273675126903553,
-        "y": 0.6510152284263961
+        "x": 4.153969543147208,
+        "y": 0.5497258883248741
       },
       "prevControl": {
-        "x": 3.104243654822335,
-        "y": 0.5681421319796971
+        "x": 3.2791979695431475,
+        "y": 0.4484365482233512
       },
       "nextControl": null,
       "isLocked": false,
@@ -48,28 +48,6 @@
   "eventMarkers": [
     {
       "name": "INTAKE_IN",
-      "waypointRelativePos": 0.23628488931664857,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE_IN"
-        }
-      }
-    },
-    {
-      "name": "INTAKE",
-      "waypointRelativePos": 0.5327237728585124,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE"
-        }
-      }
-    },
-    {
-      "name": "INTAKE_IN",
       "waypointRelativePos": 0.8099133782483218,
       "endWaypointRelativePos": null,
       "command": {
@@ -90,13 +68,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 0.0
+    "rotation": -1.424974272515414
   },
   "reversed": false,
   "folder": "RightSide",
   "idealStartingState": {
     "velocity": 0.5,
-    "rotation": -55.26768120966015
+    "rotation": -59.38139459109072
   },
   "useDefaultConstraints": false
 }

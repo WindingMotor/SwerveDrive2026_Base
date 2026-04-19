@@ -35,10 +35,16 @@ public class SUB_Superstructure extends SubsystemBase {
 	public enum TurretTarget {
 		BLUE_HUB(new Translation2d(4.62, 4.03)),
 		RED_HUB(new Translation2d(11.91, 4.03)),
-		BLUE_AIMING_TOP_CORNER(new Translation2d(4.0, 6.0)), // 6.5
+
+		BLUE_AIMING_TOP_CORNER(new Translation2d(4.0, 6.0)),
 		RED_AIMING_TOP_CORNER(new Translation2d(12.5, 6.0)),
-		BLUE_AIMING_BOTTOM_CORNER(new Translation2d(4.0, 2.0)), // 1.5
-		RED_AIMING_BOTTOM_CORNER(new Translation2d(12.5, 2.0));
+		BLUE_AIMING_BOTTOM_CORNER(new Translation2d(4.0, 2.0)),
+		RED_AIMING_BOTTOM_CORNER(new Translation2d(12.5, 2.0)),
+
+		RED_FAR_TOP_CORNER(new Translation2d(6.0, 6.0)),
+		BLUE_FAR_TOP_CORNER(new Translation2d(10.5, 6.0)),
+		RED_FAR_BOTTOM_CORNER(new Translation2d(6.0, 2.0)),
+		BLUE_FAR_BOTTOM_CORNER(new Translation2d(10.5, 2.0));
 
 		private final Translation2d position;
 
@@ -260,7 +266,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case SHOOTING:
-				if (shooterRef.isTurretAtTarget()) {
+				if (shooterRef.isTurretAtTarget()) { 
 					indexerRef.setSpinnerVoltage(12.0);
 					indexerRef.setKickerVoltage(10.0);
 				} else {
@@ -281,43 +287,27 @@ public class SUB_Superstructure extends SubsystemBase {
 
 			case UNJAM:
 				indexerRef.setSpinnerVoltage(-4.0);
+				indexerRef.setKickerVoltage(-4.0);
 				break;
 
 			case INTAKE:
-				intakeRef.setIntakeVoltage(9.0);
-				if (!intakeRef.getIntakeSensor()) {
-					intakeRef.setSliderVoltage(INTAKE_SLIDER_VOLTS);
-				} else {
-					intakeRef.setNewSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-					intakeRef.setSliderVoltage(0.0);
-				}
+				intakeRef.setIntakeVoltage(10.0);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
 			case INTAKE_AUTO:
-				intakeRef.setIntakeVoltage(10.0);
-				intakeRef.setSliderVoltage(INTAKE_SLIDER_VOLTS);
-				if (!intakeRef.getIntakeSensor()) {
-					intakeRef.setSliderVoltage(INTAKE_SLIDER_VOLTS);
-				} else {
-					intakeRef.setNewSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-					intakeRef.setSliderVoltage(0.0);
-				}
+				intakeRef.setIntakeVoltage(9.5);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
 			case INTAKE_LIMP:
-				intakeRef.setIntakeVoltage(9.0);
+				intakeRef.setIntakeVoltage(4.0);
 				intakeRef.setSliderVoltage(0.0);
 				break;
 
 			case EJECT:
-				intakeRef.setIntakeVoltage(-6.0);
-				if (!intakeRef.getIntakeSensor()) {
-					intakeRef.setSliderVoltage(INTAKE_SLIDER_VOLTS);
-				} else {
-					intakeRef.setNewSliderPosition(INTAKE_MAX_EXTENSION_METERS);
-					intakeRef.setSliderVoltage(0.0);
-				}
-				
+				intakeRef.setIntakeVoltage(-10.0);
+				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
 			case INTAKE_IN:
@@ -369,23 +359,52 @@ public class SUB_Superstructure extends SubsystemBase {
 		Pose2d robotPose = driveRef.getPose();
 
 		if (isRedGlobal) {
-			if (robotPose.getX() > TurretTarget.RED_HUB.getPosition().getX()) {
+			if (robotPose.getX() > TurretTarget.RED_HUB.getPosition().getX()) { // if in red zone
 				turretTargetPose = TurretTarget.RED_HUB.getPosition();
-			} else if (robotPose.getY() > TurretTarget.RED_HUB.getPosition().getY()) {
-				turretTargetPose = TurretTarget.RED_AIMING_TOP_CORNER.getPosition();
-			} else {
-				turretTargetPose = TurretTarget.RED_AIMING_BOTTOM_CORNER.getPosition();
+
+			} else if (robotPose.getX()
+					> TurretTarget.BLUE_HUB.getPosition().getX()) { // if in middle zone
+				if (robotPose.getY() > TurretTarget.RED_HUB.getPosition().getY()) {
+					turretTargetPose = TurretTarget.RED_AIMING_TOP_CORNER.getPosition();
+				} else {
+					turretTargetPose = TurretTarget.RED_AIMING_BOTTOM_CORNER.getPosition();
+				}
+
+			} else { // if in blue zone
+				if (robotPose.getY() > TurretTarget.RED_HUB.getPosition().getY()) {
+					turretTargetPose = TurretTarget.RED_FAR_TOP_CORNER.getPosition();
+				} else {
+					turretTargetPose = TurretTarget.RED_FAR_BOTTOM_CORNER.getPosition();
+				}
 			}
+
 		} else {
 			if (robotPose.getX() < TurretTarget.BLUE_HUB.getPosition().getX()) {
 				turretTargetPose = TurretTarget.BLUE_HUB.getPosition();
-			} else if (robotPose.getY() > TurretTarget.BLUE_HUB.getPosition().getY()) {
-				turretTargetPose = TurretTarget.BLUE_AIMING_TOP_CORNER.getPosition();
+
+			} else if (robotPose.getX()
+					< TurretTarget.RED_HUB.getPosition().getX()) { // if in middle zone
+				if (robotPose.getY() > TurretTarget.BLUE_HUB.getPosition().getY()) {
+					turretTargetPose = TurretTarget.BLUE_AIMING_TOP_CORNER.getPosition();
+				} else {
+					turretTargetPose = TurretTarget.BLUE_AIMING_BOTTOM_CORNER.getPosition();
+				}
+
 			} else {
-				turretTargetPose = TurretTarget.BLUE_AIMING_BOTTOM_CORNER.getPosition();
+				if (robotPose.getY() < TurretTarget.BLUE_HUB.getPosition().getY()) {
+					turretTargetPose = TurretTarget.BLUE_FAR_TOP_CORNER.getPosition();
+				} else {
+					turretTargetPose = TurretTarget.BLUE_FAR_BOTTOM_CORNER.getPosition();
+				}
 			}
 		}
 	}
+
+	/*
+	RED_FAR_TOP_CORNER(new Translation2d(6.0, 6.0)), // 6.5
+	BLUE_FAR_TOP_CORNER(new Translation2d(10.5, 6.0)),
+	RED_FAR_BOTTOM_CORNER(new Translation2d(6.0, 2.0)), // 1.5
+	BLUE_FAR_BOTTOM_CORNER(new Translation2d(10.5, 2.0)); */
 
 	/**
 	 * Calculates turret angle and sends position + velocity to the Kraken. Called at 100Hz via
@@ -400,6 +419,8 @@ public class SUB_Superstructure extends SubsystemBase {
 	 */
 	public void updateTurretAngle() {
 		Pose2d robotPose = driveRef.getPose();
+
+		double controllerOmega = driverController.getRawAxis(4) * 0.15;
 
 		Translation2d turretOffsetField = TURRET_OFFSET_ROBOT.rotateBy(robotPose.getRotation());
 		Translation2d turretPos = robotPose.getTranslation().plus(turretOffsetField);
@@ -432,9 +453,10 @@ public class SUB_Superstructure extends SubsystemBase {
 		previousTurretAngleRad = turretAngleRad;
 
 		// Send both position AND velocity — Kraken uses kV*velocity as feedforward at 1kHz
-		while (currentRobotState == RobotState.SHOOTING) {
-			shooterRef.setTurretPosition(turretAngleRad, turretSetpointVelocityRadPerSec);
-		}
+
+		double turretAngleController = turretAngleRad + controllerOmega;
+
+		shooterRef.setTurretPosition(turretAngleController, turretSetpointVelocityRadPerSec);
 
 		// Cache for periodic() logging
 		cache_turretPositionPose = new Pose2d(turretPos, new Rotation2d(fieldAngleRad));
@@ -470,13 +492,7 @@ public class SUB_Superstructure extends SubsystemBase {
 		double distance = turretPos.getDistance(virtualGoal);
 		double targetRPM = shooterRPMTable.get(distance);
 
-		while (currentRobotState == RobotState.SHOOTING) {
-			shooterRef.setShooterVelocities(targetRPM);
-		}
-
-		while (!(currentRobotState == RobotState.SHOOTING)) {
-			shooterRef.setShooterVelocities(1000);
-		}
+		shooterRef.setShooterVelocities(targetRPM);
 
 		// Cache for periodic() logging
 		cache_shooterDistance = distance;

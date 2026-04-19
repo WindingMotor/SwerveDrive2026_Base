@@ -204,10 +204,13 @@ public class RobotContainer {
 
 		driverController
 				.rightTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		driverController
 				.rightTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
+
+		driverController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.UNJAM));
+		driverController.b().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
 		operatorController
 				.leftTrigger()

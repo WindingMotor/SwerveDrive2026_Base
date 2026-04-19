@@ -3,13 +3,13 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 2.791167512690356,
-        "y": 2.1887715736040616
+        "x": 2.7359187817258883,
+        "y": 2.2992690355329954
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.1295993752440467,
-        "y": 1.971861827229553
+        "x": 2.074350644279579,
+        "y": 2.082359289158487
       },
       "isLocked": false,
       "linkedName": "Right_Scoop_Shoot2"
@@ -117,13 +117,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": -88.85423716182494
+    "rotation": -88.85423716182495
   },
   "reversed": false,
   "folder": "RightSide_Comp",
   "idealStartingState": {
     "velocity": 0.0,
-    "rotation": -55.26768120966015
+    "rotation": -59.38139459109072
   },
   "useDefaultConstraints": true
 }

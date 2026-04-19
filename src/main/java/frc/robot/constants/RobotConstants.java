@@ -50,7 +50,7 @@ public final class RobotConstants {
 
 			SLIDER_MOTOR_CONFIG.Slot0.kP = 1.9;
 			SLIDER_MOTOR_CONFIG.Slot0.kI = 0.1;
-			SLIDER_MOTOR_CONFIG.Slot0.kD = 0.0;
+			SLIDER_MOTOR_CONFIG.Slot0.kD = 0.03;
 			SLIDER_MOTOR_CONFIG.Slot0.kS = 0.35;
 			SLIDER_MOTOR_CONFIG.Slot0.kV = 0.3;
 			SLIDER_MOTOR_CONFIG.Slot0.kG = -0.155;
@@ -134,8 +134,8 @@ public final class RobotConstants {
 			// TURRET_MOTOR_CONFIG.Slot0.kV = 4.5; // TUNE: start 5.0, increase by 1.0 increments
 			TURRET_MOTOR_CONFIG.Slot0.kA = 0.0; */
 
-			TURRET_MOTOR_CONFIG.Slot0.kP = 44.0;
-			TURRET_MOTOR_CONFIG.Slot0.kI = 0.5;
+			TURRET_MOTOR_CONFIG.Slot0.kP = 49.8;
+			TURRET_MOTOR_CONFIG.Slot0.kI = 0.7;
 			TURRET_MOTOR_CONFIG.Slot0.kD = 0.1;
 			TURRET_MOTOR_CONFIG.Slot0.kS = 0.0; // 1.2
 			TURRET_MOTOR_CONFIG.Slot0.kV = 0.0;

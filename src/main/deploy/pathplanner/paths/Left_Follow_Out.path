@@ -1,0 +1,112 @@
+{
+  "version": "2025.0",
+  "waypoints": [
+    {
+      "anchor": {
+        "x": 3.573857868020305,
+        "y": 7.529482233502538
+      },
+      "prevControl": null,
+      "nextControl": {
+        "x": 4.163177664974619,
+        "y": 7.511065989847715
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 6.14292385786802,
+        "y": 7.400568527918782
+      },
+      "prevControl": {
+        "x": 5.642313720576137,
+        "y": 7.626931372607285
+      },
+      "nextControl": {
+        "x": 7.201857868020302,
+        "y": 6.921746192893403
+      },
+      "isLocked": false,
+      "linkedName": null
+    },
+    {
+      "anchor": {
+        "x": 7.358395939086295,
+        "y": 4.039604060913706
+      },
+      "prevControl": {
+        "x": 8.721197969543146,
+        "y": 4.748629441624366
+      },
+      "nextControl": null,
+      "isLocked": false,
+      "linkedName": "left_Follow_Center"
+    }
+  ],
+  "rotationTargets": [
+    {
+      "waypointRelativePos": 1.5013302926643959,
+      "rotationDegrees": -75.66119450548918
+    }
+  ],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 1.6544754571703608,
+      "maxWaypointRelativePos": 2.0,
+      "constraints": {
+        "maxVelocity": 1.7,
+        "maxAcceleration": 5.0,
+        "maxAngularVelocity": 1000.0,
+        "maxAngularAcceleration": 1500.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
+  "pointTowardsZones": [],
+  "eventMarkers": [
+    {
+      "name": "EJECT",
+      "waypointRelativePos": 0.22088546679499396,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "EJECT"
+        }
+      }
+    },
+    {
+      "name": "INTAKE",
+      "waypointRelativePos": 0.27478344562078677,
+      "endWaypointRelativePos": null,
+      "command": {
+        "type": "named",
+        "data": {
+          "name": "INTAKE"
+        }
+      }
+    }
+  ],
+  "globalConstraints": {
+    "maxVelocity": 3.8,
+    "maxAcceleration": 5.0,
+    "maxAngularVelocity": 1000.0,
+    "maxAngularAcceleration": 1500.0,
+    "nominalVoltage": 12.0,
+    "unlimited": false
+  },
+  "goalEndState": {
+    "velocity": 1.7,
+    "rotation": -170.90972307917772
+  },
+  "reversed": false,
+  "folder": "LeftSide",
+  "idealStartingState": {
+    "velocity": 0,
+    "rotation": -90.0
+  },
+  "useDefaultConstraints": true
+}
