@@ -41,4 +41,12 @@ public class SUB_Indexer extends SubsystemBase {
 	public StatusCode setClimbPosition(double meters) {
 		return io.setClimbPosition(meters);
 	}
+
+	public double getSpinnerCurrent() {
+		return io.getSpinnerCurrent();
+	}
+
+	public double getSpinnerVoltage() {
+		return io.getSpinnerVoltage();
+	}
 }

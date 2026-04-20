@@ -41,4 +41,8 @@ public interface IO_IndexerBase {
 	public StatusCode setClimbVoltage(double voltage);
 
 	public StatusCode setClimbPosition(double meters);
+
+	public double getSpinnerCurrent();
+
+	public double getSpinnerVoltage();
 }

@@ -91,4 +91,14 @@ public class IO_IndexerReal implements IO_IndexerBase {
 		climbPositionRequest.withPosition(meters);
 		return climbMotor.setControl(climbPositionRequest);
 	}
+
+	@Override
+	public double getSpinnerCurrent() {
+		return spinnerMotor.getStatorCurrent().getValueAsDouble();
+	}
+
+	@Override
+	public double getSpinnerVoltage() {
+		return spinnerMotor.getMotorVoltage().getValueAsDouble();
+	}
 }

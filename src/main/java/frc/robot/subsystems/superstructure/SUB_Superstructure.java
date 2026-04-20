@@ -19,7 +19,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.constants.RobotConstants;
-import frc.robot.constants.RobotConstants.RobotMode;
 import frc.robot.lib.windingmotor.drive.Drive;
 import frc.robot.subsystems.indexer.SUB_Indexer;
 import frc.robot.subsystems.intake.SUB_Intake;
@@ -105,6 +104,17 @@ public class SUB_Superstructure extends SubsystemBase {
 	// Tracks the previous turret angle setpoint so we can compute d(setpoint)/dt
 	// for velocity feedforward. Updated every 10ms by the addPeriodic loop.
 	private double previousTurretAngleRad = 0.0;
+
+	private int stallCounter = 0;
+	private int reverseCounter = 0;
+	private boolean isReversing = false;
+	private boolean isRunning = false;
+
+	private static final double STALL_CURRENT_THRESHOLD = 18.0;
+
+	private static final int STALL_CYCLE_COUNT = 25;
+
+	private static final int REVERSE_CYCLES = 50;
 
 	// ====================================================================
 	// Telemetry cache — written at 100Hz by the Notifier methods,
@@ -263,25 +273,16 @@ public class SUB_Superstructure extends SubsystemBase {
 				intakeRef.setIntakeVoltage(0.0);
 				intakeRef.setSliderVoltage(0.0);
 				indexerRef.setClimbVoltage(0.0);
+				isRunning = false;
 				break;
 
 			case SHOOTING:
-				if (shooterRef.isTurretAtTarget()) { 
-					indexerRef.setSpinnerVoltage(12.0);
-					indexerRef.setKickerVoltage(10.0);
-				} else {
-					indexerRef.setSpinnerVoltage(0.0);
-					indexerRef.setKickerVoltage(0.0);
-				}
-				if (RobotConstants.ROBOT_MODE == RobotMode.SIM) {
-					if (shooterRef.isShooterAtSpeed(shooterRef.getShooterVelocityRPMSetpoint(), 100.0)) {
-						shooterRef.onShoot();
-					}
-				}
+				isRunning = true;
+				indexerRef.setKickerVoltage(10.0);
 				break;
 
 			case READY:
-				indexerRef.setSpinnerVoltage(0.0);
+				isRunning = false;
 				indexerRef.setKickerVoltage(0.0);
 				break;
 
@@ -340,12 +341,48 @@ public class SUB_Superstructure extends SubsystemBase {
 				indexerRef.setClimbVoltage(0.0);
 				break;
 		}
+		runSpinner();
 	}
 
 	// ====================================================================
 	// Turret & Shooter Updates — PUBLIC, called at 100Hz by Robot.java
 	// NO Logger calls permitted here — use the cache fields above.
 	// ====================================================================
+
+	public void runSpinner() {
+
+		if (!isRunning) {
+			indexerRef.setSpinnerVoltage(0.0);
+			stallCounter = 0;
+			reverseCounter = 0;
+			isReversing = false;
+			return;
+		}
+
+		if (isReversing) {
+			indexerRef.setSpinnerVoltage(-4.0);
+			reverseCounter++;
+			if (reverseCounter >= REVERSE_CYCLES) {
+				isReversing = false;
+				reverseCounter = 0;
+				stallCounter = 0;
+			}
+		} else {
+			indexerRef.setSpinnerVoltage(12.0);
+		}
+
+		if (indexerRef.getSpinnerCurrent() > STALL_CURRENT_THRESHOLD) {
+			stallCounter++;
+		} else {
+			stallCounter = 0;
+		}
+
+		if (stallCounter >= STALL_CYCLE_COUNT) {
+			isReversing = true;
+			reverseCounter = 0;
+			stallCounter = 0;
+		}
+	}
 
 	/**
 	 * Selects the correct turret target based on alliance and robot pose. Called at 100Hz via
