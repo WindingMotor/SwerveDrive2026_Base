@@ -25,43 +25,19 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 1.5
+            "waitTime": 0.4
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "INTAKE_IN"
+            "name": "INTAKE_IN_OUT"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.5
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE_IN"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.8
+            "waitTime": 3.4
           }
         },
         {
@@ -91,31 +67,19 @@
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.6
+            "waitTime": 0.4
           }
         },
         {
           "type": "named",
           "data": {
-            "name": "INTAKE"
+            "name": "INTAKE_IN_OUT"
           }
         },
         {
           "type": "wait",
           "data": {
-            "waitTime": 0.6
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "INTAKE_IN"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 1.0
+            "waitTime": 1.8
           }
         },
         {

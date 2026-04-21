@@ -291,6 +291,8 @@ public class RobotContainer {
 				"CLIMB_BOTTOM", new CMD_Superstructure(superstructure, RobotState.CLIMB_BOTTOM));
 		NamedCommands.registerCommand(
 				"EJECT", new CMD_Superstructure(superstructure, RobotState.EJECT));
+		NamedCommands.registerCommand(
+				"INTAKE_IN_OUT", new CMD_Superstructure(superstructure, RobotState.INTAKE_IN_OUT));
 	}
 
 	private void configureSim() {

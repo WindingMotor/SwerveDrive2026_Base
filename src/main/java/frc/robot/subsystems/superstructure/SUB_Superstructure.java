@@ -320,7 +320,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE_IN_OUT:
-				if (intakeCounter < 30) {
+				if (intakeCounter < 25) {
 					intakeRef.setSliderPosition(0.0);
 					intakeCounter++;
 				} else if (intakeCounter < 65) {
