@@ -45,4 +45,5 @@ public interface IO_IndexerBase {
 	public double getSpinnerCurrent();
 
 	public double getSpinnerVoltage();
+	//test
 }
