@@ -65,6 +65,7 @@ public class SUB_Superstructure extends SubsystemBase {
 		INTAKE_SKIPPER,
 		INTAKE_AUTO,
 		INTAKE_IN,
+		INTAKE_IN_OUT,
 		INTAKE_LIMP,
 		CLIMB_TOP,
 		CLIMB_BOTTOM,
@@ -104,6 +105,8 @@ public class SUB_Superstructure extends SubsystemBase {
 	// Tracks the previous turret angle setpoint so we can compute d(setpoint)/dt
 	// for velocity feedforward. Updated every 10ms by the addPeriodic loop.
 	private double previousTurretAngleRad = 0.0;
+
+	private int intakeCounter = 0;
 
 	private int stallCounter = 0;
 	private int reverseCounter = 0;
@@ -314,6 +317,19 @@ public class SUB_Superstructure extends SubsystemBase {
 			case INTAKE_IN:
 				intakeRef.setSliderPosition(0.0);
 				intakeRef.setIntakeVoltage(2.0);
+				break;
+
+			case INTAKE_IN_OUT:
+				if (intakeCounter < 30) {
+					intakeRef.setSliderPosition(0.0);
+					intakeCounter++;
+				} else if (intakeCounter < 65) {
+					intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
+					intakeCounter++;
+				} else {
+					intakeCounter = 0;
+				}
+				intakeRef.setIntakeVoltage(4.0);
 				break;
 
 			case INTAKE_SKIPPER:
