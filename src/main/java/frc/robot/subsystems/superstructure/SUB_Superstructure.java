@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.constants.RobotConstants;
+import frc.robot.constants.RobotConstants.RobotMode;
 import frc.robot.lib.windingmotor.drive.Drive;
 import frc.robot.subsystems.indexer.SUB_Indexer;
 import frc.robot.subsystems.intake.SUB_Intake;
@@ -40,10 +41,10 @@ public class SUB_Superstructure extends SubsystemBase {
 		BLUE_AIMING_BOTTOM_CORNER(new Translation2d(4.0, 2.0)),
 		RED_AIMING_BOTTOM_CORNER(new Translation2d(12.5, 2.0)),
 
-		RED_FAR_TOP_CORNER(new Translation2d(6.0, 6.0)),
-		BLUE_FAR_TOP_CORNER(new Translation2d(10.5, 6.0)),
-		RED_FAR_BOTTOM_CORNER(new Translation2d(6.0, 2.0)),
-		BLUE_FAR_BOTTOM_CORNER(new Translation2d(10.5, 2.0));
+		RED_FAR_TOP_CORNER(new Translation2d(7.0, 6.0)),
+		BLUE_FAR_TOP_CORNER(new Translation2d(9.5, 6.0)),
+		RED_FAR_BOTTOM_CORNER(new Translation2d(7.0, 2.0)),
+		BLUE_FAR_BOTTOM_CORNER(new Translation2d(9.5, 2.0));
 
 		private final Translation2d position;
 
@@ -65,6 +66,7 @@ public class SUB_Superstructure extends SubsystemBase {
 		INTAKE_SKIPPER,
 		INTAKE_AUTO,
 		INTAKE_IN,
+		INTAKE_FIRST,
 		INTAKE_IN_OUT,
 		INTAKE_LIMP,
 		CLIMB_TOP,
@@ -280,8 +282,18 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case SHOOTING:
-				isRunning = true;
-				indexerRef.setKickerVoltage(10.0);
+				if (shooterRef.isTurretAtTarget()) {
+					isRunning = true;
+					indexerRef.setKickerVoltage(10.0);
+				} else {
+					isRunning = false;
+					indexerRef.setKickerVoltage(0.0);
+				}
+				if (RobotConstants.ROBOT_MODE == RobotMode.SIM) {
+					if (shooterRef.isShooterAtSpeed(shooterRef.getShooterVelocityRPMSetpoint(), 100.0)) {
+						shooterRef.onShoot();
+					}
+				}
 				break;
 
 			case READY:
@@ -317,6 +329,11 @@ public class SUB_Superstructure extends SubsystemBase {
 			case INTAKE_IN:
 				intakeRef.setSliderPosition(0.0);
 				intakeRef.setIntakeVoltage(2.0);
+				break;
+
+			case INTAKE_FIRST:
+				intakeCounter = 0;
+				currentRobotState = RobotState.INTAKE_IN_OUT;
 				break;
 
 			case INTAKE_IN_OUT:
@@ -444,7 +461,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				}
 
 			} else {
-				if (robotPose.getY() < TurretTarget.BLUE_HUB.getPosition().getY()) {
+				if (robotPose.getY() > TurretTarget.BLUE_HUB.getPosition().getY()) {
 					turretTargetPose = TurretTarget.BLUE_FAR_TOP_CORNER.getPosition();
 				} else {
 					turretTargetPose = TurretTarget.BLUE_FAR_BOTTOM_CORNER.getPosition();

@@ -43,10 +43,10 @@ public class RobotContainer {
 	// Auto
 	// ====================================================================
 
-	public static final String AUTO_NAME = "RIGHT_T2_Scoop";
+	public static final String AUTO_NAME = "LEFT_FOLLOW";
 	// middle = MIDDLE_HP, MIDDLE_LEFT
-	// right = RIGHT_T2_Scoop, RIGHT_T2_Climb
-	// left = LEFT_T2_SCOOP, LEFT_T2_Climb
+	// right = RIGHT_T2_SCOOP, RIGHT_T2_CLIMB
+	// left = LEFT_T2_SCOOP, LEFT_T2_CLIMB, LEFT_FOLLOW
 	public static Command AUTO_COMMAND;
 
 	// ====================================================================
@@ -194,7 +194,7 @@ public class RobotContainer {
 		// --- Intake ---
 		driverController
 				.leftTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN_OUT));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_FIRST));
 		driverController
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
@@ -214,7 +214,7 @@ public class RobotContainer {
 
 		operatorController
 				.leftTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN_OUT));
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_FIRST));
 		operatorController
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));

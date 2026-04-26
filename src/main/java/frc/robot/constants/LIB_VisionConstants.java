@@ -191,8 +191,8 @@ public class LIB_VisionConstants {
 					10,
 					11,
 					12,
-					13,
-					14,
+					// 13,
+					// 14,
 					15,
 					16,
 					// Blue alliance tags
@@ -208,8 +208,8 @@ public class LIB_VisionConstants {
 					26,
 					27,
 					28,
-					29,
-					30,
+					// 29,
+					// 30,
 					31,
 					32);
 }

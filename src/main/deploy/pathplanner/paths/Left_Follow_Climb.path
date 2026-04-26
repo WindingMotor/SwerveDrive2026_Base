@@ -55,35 +55,13 @@
       }
     },
     {
-      "name": "INTAKE_IN",
-      "waypointRelativePos": 0.46920115495668185,
+      "name": "INTAKE_IN_OUT",
+      "waypointRelativePos": 0.3402309913378283,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "INTAKE_IN"
-        }
-      }
-    },
-    {
-      "name": "INTAKE",
-      "waypointRelativePos": 0.5712223291626506,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE"
-        }
-      }
-    },
-    {
-      "name": "INTAKE_IN",
-      "waypointRelativePos": 0.696342637151105,
-      "endWaypointRelativePos": null,
-      "command": {
-        "type": "named",
-        "data": {
-          "name": "INTAKE_IN"
+          "name": "INTAKE_IN_OUT"
         }
       }
     }
