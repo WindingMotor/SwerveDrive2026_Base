@@ -46,7 +46,7 @@ public class RobotContainer {
 	public static final String AUTO_NAME = "LEFT_T2_SCOOP";
 	// middle = MIDDLE_HP, MIDDLE_LEFT
 	// right = RIGHT_T2_Scoop, RIGHT_T2_Climb
-	// left = LEFT_T2_SCOOP, LEFT_T2_Climb, LEFT_FOLLOW
+	// left = LEFT_T2_SCOOP, LEFT_T2_Climb, LEFT_FOLLOW, LEFT_NEW_SCOOP, LEFT_NEW_SCOOP_DP
 	public static Command AUTO_COMMAND;
 
 	// ====================================================================

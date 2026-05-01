@@ -3,38 +3,52 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.7089624329159208,
-        "y": 7.320644007155635
+        "x": 3.5321824686940966,
+        "y": 3.994436493738819
       },
       "prevControl": null,
       "nextControl": {
-        "x": 2.2467187780935856,
-        "y": 7.182522179744468
+        "x": 2.2179248658318427,
+        "y": 4.85438282647585
       },
       "isLocked": false,
-      "linkedName": "Left_AF_DP"
+      "linkedName": null
     },
     {
       "anchor": {
-        "x": 1.031,
-        "y": 4.61
+        "x": 0.6927370304114486,
+        "y": 5.016636851520572
       },
       "prevControl": {
-        "x": 2.0394454382826472,
-        "y": 4.748354203935598
+        "x": 1.6308947449669908,
+        "y": 5.258798924838589
       },
       "nextControl": null,
       "isLocked": false,
-      "linkedName": null
+      "linkedName": "Left_BF_DP"
     }
   ],
   "rotationTargets": [],
-  "constraintZones": [],
+  "constraintZones": [
+    {
+      "name": "Constraints Zone",
+      "minWaypointRelativePos": 0.0,
+      "maxWaypointRelativePos": 1.0,
+      "constraints": {
+        "maxVelocity": 0.8,
+        "maxAcceleration": 5.0,
+        "maxAngularVelocity": 1000.0,
+        "maxAngularAcceleration": 1500.0,
+        "nominalVoltage": 12.0,
+        "unlimited": false
+      }
+    }
+  ],
   "pointTowardsZones": [],
   "eventMarkers": [
     {
       "name": "SHOOT",
-      "waypointRelativePos": 0.049566891241579765,
+      "waypointRelativePos": 0.11764705882352947,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
@@ -44,30 +58,30 @@
       }
     },
     {
-      "name": "CLIMB_TOP",
-      "waypointRelativePos": 0.15928777670837058,
+      "name": "IDLE",
+      "waypointRelativePos": 0.5441176470588238,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "CLIMB_TOP"
+          "name": "IDLE"
         }
       }
     },
     {
-      "name": "INTAKE_IN_OUT",
-      "waypointRelativePos": 0.3402309913378283,
+      "name": "INTAKE",
+      "waypointRelativePos": 0.8205882352941178,
       "endWaypointRelativePos": null,
       "command": {
         "type": "named",
         "data": {
-          "name": "INTAKE_IN_OUT"
+          "name": "INTAKE"
         }
       }
     }
   ],
   "globalConstraints": {
-    "maxVelocity": 1.0,
+    "maxVelocity": 3.8,
     "maxAcceleration": 5.0,
     "maxAngularVelocity": 1000.0,
     "maxAngularAcceleration": 1500.0,
@@ -76,13 +90,13 @@
   },
   "goalEndState": {
     "velocity": 0,
-    "rotation": 90.0
+    "rotation": 125.27242144859834
   },
   "reversed": false,
   "folder": "LeftSide",
   "idealStartingState": {
     "velocity": 0,
-    "rotation": 129.3693172423647
+    "rotation": 177.51044707800077
   },
-  "useDefaultConstraints": false
+  "useDefaultConstraints": true
 }

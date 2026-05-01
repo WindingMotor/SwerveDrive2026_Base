@@ -5,39 +5,9 @@
     "data": {
       "commands": [
         {
-          "type": "wait",
-          "data": {
-            "waitTime": 0.3
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "SHOOT"
-          }
-        },
-        {
-          "type": "wait",
-          "data": {
-            "waitTime": 3.0
-          }
-        },
-        {
-          "type": "named",
-          "data": {
-            "name": "IDLE"
-          }
-        },
-        {
           "type": "path",
           "data": {
-            "pathName": "Left_Follow_Out"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "Left_Follow_In"
+            "pathName": "Left_Middle"
           }
         },
         {
@@ -53,9 +23,21 @@
           }
         },
         {
+          "type": "wait",
+          "data": {
+            "waitTime": 7.0
+          }
+        },
+        {
           "type": "named",
           "data": {
             "name": "IDLE"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 0.5
           }
         },
         {

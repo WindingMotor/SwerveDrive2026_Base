@@ -1,0 +1,43 @@
+{
+  "version": "2025.0",
+  "command": {
+    "type": "sequential",
+    "data": {
+      "commands": [
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left_NewScoop_a"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE_IN_OUT"
+          }
+        },
+        {
+          "type": "wait",
+          "data": {
+            "waitTime": 2.5
+          }
+        },
+        {
+          "type": "path",
+          "data": {
+            "pathName": "Left_NewScoop_b_DP"
+          }
+        },
+        {
+          "type": "named",
+          "data": {
+            "name": "INTAKE_IN_OUT"
+          }
+        }
+      ]
+    }
+  },
+  "resetOdom": true,
+  "folder": "Left_Side",
+  "choreoAuto": false
+}

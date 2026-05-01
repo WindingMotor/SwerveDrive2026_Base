@@ -4,13 +4,13 @@
   "holonomicMode": true,
   "pathFolders": [
     "CenterRush",
-    "idk",
     "LeftSide",
     "LeftSide_Comp",
     "Middle",
     "RightSide",
     "RightSide_Comp",
-    "TestClimb"
+    "TestClimb",
+    "New Left"
   ],
   "autoFolders": [
     "CenterRush",

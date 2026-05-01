@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 0.7930050761421321,
-        "y": 5.034081218274111
+        "x": 0.6927370304114486,
+        "y": 5.016636851520572
       },
       "prevControl": null,
       "nextControl": {
-        "x": 0.6825076142131987,
-        "y": 5.706274111675127
+        "x": 0.5822395684825152,
+        "y": 5.6888297449215885
       },
       "isLocked": false,
       "linkedName": "Left_BF_DP"
     },
     {
       "anchor": {
-        "x": 0.7930050761421321,
-        "y": 7.133532994923858
+        "x": 0.7089624329159208,
+        "y": 7.320644007155635
       },
       "prevControl": {
-        "x": 0.7101319796954313,
-        "y": 6.636294416243654
+        "x": 0.6260893364692199,
+        "y": 6.823405428475431
       },
       "nextControl": null,
       "isLocked": false,
@@ -33,7 +33,7 @@
   "pointTowardsZones": [],
   "eventMarkers": [],
   "globalConstraints": {
-    "maxVelocity": 2.0,
+    "maxVelocity": 1.5,
     "maxAcceleration": 5.0,
     "maxAngularVelocity": 1000.0,
     "maxAngularAcceleration": 1500.0,
