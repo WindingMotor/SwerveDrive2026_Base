@@ -90,6 +90,7 @@ public class SUB_Superstructure extends SubsystemBase {
 	private SUB_Shooter shooterRef;
 	private Drive driveRef;
 	private CommandXboxController driverController;
+	private CommandXboxController operatorController;
 
 	// ====================================================================
 	// State
@@ -100,6 +101,8 @@ public class SUB_Superstructure extends SubsystemBase {
 
 	private Boolean activelyShooting = false;
 	private Boolean activelyReady = false;
+
+	private Boolean autoMode = false;
 
 	private boolean isRedGlobal =
 			DriverStation.getAlliance().isPresent() && DriverStation.getAlliance().get() == Alliance.Red;
@@ -192,12 +195,14 @@ public class SUB_Superstructure extends SubsystemBase {
 			SUB_Intake intakeRef,
 			SUB_Shooter shooterRef,
 			Drive driveRef,
-			CommandXboxController driverController) {
+			CommandXboxController driverController,
+			CommandXboxController operatorController) {
 		this.indexerRef = indexerRef;
 		this.intakeRef = intakeRef;
 		this.shooterRef = shooterRef;
 		this.driveRef = driveRef;
 		this.driverController = driverController;
+		this.operatorController = operatorController;
 
 		shooterRPMTable = new InterpolatingDoubleTreeMap();
 		for (double[] dataPoint : RobotConstants.Shooter.SHOOTER_RPM_DATA) {
@@ -276,17 +281,19 @@ public class SUB_Superstructure extends SubsystemBase {
 				indexerRef.setSpinnerVoltage(0.0);
 				indexerRef.setKickerVoltage(0.0);
 				intakeRef.setIntakeVoltage(0.0);
-				intakeRef.setSliderVoltage(0.0);
+				intakeRef.setSliderPosition(0.0);
 				indexerRef.setClimbVoltage(0.0);
 				isRunning = false;
 				break;
 
 			case SHOOTING:
 				if (shooterRef.isTurretAtTarget()) {
-					isRunning = true;
-					indexerRef.setKickerVoltage(10.0);
+					// isRunning = true;
+					indexerRef.setSpinnerVoltage(8.0);
+					indexerRef.setKickerVoltage(6.0);
 				} else {
-					isRunning = false;
+					// isRunning = false;
+					indexerRef.setSpinnerVoltage(0.0);
 					indexerRef.setKickerVoltage(0.0);
 				}
 				if (RobotConstants.ROBOT_MODE == RobotMode.SIM) {
@@ -297,7 +304,8 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case READY:
-				isRunning = false;
+				// isRunning = false;
+				indexerRef.setSpinnerVoltage(0.0);
 				indexerRef.setKickerVoltage(0.0);
 				break;
 
@@ -307,17 +315,17 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE:
-				intakeRef.setIntakeVoltage(10.0);
+				intakeRef.setIntakeVoltage(6.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
 			case INTAKE_AUTO:
-				intakeRef.setIntakeVoltage(10.0);
+				intakeRef.setIntakeVoltage(9.5);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
 			case INTAKE_LIMP:
-				intakeRef.setIntakeVoltage(4.0);
+				intakeRef.setIntakeVoltage(0.0);
 				intakeRef.setSliderVoltage(0.0);
 				break;
 
@@ -359,7 +367,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case CLIMB_BOTTOM:
-				indexerRef.setClimbPosition(0.0);
+				indexerRef.setClimbPosition(1.0);
 				break;
 
 			case CLIMB_UP:
@@ -374,7 +382,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				indexerRef.setClimbVoltage(0.0);
 				break;
 		}
-		runSpinner();
+		// runSpinner();
 	}
 
 	// ====================================================================
@@ -504,10 +512,25 @@ public class SUB_Superstructure extends SubsystemBase {
 		double deltaY = virtualGoal.getY() - turretPos.getY();
 		double fieldAngleRad = Math.atan2(deltaY, deltaX);
 
+		// manuel mode
+		double controllerXAxis = -operatorController.getRawAxis(1);
+		double controllerYAxis = -operatorController.getRawAxis(0);
+
+		double CtrlAngleRad = Math.atan2(controllerYAxis, controllerXAxis);
+
 		double robotHeadingRad = robotPose.getRotation().getRadians();
 		robotHeadingRad = Math.atan2(Math.sin(robotHeadingRad), Math.cos(robotHeadingRad));
 
-		double turretAngleRad = fieldAngleRad - robotHeadingRad;
+		double ctrlHy =
+				Math.sqrt(controllerXAxis * controllerXAxis + controllerYAxis * controllerYAxis);
+
+		boolean sig = ctrlHy > 0.2;
+
+		double turretAngleRad = fieldAngleRad - robotHeadingRad; // auto
+		if (!autoMode) {
+			turretAngleRad = CtrlAngleRad - robotHeadingRad; // manuel
+		}
+
 		turretAngleRad = Math.atan2(Math.sin(turretAngleRad), Math.cos(turretAngleRad));
 
 		double turretRangeCenter =
@@ -526,7 +549,9 @@ public class SUB_Superstructure extends SubsystemBase {
 
 		double turretAngleController = turretAngleRad + controllerOmega;
 
-		shooterRef.setTurretPosition(turretAngleController, turretSetpointVelocityRadPerSec);
+		if (autoMode || sig) {
+			shooterRef.setTurretPosition(turretAngleController, turretSetpointVelocityRadPerSec);
+		}
 
 		// Cache for periodic() logging
 		cache_turretPositionPose = new Pose2d(turretPos, new Rotation2d(fieldAngleRad));
@@ -562,7 +587,15 @@ public class SUB_Superstructure extends SubsystemBase {
 		double distance = turretPos.getDistance(virtualGoal);
 		double targetRPM = shooterRPMTable.get(distance);
 
-		shooterRef.setShooterVelocities(targetRPM);
+		// manuel
+		double triggerVal = operatorController.getRawAxis(3); // might not be 6
+		double ctrlToVolts = triggerVal * 4.0;
+
+		if (!autoMode) { // manuel
+			shooterRef.setShooterVoltages(ctrlToVolts);
+		} else {
+			shooterRef.setShooterVelocities(targetRPM); // auto
+		}
 
 		// Cache for periodic() logging
 		cache_shooterDistance = distance;

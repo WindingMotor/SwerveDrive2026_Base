@@ -32,7 +32,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration INTAKE_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 60;
+			INTAKE_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 30; // 60
 			INTAKE_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			INTAKE_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			INTAKE_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
@@ -43,12 +43,12 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SLIDER_MOTOR_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 23;
+			SLIDER_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 35; // 23
 			SLIDER_MOTOR_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			SLIDER_MOTOR_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SLIDER_MOTOR_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
-			SLIDER_MOTOR_CONFIG.Slot0.kP = 1.9;
+			SLIDER_MOTOR_CONFIG.Slot0.kP = 1.5; // 1.9
 			SLIDER_MOTOR_CONFIG.Slot0.kI = 0.1;
 			SLIDER_MOTOR_CONFIG.Slot0.kD = 0.03;
 			SLIDER_MOTOR_CONFIG.Slot0.kS = 0.35;
@@ -66,7 +66,7 @@ public final class RobotConstants {
 		public static final TalonFXConfiguration SHOOTER_MOTOR_ONE_CONFIG = new TalonFXConfiguration();
 
 		static {
-			SHOOTER_MOTOR_ONE_CONFIG.CurrentLimits.StatorCurrentLimit = 55;
+			SHOOTER_MOTOR_ONE_CONFIG.CurrentLimits.StatorCurrentLimit = 40; // 55
 			SHOOTER_MOTOR_ONE_CONFIG.Feedback.SensorToMechanismRatio = 1.0;
 			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SHOOTER_MOTOR_ONE_CONFIG.MotorOutput.Inverted = InvertedValue.CounterClockwise_Positive;
@@ -74,8 +74,8 @@ public final class RobotConstants {
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kP = 0.4;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kI = 0.05;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kD = 0.00;
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.23; // 0.232
-			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kV = 0.117; // 0.119
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kS = 0.23;
+			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kV = 0.117;
 			SHOOTER_MOTOR_ONE_CONFIG.Slot0.kA = 0.0;
 		}
 
@@ -88,11 +88,11 @@ public final class RobotConstants {
 			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.NeutralMode = NeutralModeValue.Coast;
 			SHOOTER_MOTOR_TWO_CONFIG.MotorOutput.Inverted = InvertedValue.Clockwise_Positive;
 
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.4; // 0.75
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kP = 0.4;
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kI = 0.05;
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kD = 0.00;
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.23; // 0.232
-			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.117; // 0.119
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kS = 0.23;
+			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kV = 0.117;
 			SHOOTER_MOTOR_TWO_CONFIG.Slot0.kA = 0.0;
 		}
 
@@ -162,13 +162,12 @@ public final class RobotConstants {
 			{3.7, 2180.0 * VELOCITY_MULTIPLE},
 			{4.0, 2370.0 * VELOCITY_MULTIPLE},
 			{4.5, 2530.0 * VELOCITY_MULTIPLE},
-			{5.0, 2770.0 * VELOCITY_MULTIPLE}, // 2630
-			{5.3, 3000.0 * VELOCITY_MULTIPLE},
-			{5.5, 3150.0 * VELOCITY_MULTIPLE}, // 2630
-			{6.0, 3250.0 * VELOCITY_MULTIPLE}, // 2700
-			{6.5, 3500.0 * VELOCITY_MULTIPLE}, // 3000
-			{7.0, 3650.0 * VELOCITY_MULTIPLE},
-			{7.5, 3600.0 * VELOCITY_MULTIPLE},
+			{5.0, 2630.0 * VELOCITY_MULTIPLE},
+			{5.5, 2630.0 * VELOCITY_MULTIPLE}, // 2660
+			{6.0, 2700.0 * VELOCITY_MULTIPLE}, // 2800
+			{6.5, 3000.0 * VELOCITY_MULTIPLE},
+			{7.0, 3200.0 * VELOCITY_MULTIPLE},
+			{7.5, 3400.0 * VELOCITY_MULTIPLE},
 			{8.0, 3600.0 * VELOCITY_MULTIPLE},
 			{8.5, 3800.0 * VELOCITY_MULTIPLE},
 			{9.0, 4000.0 * VELOCITY_MULTIPLE}
