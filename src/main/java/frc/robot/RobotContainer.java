@@ -214,12 +214,12 @@ public class RobotContainer {
 		driverController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.UNJAM));
 		driverController.b().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
-		operatorController
+		/*operatorController
 				.leftTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 		operatorController
 				.leftTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP)); */
 
 		/*operatorController
 		.leftBumper()
@@ -233,20 +233,20 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP)); */
 
 		// --- Shoot ---
-		driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
-		driverController.y().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
+		driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+		driverController.y().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_AUTO));
 
 		driverController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
 		driverController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.IDLE));
 
-		operatorController
+		/*operatorController
 				.rightTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		operatorController
 				.rightTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
-		operatorController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
+		operatorController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));*/
 
 		// --- Climb ---
 		driverController
@@ -266,7 +266,7 @@ public class RobotContainer {
 				.povDown()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
 
-		operatorController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_UP));
+		/*operatorController.povUp().onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_UP));
 		operatorController
 				.povUp()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
@@ -276,7 +276,7 @@ public class RobotContainer {
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.CLIMB_DOWN));
 		operatorController
 				.povDown()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP));
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.CLIMB_STOP)); */
 	}
 
 	private void configurePathplannerCommands() {

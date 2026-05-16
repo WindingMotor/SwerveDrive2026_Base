@@ -117,6 +117,44 @@ public class DriveCommands {
 				drive);
 	}
 
+	public static Command driveRobotRelative(
+			Drive drive,
+			DoubleSupplier xSupplier,
+			DoubleSupplier ySupplier,
+			DoubleSupplier omegaSupplier,
+			double linearScalar,
+			double omegaScalar) {
+		return Commands.run(
+				() -> {
+					boolean isRed =
+							DriverStation.getAlliance().isPresent()
+									&& DriverStation.getAlliance().get() == Alliance.Red;
+
+					double x = xSupplier.getAsDouble();
+					double y = ySupplier.getAsDouble();
+
+					if (isRed) {
+						x *= -1;
+						y *= -1;
+					}
+
+					Translation2d linearVelocity = getLinearVelocityFromJoysticks(x, y);
+
+					double omega = MathUtil.applyDeadband(omegaSupplier.getAsDouble(), DEADBAND);
+					// Square for soft curve — preserves sign, gentle at low input, full power at full stick
+					omega = Math.copySign(omega * omega, omega);
+
+					ChassisSpeeds speeds =
+							new ChassisSpeeds(
+									linearVelocity.getX() * drive.getMaxLinearSpeedMetersPerSec() * linearScalar,
+									linearVelocity.getY() * drive.getMaxLinearSpeedMetersPerSec() * linearScalar,
+									omega * drive.getMaxAngularSpeedRadPerSec() * omegaScalar);
+
+					drive.runVelocity(ChassisSpeeds.fromRobotRelativeSpeeds(speeds, drive.getRotation()));
+				},
+				drive);
+	}
+
 	public static Command driveNormalExpo(
 			Drive drive,
 			DoubleSupplier xSupplier,

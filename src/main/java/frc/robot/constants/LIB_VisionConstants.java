@@ -37,7 +37,7 @@ public class LIB_VisionConstants {
 
 	/** AprilTag field layout for the current game. Update each season. */
 	public static AprilTagFieldLayout aprilTagLayout =
-			AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltWelded);
+			AprilTagFieldLayout.loadField(AprilTagFields.k2026RebuiltAndymark);
 
 	// ====================================================================
 	// SECTION 2: CAMERA 0 - BACK CAMERA

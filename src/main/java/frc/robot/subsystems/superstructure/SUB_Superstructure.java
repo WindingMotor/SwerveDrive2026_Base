@@ -111,6 +111,8 @@ public class SUB_Superstructure extends SubsystemBase {
 	// for velocity feedforward. Updated every 10ms by the addPeriodic loop.
 	private double previousTurretAngleRad = 0.0;
 
+	private double turretAngleController = 0.0;
+
 	private int intakeCounter = 0;
 
 	private int stallCounter = 0;
@@ -547,7 +549,7 @@ public class SUB_Superstructure extends SubsystemBase {
 
 		// Send both position AND velocity — Kraken uses kV*velocity as feedforward at 1kHz
 
-		double turretAngleController = turretAngleRad + controllerOmega;
+		turretAngleController = turretAngleRad + controllerOmega;
 
 		if (autoMode || sig) {
 			shooterRef.setTurretPosition(turretAngleController, turretSetpointVelocityRadPerSec);
@@ -589,7 +591,7 @@ public class SUB_Superstructure extends SubsystemBase {
 
 		// manuel
 		double triggerVal = operatorController.getRawAxis(3); // might not be 6
-		double ctrlToVolts = triggerVal * 4.0;
+		double ctrlToVolts = (triggerVal + 1) * 6.0;
 
 		if (!autoMode) { // manuel
 			shooterRef.setShooterVoltages(ctrlToVolts);
