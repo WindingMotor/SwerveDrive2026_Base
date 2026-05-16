@@ -61,6 +61,8 @@ public class SUB_Superstructure extends SubsystemBase {
 		IDLE,
 		SHOOTING,
 		READY,
+		VOLTS_UP,
+		VOLTS_DOWN,
 		UNJAM,
 		INTAKE,
 		INTAKE_SKIPPER,
@@ -112,6 +114,7 @@ public class SUB_Superstructure extends SubsystemBase {
 	private double previousTurretAngleRad = 0.0;
 
 	private double turretAngleController = 0.0;
+	private double shooterVoltage = 0.0;
 
 	private int intakeCounter = 0;
 
@@ -286,6 +289,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				intakeRef.setSliderPosition(0.0);
 				indexerRef.setClimbVoltage(0.0);
 				isRunning = false;
+				shooterVoltage = 0.0;
 				break;
 
 			case SHOOTING:
@@ -309,6 +313,16 @@ public class SUB_Superstructure extends SubsystemBase {
 				// isRunning = false;
 				indexerRef.setSpinnerVoltage(0.0);
 				indexerRef.setKickerVoltage(0.0);
+				break;
+
+			case VOLTS_UP:
+				shooterVoltage += 1.5;
+				currentRobotState = RobotState.READY;
+				break;
+
+			case VOLTS_DOWN:
+				shooterVoltage -= 1.5;
+				currentRobotState = RobotState.READY;
 				break;
 
 			case UNJAM:
@@ -593,8 +607,14 @@ public class SUB_Superstructure extends SubsystemBase {
 		double triggerVal = operatorController.getRawAxis(3); // might not be 6
 		double ctrlToVolts = (triggerVal + 1) * 6.0;
 
+		if(shooterVoltage > 12) {
+			shooterVoltage = 12;
+		} else if(shooterVoltage < 0) {
+			shooterVoltage = 0;
+		}
+
 		if (!autoMode) { // manuel
-			shooterRef.setShooterVoltages(ctrlToVolts);
+			shooterRef.setShooterVoltages(shooterVoltage);
 		} else {
 			shooterRef.setShooterVelocities(targetRPM); // auto
 		}

@@ -201,8 +201,8 @@ public class RobotContainer {
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
-		driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
-		driverController.a().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
+		//driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
+		//driverController.a().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
 		driverController
 				.rightTrigger()
@@ -214,12 +214,12 @@ public class RobotContainer {
 		driverController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.UNJAM));
 		driverController.b().onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
-		/*operatorController
+		operatorController
 				.leftTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 		operatorController
 				.leftTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP)); */
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP)); 
 
 		/*operatorController
 		.leftBumper()
@@ -239,14 +239,20 @@ public class RobotContainer {
 		driverController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
 		driverController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.IDLE));
 
-		/*operatorController
+		operatorController
 				.rightTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.SHOOTING));
 		operatorController
 				.rightTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
-		operatorController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));*/
+		operatorController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
+		
+		driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_UP));
+		driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_DOWN));
+
+		operatorController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_UP));
+		operatorController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_DOWN));
 
 		// --- Climb ---
 		driverController
