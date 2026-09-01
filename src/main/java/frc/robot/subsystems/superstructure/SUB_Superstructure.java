@@ -104,7 +104,7 @@ public class SUB_Superstructure extends SubsystemBase {
 	private Boolean activelyShooting = false;
 	private Boolean activelyReady = false;
 
-	private Boolean autoMode = false;
+	private Boolean autoMode = true;
 
 	private boolean isRedGlobal =
 			DriverStation.getAlliance().isPresent() && DriverStation.getAlliance().get() == Alliance.Red;
@@ -295,7 +295,7 @@ public class SUB_Superstructure extends SubsystemBase {
 			case SHOOTING:
 				if (shooterRef.isTurretAtTarget()) {
 					// isRunning = true;
-					indexerRef.setSpinnerVoltage(8.0);
+					indexerRef.setSpinnerVoltage(10.0);
 					indexerRef.setKickerVoltage(6.0);
 				} else {
 					// isRunning = false;
@@ -331,7 +331,7 @@ public class SUB_Superstructure extends SubsystemBase {
 				break;
 
 			case INTAKE:
-				intakeRef.setIntakeVoltage(6.0);
+				intakeRef.setIntakeVoltage(8.0);
 				intakeRef.setSliderPosition(INTAKE_MAX_EXTENSION_METERS);
 				break;
 
@@ -565,9 +565,9 @@ public class SUB_Superstructure extends SubsystemBase {
 
 		turretAngleController = turretAngleRad + controllerOmega;
 
-		if (autoMode || sig) {
-			shooterRef.setTurretPosition(turretAngleController, turretSetpointVelocityRadPerSec);
-		}
+		// turretAngleController = 0.0;
+
+		shooterRef.setTurretPosition(turretAngleController, turretSetpointVelocityRadPerSec);
 
 		// Cache for periodic() logging
 		cache_turretPositionPose = new Pose2d(turretPos, new Rotation2d(fieldAngleRad));
@@ -607,9 +607,9 @@ public class SUB_Superstructure extends SubsystemBase {
 		double triggerVal = operatorController.getRawAxis(3); // might not be 6
 		double ctrlToVolts = (triggerVal + 1) * 6.0;
 
-		if(shooterVoltage > 12) {
+		if (shooterVoltage > 12) {
 			shooterVoltage = 12;
-		} else if(shooterVoltage < 0) {
+		} else if (shooterVoltage < 0) {
 			shooterVoltage = 0;
 		}
 

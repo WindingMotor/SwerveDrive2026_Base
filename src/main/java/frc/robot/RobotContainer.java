@@ -185,8 +185,8 @@ public class RobotContainer {
 						() -> driverController.getRawAxis(1), // 1
 						() -> driverController.getRawAxis(0), // 0
 						() -> driverController.getRawAxis(4),
-						0.4, // A VALUE OF 1.0 is FULL ROBOT SPEED 1.0
-						0.3, // Keep rotation conservative 0.8
+						1.0, // A VALUE OF 1.0 is FULL ROBOT SPEED 1.0
+						0.8, // Keep rotation conservative 0.8
 						0.1, // Movement expo
 						0.2)); // Rotation expo
 	}
@@ -197,12 +197,16 @@ public class RobotContainer {
 		driverController
 				.leftTrigger()
 				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+
 		driverController
 				.leftTrigger()
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+		/*driverController
+		.leftTrigger()
+		.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));*/
 
-		//driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
-		//driverController.a().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
+		// driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.EJECT));
+		// driverController.a().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));
 
 		driverController
 				.rightTrigger()
@@ -216,10 +220,10 @@ public class RobotContainer {
 
 		operatorController
 				.leftTrigger()
-				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE));
-		operatorController
-				.leftTrigger()
-				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP)); 
+				.onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+		/*operatorController
+		.leftTrigger()
+		.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP));*/
 
 		/*operatorController
 		.leftBumper()
@@ -233,8 +237,14 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_LIMP)); */
 
 		// --- Shoot ---
-		driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
-		driverController.y().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_AUTO));
+		// driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.INTAKE_IN));
+		// driverController.y().onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE_AUTO));
+		driverController
+				.leftTrigger()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
+		operatorController
+				.leftTrigger()
+				.onFalse(new CMD_Superstructure(superstructure, RobotState.INTAKE));
 
 		driverController.x().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
 		driverController.x().onFalse(new CMD_Superstructure(superstructure, RobotState.IDLE));
@@ -247,12 +257,12 @@ public class RobotContainer {
 				.onFalse(new CMD_Superstructure(superstructure, RobotState.READY));
 
 		operatorController.b().onTrue(new CMD_Superstructure(superstructure, RobotState.IDLE));
-		
-		driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_UP));
+
+		/*driverController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_UP));
 		driverController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_DOWN));
 
 		operatorController.y().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_UP));
-		operatorController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_DOWN));
+		operatorController.a().onTrue(new CMD_Superstructure(superstructure, RobotState.VOLTS_DOWN)); */
 
 		// --- Climb ---
 		driverController

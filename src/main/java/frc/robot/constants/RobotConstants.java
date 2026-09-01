@@ -98,8 +98,8 @@ public final class RobotConstants {
 
 		public static final int TURRET_MOTOR_CAN_ID = 22;
 
-		public static final double TURRET_RADIANS_MAX = 0.5;
-		public static final double TURRET_RADIANS_MIN = -6.0;
+		public static final double TURRET_RADIANS_MAX = 0.2;
+		public static final double TURRET_RADIANS_MIN = -5.5;
 		public static final double TURRET_ANGLE_OFFSET = Math.toRadians(12.0);
 		public static final double ROT_TO_RAD = 2.0 * Math.PI;
 
@@ -111,7 +111,7 @@ public final class RobotConstants {
 		public static final double TURRET_SLOW_MOVE_VOLTAGE = 2.0;
 
 		static {
-			TURRET_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 40;
+			TURRET_MOTOR_CONFIG.CurrentLimits.StatorCurrentLimit = 25;
 
 			// SensorToMechanismRatio = 157/11 means Phoenix 6 handles the gear ratio
 			// internally. All position and velocity commands are in MECHANISM units
